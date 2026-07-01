@@ -1,0 +1,62 @@
+/* add-widget-tab · buttons · variants: default, with-disabled · states: default, hover, active(selected), focus, disabled · deps: tokens.css, base.css · used-in: add-widget-panel */
+
+/* Underline tab group for the "Add New Widget" panel header
+   (Create Widget / Predefined / User Define). The active tab is marked with
+   `aria-selected="true"` (and the legacy `.on` hook) and carries a teal
+   underline. Self-contained: the group container is the root `.oo-aw-tabs`
+   and every rule is scoped beneath it so styles never leak. */
+
+/* ── group / tablist ──────────────────────────────────────── */
+.oo-aw-tabs {
+  display: flex;
+  gap: 22px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-sans);
+}
+
+/* ── individual tab ───────────────────────────────────────── */
+.oo-aw-tabs .oo-aw-tab {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px; /* overlap the group hairline so the active rule reads as one line */
+  padding: 9px 0;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+/* hover — lift the label toward primary text for affordance */
+.oo-aw-tabs .oo-aw-tab:hover {
+  color: var(--text);
+}
+
+/* active / selected — teal label + teal underline */
+.oo-aw-tabs .oo-aw-tab.on,
+.oo-aw-tabs .oo-aw-tab[aria-selected="true"] {
+  color: var(--teal);
+  border-bottom-color: var(--teal);
+}
+
+/* keyboard focus ring (mirrors base.css [class*=oo-]:focus-visible) */
+.oo-aw-tabs .oo-aw-tab:focus-visible {
+  outline: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--ring);
+}
+
+/* disabled — faint, non-interactive, never shows the underline */
+.oo-aw-tabs .oo-aw-tab:disabled,
+.oo-aw-tabs .oo-aw-tab.is-disabled {
+  color: var(--dim);
+  border-bottom-color: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+}

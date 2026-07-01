@@ -1,0 +1,82 @@
+/* ai-generate-btn · buttons · variants: default, icon-only, block · states: default, hover, focus, busy, disabled · deps: tokens.css, base.css · used-in: create-widget-modal (Create with AI prompt row) */
+
+/* Gradient teal->purple "Generate" action button with a sparkle (SPARK) glyph.
+   Lives in the "Create with AI" prompt row of the Add / Create-Widget flow, where a
+   plain-English description is turned into a widget.
+   Refined from .ai-gen-go: tokenised radius/gap/transition, gradient glow + brightness
+   hover/active, keyboard focus ring, plus busy (aria-busy) and disabled treatments. */
+
+.oo-ai-gen-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  padding: 7px 13px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--teal), var(--purple));
+  color: var(--on-accent);                 /* on-gradient text; white is not a palette token */
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: filter var(--transition), box-shadow var(--transition), opacity var(--transition);
+}
+
+/* sparkle / leading icon */
+.oo-ai-gen-btn svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+}
+
+/* hover / active: brighten the gradient and lift with a teal/purple glow */
+.oo-ai-gen-btn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 0 0 1px var(--teal-glow), 0 4px 14px var(--purple-bg);
+}
+.oo-ai-gen-btn:active {
+  filter: brightness(.94);
+  box-shadow: none;
+}
+
+/* keyboard focus ring (base.css also supplies this for any .oo- control) */
+.oo-ai-gen-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* icon-only — square, centered glyph */
+.oo-ai-gen-btn.icon-only { padding: 7px; }
+
+/* block — full width within its container */
+.oo-ai-gen-btn.block { width: 100%; }
+
+/* busy — generating; gentle sparkle pulse, non-interactive */
+.oo-ai-gen-btn[aria-busy="true"] {
+  cursor: progress;
+  pointer-events: none;
+}
+.oo-ai-gen-btn[aria-busy="true"] svg {
+  animation: oo-ai-gen-pulse 1s ease-in-out infinite;
+}
+@keyframes oo-ai-gen-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%      { opacity: .55; transform: scale(.82); }
+}
+
+/* disabled */
+.oo-ai-gen-btn:disabled,
+.oo-ai-gen-btn.is-disabled {
+  opacity: .45;
+  filter: grayscale(.3);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oo-ai-gen-btn[aria-busy="true"] svg { animation: none; }
+}

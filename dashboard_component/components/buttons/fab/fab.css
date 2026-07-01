@@ -1,0 +1,71 @@
+/* fab · buttons · variants: default, fixed, lg · states: default, hover, focus, active, disabled · deps: tokens.css · used-in: dashboard-canvas, add-widget-flow */
+
+/* Floating action button — circular teal trigger, icon-only.
+   Base `.oo-fab` is position-agnostic (drops into any flow / gallery stage);
+   add `.oo-fab--fixed` to pin it bottom-right over a scrolling surface. */
+.oo-fab {
+  --_fab-size: 50px;
+  width: var(--_fab-size);
+  height: var(--_fab-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--teal);
+  color: var(--on-accent);                   /* on-accent foreground (icon stroke) */
+  cursor: pointer;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--teal) 40%, transparent);
+  transition: transform var(--transition), box-shadow var(--transition),
+    background var(--transition);
+  z-index: 20;
+}
+
+.oo-fab svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.oo-fab:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--teal) 55%, transparent);
+}
+
+.oo-fab:active {
+  transform: scale(0.96);
+}
+
+/* keyboard focus — additive ring on top of the resting teal glow */
+.oo-fab:focus-visible {
+  outline: none;
+  box-shadow: var(--ring), 0 8px 24px color-mix(in srgb, var(--teal) 40%, transparent);
+}
+
+.oo-fab:disabled,
+.oo-fab.is-disabled {
+  background: var(--dim);
+  color: var(--muted);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+  pointer-events: none;
+}
+
+/* ── variant: fixed — pin to the bottom-right of the nearest positioned ancestor ── */
+.oo-fab--fixed {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+}
+
+/* ── variant: lg — larger emphasis FAB ── */
+.oo-fab--lg {
+  --_fab-size: 64px;
+}
+
+.oo-fab--lg svg {
+  width: 28px;
+  height: 28px;
+}

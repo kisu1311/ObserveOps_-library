@@ -1,0 +1,185 @@
+<!-- variant: default — full NOC wallboard (live header · KPI counters · 4-col status grid · ticker) -->
+<section class="oo-noc-wallboard" role="region" aria-label="NOC wallboard — stream">
+  <div class="oo-noc-wallboard__top">
+    <div class="oo-noc-wallboard__title">NOC View · <b>stream</b></div>
+    <span class="oo-noc-wallboard__live">Live</span>
+
+    <div class="oo-noc-wallboard__kpis" role="group" aria-label="Monitor status summary">
+      <div class="oo-noc-wallboard__kpi oo-noc-wallboard__kpi--neutral">
+        <div class="oo-noc-wallboard__kpi-v">248</div>
+        <div class="oo-noc-wallboard__kpi-l">Monitors</div>
+      </div>
+      <div class="oo-noc-wallboard__kpi oo-noc-wallboard__kpi--critical">
+        <div class="oo-noc-wallboard__kpi-v">3</div>
+        <div class="oo-noc-wallboard__kpi-l">Critical</div>
+      </div>
+      <div class="oo-noc-wallboard__kpi oo-noc-wallboard__kpi--warning">
+        <div class="oo-noc-wallboard__kpi-v">3</div>
+        <div class="oo-noc-wallboard__kpi-l">Warning</div>
+      </div>
+      <div class="oo-noc-wallboard__kpi oo-noc-wallboard__kpi--up">
+        <div class="oo-noc-wallboard__kpi-v">234</div>
+        <div class="oo-noc-wallboard__kpi-l">Up</div>
+      </div>
+      <div class="oo-noc-wallboard__kpi oo-noc-wallboard__kpi--down">
+        <div class="oo-noc-wallboard__kpi-v">8</div>
+        <div class="oo-noc-wallboard__kpi-l">Down</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="oo-noc-wallboard__grid">
+    <!-- crit -->
+    <div class="oo-noc-wallboard__tile oo-noc-wallboard__tile--crit">
+      <span class="oo-noc-wallboard__stat" aria-hidden="true"></span>
+      <div class="oo-noc-wallboard__name">DATASTORE-01</div>
+      <div class="oo-noc-wallboard__sub">Disk Usage · Partition /</div>
+      <div class="oo-noc-wallboard__value">80.9<span class="oo-noc-wallboard__unit">%</span></div>
+      <svg class="oo-noc-wallboard__spark" viewBox="0 0 240 26" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 20 L40 17 L80 19 L120 11 L160 13 L200 6 L240 4 L240 26 L0 26 Z" fill="currentColor" opacity=".14"/>
+        <path d="M0 20 L40 17 L80 19 L120 11 L160 13 L200 6 L240 4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </div>
+
+    <!-- crit (drill-down button) -->
+    <button type="button" class="oo-noc-wallboard__tile oo-noc-wallboard__tile--crit" aria-label="core-router-01 — CPU Load 94 percent, critical. Open monitor.">
+      <span class="oo-noc-wallboard__stat" aria-hidden="true"></span>
+      <div class="oo-noc-wallboard__name">core-router-01</div>
+      <div class="oo-noc-wallboard__sub">CPU Load</div>
+      <div class="oo-noc-wallboard__value">94<span class="oo-noc-wallboard__unit">%</span></div>
+      <svg class="oo-noc-wallboard__spark" viewBox="0 0 240 26" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 16 L40 10 L80 14 L120 7 L160 9 L200 4 L240 5 L240 26 L0 26 Z" fill="currentColor" opacity=".14"/>
+        <path d="M0 16 L40 10 L80 14 L120 7 L160 9 L200 4 L240 5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </button>
+
+    <!-- warn -->
+    <div class="oo-noc-wallboard__tile oo-noc-wallboard__tile--warn">
+      <span class="oo-noc-wallboard__stat" aria-hidden="true"></span>
+      <div class="oo-noc-wallboard__name">app-cluster</div>
+      <div class="oo-noc-wallboard__sub">Response Time</div>
+      <div class="oo-noc-wallboard__value">1240<span class="oo-noc-wallboard__unit">ms</span></div>
+      <svg class="oo-noc-wallboard__spark" viewBox="0 0 240 26" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 14 L40 16 L80 10 L120 13 L160 8 L200 12 L240 9 L240 26 L0 26 Z" fill="currentColor" opacity=".14"/>
+        <path d="M0 14 L40 16 L80 10 L120 13 L160 8 L200 12 L240 9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </div>
+
+    <!-- ok -->
+    <div class="oo-noc-wallboard__tile oo-noc-wallboard__tile--ok">
+      <span class="oo-noc-wallboard__stat" aria-hidden="true"></span>
+      <div class="oo-noc-wallboard__name">web-frontend</div>
+      <div class="oo-noc-wallboard__sub">Requests / sec</div>
+      <div class="oo-noc-wallboard__value">8.4<span class="oo-noc-wallboard__unit">k</span></div>
+      <svg class="oo-noc-wallboard__spark" viewBox="0 0 240 26" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 12 L40 9 L80 13 L120 8 L160 11 L200 7 L240 10 L240 26 L0 26 Z" fill="currentColor" opacity=".14"/>
+        <path d="M0 12 L40 9 L80 13 L120 8 L160 11 L200 7 L240 10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="oo-noc-wallboard__ticker">
+    <span class="oo-noc-wallboard__ticker-lbl">Critical</span>
+    <div class="oo-noc-wallboard__ticker-track">
+      <div class="oo-noc-wallboard__ticker-row">
+        <span class="oo-noc-wallboard__tk"><b>DATASTORE-01</b>Disk Usage 80.9% &gt; 80</span>
+        <span class="oo-noc-wallboard__tk"><b>core-router-01</b>CPU Load 94% sustained</span>
+        <span class="oo-noc-wallboard__tk oo-noc-wallboard__tk--warn"><b>app-cluster</b>Response time 1240ms</span>
+        <span class="oo-noc-wallboard__tk"><b>mq-broker</b>Queue depth 14.2k exceeds limit</span>
+      </div>
+    </div>
+    <button type="button" class="oo-noc-wallboard__ticker-pause" aria-pressed="false" aria-label="Pause alert ticker">
+      <svg class="oo-noc-wallboard__ico-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      <svg class="oo-noc-wallboard__ico-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- variant: filtered — KPI counters act as a single-select severity filter; "Critical" active dims non-matching tiles, ticker paused, one offline tile disabled -->
+<section class="oo-noc-wallboard is-ticker-paused" role="region" aria-label="NOC wallboard — filtered by critical">
+  <div class="oo-noc-wallboard__top">
+    <div class="oo-noc-wallboard__title">NOC View · <b>prod-edge</b></div>
+    <span class="oo-noc-wallboard__live">Live</span>
+
+    <div class="oo-noc-wallboard__kpis" role="group" aria-label="Filter wallboard by status">
+      <button type="button" class="oo-noc-wallboard__kpi oo-noc-wallboard__kpi--critical" data-oo-noc-filter="crit" aria-pressed="true" aria-label="Show critical monitors: 2">
+        <span class="oo-noc-wallboard__kpi-v">2</span>
+        <span class="oo-noc-wallboard__kpi-l">Critical</span>
+      </button>
+      <button type="button" class="oo-noc-wallboard__kpi oo-noc-wallboard__kpi--warning" data-oo-noc-filter="warn" aria-pressed="false" aria-label="Show warning monitors: 1">
+        <span class="oo-noc-wallboard__kpi-v">1</span>
+        <span class="oo-noc-wallboard__kpi-l">Warning</span>
+      </button>
+      <button type="button" class="oo-noc-wallboard__kpi oo-noc-wallboard__kpi--up" data-oo-noc-filter="ok" aria-pressed="false" aria-label="Show healthy monitors: 1">
+        <span class="oo-noc-wallboard__kpi-v">1</span>
+        <span class="oo-noc-wallboard__kpi-l">Up</span>
+      </button>
+      <button type="button" class="oo-noc-wallboard__kpi oo-noc-wallboard__kpi--down" disabled aria-label="Down monitors: unavailable">
+        <span class="oo-noc-wallboard__kpi-v">&mdash;</span>
+        <span class="oo-noc-wallboard__kpi-l">Down</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="oo-noc-wallboard__grid">
+    <div class="oo-noc-wallboard__tile oo-noc-wallboard__tile--crit" data-severity="crit">
+      <span class="oo-noc-wallboard__stat" aria-hidden="true"></span>
+      <div class="oo-noc-wallboard__name">mq-broker</div>
+      <div class="oo-noc-wallboard__sub">Queue Depth</div>
+      <div class="oo-noc-wallboard__value">14.2<span class="oo-noc-wallboard__unit">k</span></div>
+      <svg class="oo-noc-wallboard__spark" viewBox="0 0 240 26" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 18 L40 13 L80 15 L120 8 L160 6 L200 5 L240 3 L240 26 L0 26 Z" fill="currentColor" opacity=".14"/>
+        <path d="M0 18 L40 13 L80 15 L120 8 L160 6 L200 5 L240 3" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </div>
+
+    <!-- state: dimmed — excluded by the active "Critical" filter -->
+    <div class="oo-noc-wallboard__tile oo-noc-wallboard__tile--warn is-dimmed" data-severity="warn">
+      <span class="oo-noc-wallboard__stat" aria-hidden="true"></span>
+      <div class="oo-noc-wallboard__name">sql-primary</div>
+      <div class="oo-noc-wallboard__sub">Active Sessions</div>
+      <div class="oo-noc-wallboard__value">312</div>
+      <svg class="oo-noc-wallboard__spark" viewBox="0 0 240 26" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 13 L40 15 L80 11 L120 14 L160 9 L200 12 L240 10 L240 26 L0 26 Z" fill="currentColor" opacity=".14"/>
+        <path d="M0 13 L40 15 L80 11 L120 14 L160 9 L200 12 L240 10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </div>
+
+    <!-- state: dimmed — excluded by the active "Critical" filter -->
+    <div class="oo-noc-wallboard__tile oo-noc-wallboard__tile--ok is-dimmed" data-severity="ok">
+      <span class="oo-noc-wallboard__stat" aria-hidden="true"></span>
+      <div class="oo-noc-wallboard__name">cache-redis</div>
+      <div class="oo-noc-wallboard__sub">Hit Ratio</div>
+      <div class="oo-noc-wallboard__value">99.1<span class="oo-noc-wallboard__unit">%</span></div>
+      <svg class="oo-noc-wallboard__spark" viewBox="0 0 240 26" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 8 L40 6 L80 9 L120 5 L160 7 L200 4 L240 6 L240 26 L0 26 Z" fill="currentColor" opacity=".14"/>
+        <path d="M0 8 L40 6 L80 9 L120 5 L160 7 L200 4 L240 6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </div>
+
+    <!-- state: disabled — monitor offline / data stale -->
+    <div class="oo-noc-wallboard__tile oo-noc-wallboard__tile--crit is-disabled" data-severity="crit" aria-disabled="true">
+      <span class="oo-noc-wallboard__stat" aria-hidden="true"></span>
+      <div class="oo-noc-wallboard__name">edge-fw-02</div>
+      <div class="oo-noc-wallboard__sub">No data · agent offline</div>
+      <div class="oo-noc-wallboard__value">--</div>
+      <svg class="oo-noc-wallboard__spark" viewBox="0 0 240 26" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 13 L240 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 4"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="oo-noc-wallboard__ticker">
+    <span class="oo-noc-wallboard__ticker-lbl">Critical</span>
+    <div class="oo-noc-wallboard__ticker-track">
+      <div class="oo-noc-wallboard__ticker-row">
+        <span class="oo-noc-wallboard__tk"><b>mq-broker</b>Queue depth 14.2k exceeds limit</span>
+        <span class="oo-noc-wallboard__tk"><b>edge-fw-02</b>Agent offline 6m</span>
+      </div>
+    </div>
+    <button type="button" class="oo-noc-wallboard__ticker-pause" aria-pressed="true" aria-label="Resume alert ticker">
+      <svg class="oo-noc-wallboard__ico-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      <svg class="oo-noc-wallboard__ico-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>
+    </button>
+  </div>
+</section>

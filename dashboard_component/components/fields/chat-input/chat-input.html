@@ -1,0 +1,23 @@
+<!-- variant: empty (placeholder shown, nothing to send → send disabled) -->
+<div class="oo-chat-input">
+  <input class="oo-chat-input__field" type="text" aria-label="Ask the AI copilot about your infrastructure" placeholder="Ask about your infrastructure…">
+  <button type="button" class="oo-chat-input__send is-disabled" disabled aria-label="Send message">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
+  </button>
+</div>
+
+<!-- variant: typed (field holds a message → send enabled) -->
+<div class="oo-chat-input">
+  <input class="oo-chat-input__field" type="text" aria-label="Ask the AI copilot about your infrastructure" placeholder="Ask about your infrastructure…" value="Why did CPU spike on web-prod-03 at 14:20?">
+  <button type="button" class="oo-chat-input__send" aria-label="Send message">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
+  </button>
+</div>
+
+<!-- state: disabled (composer locked while the AI is generating a response) -->
+<div class="oo-chat-input is-disabled" aria-disabled="true">
+  <input class="oo-chat-input__field" type="text" aria-label="Ask the AI copilot about your infrastructure" placeholder="Ask about your infrastructure…" disabled>
+  <button type="button" class="oo-chat-input__send is-disabled" disabled aria-label="Send message">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
+  </button>
+</div>

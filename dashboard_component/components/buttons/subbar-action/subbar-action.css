@@ -1,0 +1,48 @@
+/* subbar-action · buttons · variants: default, active · states: default, hover, focus, active, disabled · deps: tokens.css, base.css · used-in: dashboard-subbar */
+
+/* 30x30 square icon action button living in the dashboard subbar
+   (Fullscreen / Snapshot / More). Muted by default, lifts to a card
+   chip on hover; supports a pressed/active toggle treatment. */
+.oo-subbar-action {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  transition: background var(--transition), color var(--transition);
+}
+
+.oo-subbar-action svg {
+  width: 15px;
+  height: 15px;
+}
+
+.oo-subbar-action:hover {
+  background: var(--card);
+  color: var(--text);
+}
+
+/* keyboard focus — reinforces the shared base.css ring + brightens icon */
+.oo-subbar-action:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  color: var(--text);
+}
+
+/* pressed / sticky-active (e.g. fullscreen engaged) */
+.oo-subbar-action[aria-pressed="true"],
+.oo-subbar-action.is-active {
+  background: var(--teal2);
+  color: var(--teal);
+}
+
+.oo-subbar-action:disabled,
+.oo-subbar-action.is-disabled {
+  color: var(--dim);
+  pointer-events: none;
+  cursor: default;
+}

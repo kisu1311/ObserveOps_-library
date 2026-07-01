@@ -1,0 +1,126 @@
+/* table-row · items · variants: monitor, alert-log, clickable, scroll · states: default, hover, selected, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-grid-widget, dashboard-alerts-widget */
+
+/* Styled data table for monitor / status / alert lists. A hairline-ruled grid
+   with an uppercase sticky header and a soft hover fill that sweeps the whole
+   row. Cells carry inline status affordances — a colored status dot, an "Up"
+   status label and severity badges (crit / warn / info / ok). The optional
+   --clickable row variant adds pointer + keyboard single-selection
+   (aria-selected), a focus ring and a disabled treatment; wrap the table in
+   .oo-table-row-scroll to float the sticky header over a scrolling body. */
+
+.oo-table-row {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--text);
+}
+
+/* ── header ─────────────────────────────────────────────── */
+.oo-table-row th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── body cells ─────────────────────────────────────────── */
+.oo-table-row td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+/* hover fill sweeps the whole row */
+.oo-table-row tbody tr:hover td {
+  background: var(--card2);
+}
+
+/* numeric cells: mono with tabular figures */
+.oo-table-row__num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+/* ── status dot ─────────────────────────────────────────── */
+.oo-table-row__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: var(--space-2);
+  border-radius: 50%;
+  vertical-align: middle;
+  background: var(--muted);
+}
+.oo-table-row__dot--up   { background: var(--green); }
+.oo-table-row__dot--down { background: var(--red); }
+.oo-table-row__dot--warn { background: var(--orange); }
+
+/* ── inline status label ("Up" / "Down") ────────────────── */
+.oo-table-row__status {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--green);
+}
+.oo-table-row__status--down { color: var(--red); }
+
+/* ── severity badge ─────────────────────────────────────── */
+.oo-table-row__sev {
+  display: inline-block;
+  padding: 2px var(--space-2);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+}
+.oo-table-row__sev--crit { color: var(--red);    background: var(--red-bg); }
+.oo-table-row__sev--warn { color: var(--orange); background: var(--orange-bg); }
+.oo-table-row__sev--info { color: var(--blue);   background: var(--blue-bg); }
+.oo-table-row__sev--ok   { color: var(--green);  background: var(--green-bg); }
+
+/* ── clickable / selectable rows ────────────────────────── */
+.oo-table-row__row--clickable {
+  cursor: pointer;
+}
+.oo-table-row__row--clickable td {
+  transition: background var(--transition), color var(--transition);
+}
+.oo-table-row__row--clickable:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: -2px;
+}
+.oo-table-row__row--clickable[aria-selected="true"] td {
+  background: var(--teal2);
+  color: var(--text);
+}
+.oo-table-row__row--clickable[aria-selected="true"] td:first-child {
+  box-shadow: inset 2px 0 0 var(--teal);
+}
+
+/* ── disabled row — non-interactive, dimmed ─────────────── */
+.oo-table-row__row.is-disabled,
+.oo-table-row__row[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: .5;
+}
+.oo-table-row__row.is-disabled:hover td,
+.oo-table-row__row[aria-disabled="true"]:hover td {
+  background: transparent;
+}
+
+/* ── optional sticky-header scroll wrapper ──────────────── */
+.oo-table-row-scroll {
+  overflow: auto;
+  border-radius: var(--radius);
+}

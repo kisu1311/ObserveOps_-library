@@ -1,0 +1,104 @@
+/* map · widgets · variants: default, dense, compact · states: default, hover, focus, disabled · deps: tokens.css, base.css, utils/rng.js, utils/colors.js, widgets/auto-mount.js · used-in: dashboard-grid, create-widget-modal, widget-catalog, widget-fullscreen */
+
+/* A stylised geographic distribution map. The OOW.map renderer (map.js) emits an
+   inline <svg> into a declarative mount: a tokenised plate, a faint coordinate
+   grid, and ~11 severity-coloured data points each wrapped in a soft, slowly
+   pulsing halo, all placed deterministically from a seed. The point + halo fills
+   are the only palette hexes and come from generated SVG data (the shared severity
+   palette green→red); every colour the CSS itself sets — plate, grid lines, hover
+   outline, focus ring, disabled wash — resolves from design tokens. */
+
+/* ── mount container ───────────────────────────────────────── */
+.oo-map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--card2);
+  font-family: var(--font-sans);
+  color: var(--text);
+}
+
+/* ── generated svg ─────────────────────────────────────────── */
+.oo-map__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* tokenised map plate + faint coordinate grid */
+.oo-map__plate {
+  fill: var(--card2);
+}
+
+.oo-map__grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+/* ── data points (each = halo + dot in a <g class="oo-map__pt">) ── */
+.oo-map__pt {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.oo-map__halo {
+  opacity: .18;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity var(--transition), transform var(--transition);
+  animation: oo-map-pulse 3.4s ease-in-out infinite;
+}
+
+.oo-map__dot {
+  transition: transform var(--transition);
+}
+
+/* gentle stagger so halos breathe out of phase, like live telemetry */
+.oo-map__pt:nth-of-type(3n) .oo-map__halo { animation-delay: -1.1s; }
+.oo-map__pt:nth-of-type(3n + 1) .oo-map__halo { animation-delay: -2.3s; }
+
+@keyframes oo-map-pulse {
+  0%, 100% { opacity: .16; transform: scale(1); }
+  50%      { opacity: .30; transform: scale(1.08); }
+}
+
+/* hover: lift one location out of the field */
+.oo-map__pt:hover { cursor: pointer; }
+
+.oo-map__pt:hover .oo-map__halo {
+  opacity: .42;
+  transform: scale(1.18);
+  animation: none;
+}
+
+.oo-map__pt:hover .oo-map__dot {
+  stroke: var(--text);
+  stroke-width: 1.5;
+  transform: scale(1.1);
+}
+
+/* keyboard focus on a focusable mount (data drill-down) rides the shared ring */
+.oo-map:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* ── disabled / inert (loading or unavailable) ─────────────── */
+.oo-map.is-disabled,
+.oo-map[aria-disabled="true"] {
+  opacity: .5;
+  pointer-events: none;
+  filter: grayscale(.5);
+}
+
+.oo-map.is-disabled .oo-map__halo,
+.oo-map[aria-disabled="true"] .oo-map__halo {
+  animation: none;
+}
+
+/* respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .oo-map__halo { animation: none; }
+}

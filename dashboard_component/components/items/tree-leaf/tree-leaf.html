@@ -1,0 +1,40 @@
+<!-- A dashboard picker tree group; leaf single-select scopes to this container -->
+<div class="oo-tree-leaf-group" role="tree" aria-label="Dashboards">
+
+  <!-- variant: default -->
+  <div class="oo-tree-leaf" role="treeitem" tabindex="0" aria-selected="false">
+    <svg class="oo-tree-leaf__lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+    <span class="oo-tree-leaf__label">Service Health</span>
+    <button type="button" class="oo-tree-leaf__star" aria-pressed="false" aria-label="Add Service Health to favourites">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.3 7-6.6-3.6L6.3 21l1.3-7-5-4.8 7-.9z"/></svg>
+    </button>
+  </div>
+
+  <!-- variant: active (selected leaf, teal glow) -->
+  <div class="oo-tree-leaf is-active" role="treeitem" tabindex="0" aria-selected="true">
+    <svg class="oo-tree-leaf__lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+    <span class="oo-tree-leaf__label">Alert Summary</span>
+    <button type="button" class="oo-tree-leaf__star" aria-pressed="false" aria-label="Add Alert Summary to favourites">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.3 7-6.6-3.6L6.3 21l1.3-7-5-4.8 7-.9z"/></svg>
+    </button>
+  </div>
+
+  <!-- variant: favourited (star toggled on, gold) -->
+  <div class="oo-tree-leaf" role="treeitem" tabindex="0" aria-selected="false">
+    <svg class="oo-tree-leaf__lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+    <span class="oo-tree-leaf__label">Capacity Planning</span>
+    <button type="button" class="oo-tree-leaf__star is-fav" aria-pressed="true" aria-label="Remove Capacity Planning from favourites">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.3 7-6.6-3.6L6.3 21l1.3-7-5-4.8 7-.9z"/></svg>
+    </button>
+  </div>
+
+  <!-- state: disabled (leaf the user cannot open) -->
+  <div class="oo-tree-leaf is-disabled" role="treeitem" tabindex="-1" aria-disabled="true" aria-selected="false">
+    <svg class="oo-tree-leaf__lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+    <span class="oo-tree-leaf__label">Restricted Dashboard</span>
+    <button type="button" class="oo-tree-leaf__star" aria-pressed="false" aria-label="Add Restricted Dashboard to favourites" disabled>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.5 7 .9-5 4.8 1.3 7-6.6-3.6L6.3 21l1.3-7-5-4.8 7-.9z"/></svg>
+    </button>
+  </div>
+
+</div>

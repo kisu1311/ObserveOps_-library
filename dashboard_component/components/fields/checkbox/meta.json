@@ -1,0 +1,13 @@
+{
+  "name": "checkbox",
+  "category": "fields",
+  "title": "Checkbox",
+  "description": "15×15 bordered checkbox that fills teal with a check when selected. Built on a visually-hidden native <input type=checkbox> so it is keyboard focusable and toggles without JS. Supports an optional text label and a class-driven indeterminate (select-all) state.",
+  "rootClass": "oo-checkbox",
+  "variants": ["box-only", "with-label", "indeterminate"],
+  "states": ["unchecked", "checked", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["source-picker-table", "create-widget-modal"],
+  "tags": ["checkbox", "field", "input", "select", "form", "row-select"],
+  "demoHeight": 150
+}

@@ -1,0 +1,47 @@
+<!-- variant: row — static NOC wallboard header counters -->
+<div class="oo-noc-kpi-row" role="group" aria-label="Monitor status summary">
+  <div class="oo-noc-kpi oo-noc-kpi--neutral">
+    <div class="oo-noc-kpi__v">248</div>
+    <div class="oo-noc-kpi__l">Monitors</div>
+  </div>
+  <div class="oo-noc-kpi oo-noc-kpi--critical">
+    <div class="oo-noc-kpi__v">3</div>
+    <div class="oo-noc-kpi__l">Critical</div>
+  </div>
+  <div class="oo-noc-kpi oo-noc-kpi--warning">
+    <div class="oo-noc-kpi__v">3</div>
+    <div class="oo-noc-kpi__l">Warning</div>
+  </div>
+  <div class="oo-noc-kpi oo-noc-kpi--up">
+    <div class="oo-noc-kpi__v">234</div>
+    <div class="oo-noc-kpi__l">Up</div>
+  </div>
+  <div class="oo-noc-kpi oo-noc-kpi--down">
+    <div class="oo-noc-kpi__v">8</div>
+    <div class="oo-noc-kpi__l">Down</div>
+  </div>
+</div>
+
+<!-- variant: selectable — single-select status filter (Critical pre-selected) -->
+<div class="oo-noc-kpi-row" role="group" aria-label="Filter wallboard by status">
+  <button type="button" class="oo-noc-kpi oo-noc-kpi--critical" aria-pressed="true" aria-label="Critical monitors: 3">
+    <span class="oo-noc-kpi__v">3</span>
+    <span class="oo-noc-kpi__l">Critical</span>
+  </button>
+  <button type="button" class="oo-noc-kpi oo-noc-kpi--warning" aria-pressed="false" aria-label="Warning monitors: 3">
+    <span class="oo-noc-kpi__v">3</span>
+    <span class="oo-noc-kpi__l">Warning</span>
+  </button>
+  <button type="button" class="oo-noc-kpi oo-noc-kpi--up" aria-pressed="false" aria-label="Up monitors: 234">
+    <span class="oo-noc-kpi__v">234</span>
+    <span class="oo-noc-kpi__l">Up</span>
+  </button>
+</div>
+
+<!-- state: disabled — metric unavailable -->
+<div class="oo-noc-kpi-row">
+  <button type="button" class="oo-noc-kpi oo-noc-kpi--down" disabled aria-label="Down monitors: unavailable">
+    <span class="oo-noc-kpi__v">&mdash;</span>
+    <span class="oo-noc-kpi__l">Down</span>
+  </button>
+</div>

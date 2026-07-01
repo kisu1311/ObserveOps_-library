@@ -1,0 +1,13 @@
+{
+  "name": "numeric",
+  "category": "widgets",
+  "title": "Numeric Grid Widget",
+  "description": "Dashboard widget renderer that paints a 3×2 grid of compact KPI boxes — each a quiet label over a large tone-colored mono value with a trailing unit (CPU %, Memory %, Disk %, Network Mb, Latency ms, Errors /m). Registered as OOW.numeric and auto-mounted from a [data-widget=\"numeric\"] mount; values are deterministic from data-seed. Tone modifiers recolor only the value; supports a compact density and a disabled/no-data state.",
+  "rootClass": "oo-numeric",
+  "variants": ["default", "tone-cells", "compact", "live-mount"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/series.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-grid", "add-widget-panel", "create-widget-modal"],
+  "tags": ["widget", "numeric", "kpi", "grid", "metric", "stat", "sla"],
+  "demoHeight": 200
+}

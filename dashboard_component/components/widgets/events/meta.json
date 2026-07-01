@@ -1,0 +1,13 @@
+{
+  "name": "events",
+  "category": "widgets",
+  "title": "Event Timeline",
+  "description": "Vertical event timeline widget: a scrollable column of up to 8 rows, each a coloured left rail with a dot marker, an event description and a right-mono timestamp. Rendered by the pure OOW.events renderer from a deterministic seed; row accents cycle through the severity tokens (teal/blue/orange/purple/green) via an inline --ev-c var. Rows carry a hover wash and, when made interactive for drill-down, a keyboard focus ring; an aria-disabled timeline dims for no-data/loading.",
+  "rootClass": "oo-events",
+  "variants": ["default", "alternate-seed"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/esc.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-canvas", "create-widget-modal", "widget-fullscreen"],
+  "tags": ["widget", "events", "timeline", "activity-feed", "audit-log", "history", "data-viz"],
+  "demoHeight": 240
+}

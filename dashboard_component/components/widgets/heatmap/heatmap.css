@@ -1,0 +1,87 @@
+/* heatmap · widgets · variants: default, dense, compact, legend · states: default, hover, focus, disabled · deps: tokens.css, base.css, utils/rng.js, utils/colors.js · used-in: dashboard-grid, create-widget-modal, widget-fullscreen */
+
+/* A hexagonal severity heat map. The grid itself is an inline <svg> built by the
+   OOW.heatmap renderer (heatmap.js) from a deterministic seed: each cell is a
+   pointy-top hexagon filled from the 5-step severity scale (SEVS green→red).
+   This file styles only the mount container, the generated svg/hexagons, and an
+   optional standalone severity legend. Cell fills come from generated SVG data
+   (the only place a palette hex is allowed); every colour the CSS itself sets —
+   the inter-cell gap stroke, hover outline, legend swatches — resolves from
+   design tokens (the lime mid-step is derived with color-mix so no hex leaks). */
+
+/* ── mount container ───────────────────────────────────────── */
+.oo-heatmap {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  color: var(--text);
+}
+
+/* ── generated grid ────────────────────────────────────────── */
+.oo-heatmap__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.oo-heatmap__svg polygon {
+  /* gap between hexes = a sliver of app background, tokenised */
+  stroke: var(--bg);
+  stroke-width: 2;
+  transition: stroke var(--transition), opacity var(--transition);
+}
+
+/* hover: lift a single cell out of the field */
+.oo-heatmap__svg polygon:hover {
+  stroke: var(--text);
+  opacity: 1;
+}
+
+/* keyboard focus on a focusable mount (data drill-down) rides the shared ring */
+.oo-heatmap:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* ── disabled / inert ──────────────────────────────────────── */
+.oo-heatmap.is-disabled,
+.oo-heatmap[aria-disabled="true"] {
+  opacity: .5;
+  pointer-events: none;
+  filter: grayscale(.45);
+}
+
+/* ── standalone severity legend (not inside the renderer mount) ── */
+.oo-heatmap-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: var(--space-2) 0 0;
+  list-style: none;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.oo-heatmap-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.oo-heatmap-legend__sw {
+  width: 13px;
+  height: 13px;
+  border-radius: var(--radius-sm);
+  background: var(--green);
+}
+
+.oo-heatmap-legend__sw--0 { background: var(--green); }
+.oo-heatmap-legend__sw--1 { background: color-mix(in srgb, var(--green) 50%, var(--yellow)); }
+.oo-heatmap-legend__sw--2 { background: var(--yellow); }
+.oo-heatmap-legend__sw--3 { background: var(--orange); }
+.oo-heatmap-legend__sw--4 { background: var(--red); }

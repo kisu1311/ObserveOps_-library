@@ -1,0 +1,13 @@
+{
+  "name": "count-badge",
+  "category": "items",
+  "title": "Count Badge",
+  "description": "Small pill that shows a count, like the folder item-counts on the dashboard tree rows. Quiet muted-on-card2 by default, with teal/red/green tone modifiers and sm/lg sizes (sm matches the 9.5px tree size).",
+  "rootClass": "oo-count-badge",
+  "variants": ["default", "sm", "lg", "teal", "red", "green", "solid"],
+  "states": ["default"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-tree-nav", "dashboard-list-panel"],
+  "tags": ["badge", "count", "pill", "chip", "tree", "items"],
+  "demoHeight": 72
+}

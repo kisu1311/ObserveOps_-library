@@ -1,0 +1,13 @@
+{
+  "name": "numeric-input",
+  "category": "fields",
+  "title": "Numeric Input",
+  "description": "Small numeric field (60–80px) with a single bottom-border underline. Used inline for line-width, point counts, granularity values and thresholds; supports narrow and full-width variants plus a disabled state.",
+  "rootClass": "oo-num-inp",
+  "variants": ["default", "narrow", "block"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal", "create-widget-config-pane", "create-widget-threshold-pane", "dashboard-module"],
+  "tags": ["field", "input", "number", "numeric", "underline", "threshold"],
+  "demoHeight": 90
+}

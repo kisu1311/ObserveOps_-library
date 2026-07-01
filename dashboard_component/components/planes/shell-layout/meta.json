@@ -1,0 +1,13 @@
+{
+  "name": "shell-layout",
+  "category": "planes",
+  "title": "Application Shell Layout",
+  "description": "The root app shell: a flex column at full viewport height (alert-banner > topbar > subbar > body-row) whose body row pairs the icon sidebar, an optional slide-in dashboard panel, and the main content/canvas. Layout-only surface — each region is a labelled dashed slot placeholder that names the plane it frames, with per-region surface tints (--nav/--bg) hinting at the real chrome. Owns one behaviour: the dashboard-panel toggle, mirroring the live togglePanel() / .shell.panelopen interaction, with hover, focus-visible and disabled states.",
+  "rootClass": "oo-shell-layout",
+  "variants": ["default", "panel-open", "no-banner"],
+  "states": ["default", "panel-open", "disabled"],
+  "deps": ["tokens.css", "base.css", "alert-banner", "topbar", "subbar", "sidebar", "dashboard-panel", "canvas"],
+  "usedIn": ["dashboard-module", "noc-view"],
+  "tags": ["plane", "shell", "layout", "scaffold", "app-frame", "100vh", "body-row", "slots"],
+  "demoHeight": 460
+}

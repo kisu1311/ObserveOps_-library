@@ -1,0 +1,13 @@
+{
+  "name": "alert-banner",
+  "category": "planes",
+  "title": "Alert Banner",
+  "description": "Top-of-shell warning banner above the topbar: a severity chip (icon + uppercase label), a muted message with bold-emphasised counts and entity names, and a dismiss button at the far right. Selectable severity tone (warning, critical, info), a non-dismissable disabled state, and a collapse-on-dismiss transition driven by the chrome's alert source.",
+  "rootClass": "oo-alert-banner",
+  "variants": ["warning", "critical", "info"],
+  "states": ["default", "hover", "focus", "disabled", "dismissing"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-shell", "alert-notification", "topbar-region"],
+  "tags": ["banner", "alert", "warning", "notification", "severity", "dismiss", "plane"],
+  "demoHeight": 220
+}

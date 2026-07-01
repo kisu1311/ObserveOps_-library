@@ -1,0 +1,83 @@
+/* severity-badge · items · variants: crit, warn, info, ok, dot · states: default, hover, focus, pressed, disabled · deps: tokens.css, base.css · used-in: alerts-widget, events-widget, dashboard-grid-table */
+
+/* Inline uppercase severity label used inside data-grid widgets (Alerts, Events).
+   Four colour variants — crit / warn / info / ok — each a tinted pill whose text
+   and background derive from the matching severity token + its --*-bg tint, so the
+   badge stays legible on the dark card surface. Purely presentational by default;
+   the optional interactive states (hover/focus/disabled) kick in only when the
+   badge is rendered as a filter control (<button>/<a>), keeping the static <span>
+   form completely inert. */
+
+.oo-sev {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 2px var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  background: var(--card2);
+  user-select: none;
+  transition: filter var(--transition), box-shadow var(--transition),
+    opacity var(--transition);
+}
+
+/* ── colour variants ───────────────────────────────────── */
+.oo-sev.oo-sev--crit { color: var(--red);    background: var(--red-bg); }
+.oo-sev.oo-sev--warn { color: var(--orange); background: var(--orange-bg); }
+.oo-sev.oo-sev--info { color: var(--blue);   background: var(--blue-bg); }
+.oo-sev.oo-sev--ok   { color: var(--green);  background: var(--green-bg); }
+
+/* ── optional leading status dot (inherits the variant colour) ── */
+.oo-sev.oo-sev--dot::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: var(--space-1);
+  vertical-align: middle;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+}
+
+/* ── interactive form (only when used as a filter button/link) ── */
+button.oo-sev,
+a.oo-sev {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  text-decoration: none;
+}
+
+button.oo-sev:hover,
+a.oo-sev:hover {
+  filter: brightness(1.14);
+}
+
+/* pressed / active filter — solid-ish emphasis via the variant colour edge */
+button.oo-sev[aria-pressed="true"],
+a.oo-sev[aria-current="true"] {
+  border-color: currentColor;
+  filter: brightness(1.1);
+}
+
+/* keyboard focus — base.css supplies the ring; reinforce explicitly */
+.oo-sev:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* ── disabled treatment ────────────────────────────────── */
+.oo-sev:disabled,
+.oo-sev.is-disabled {
+  opacity: .45;
+  filter: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}

@@ -1,0 +1,66 @@
+/* insight-btn · buttons · variants: default, primary, ghost · states: default, hover, focus, disabled · deps: tokens.css · used-in: ai-insights-panel, ai-annotation-popover */
+
+.oo-insight-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.oo-insight-btn svg {
+  width: 12px;
+  height: 12px;
+  flex: none;
+}
+
+.oo-insight-btn:hover {
+  border-color: var(--purple);
+  color: var(--purple2);
+}
+
+.oo-insight-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* variant: primary — emphasised "Add as widget" action */
+.oo-insight-btn.primary {
+  background: var(--purple-bg);
+  border-color: var(--purple);
+  color: var(--purple2);
+}
+
+.oo-insight-btn.primary:hover {
+  background: var(--purple);
+  color: var(--text);
+}
+
+/* variant: ghost — borderless icon action (Dismiss) */
+.oo-insight-btn.ghost {
+  border-color: transparent;
+  color: var(--muted);
+  padding: var(--space-2) 6px;
+}
+
+.oo-insight-btn.ghost:hover {
+  border-color: transparent;
+  color: var(--text);
+}
+
+/* state: disabled */
+.oo-insight-btn:disabled,
+.oo-insight-btn.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

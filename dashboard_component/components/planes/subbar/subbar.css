@@ -1,0 +1,265 @@
+/* subbar · planes · variants: default, starred, panel-open · states: default, hover, focus, panel-open, starred, disabled · deps: tokens.css, base.css · used-in: dashboard-module */
+
+/* Dashboard sub-toolbar — the full horizontal bar that sits directly under the
+   topbar. Composes (self-contained copies of) the panel-toggle arrow, the
+   dashboard title + favourite star, a flexible spacer, the time-range pill +
+   date stamp, and the trailing action buttons (fullscreen / snapshot / more).
+   All child styles are namespaced under .oo-subbar so the partial is isolated.
+   The composed atoms also exist standalone as subbar-arrow, range-pill and
+   subbar-action; this plane is the assembled bar. */
+
+.oo-subbar {
+  flex-shrink: 0;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-4);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-sans);
+}
+
+/* ── panel-toggle arrow (30×30 circle) ──────────────────── */
+.oo-subbar__arrow {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border2);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+
+.oo-subbar__arrow:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.oo-subbar__arrow:focus-visible {
+  outline: none;
+  border-color: var(--teal);
+  color: var(--teal);
+  box-shadow: var(--ring);
+}
+
+.oo-subbar__arrow svg {
+  width: 14px;
+  height: 14px;
+  transition: transform .2s ease;
+}
+
+/* panel revealed → chevron flips 180° (driven by the arrow's own state) */
+.oo-subbar__arrow[aria-expanded="true"] svg,
+.oo-subbar__arrow.is-open svg {
+  transform: rotate(180deg);
+}
+
+/* ── title group (grid glyph + name + star) ─────────────── */
+.oo-subbar__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.oo-subbar__icon {
+  display: inline-flex;
+  color: var(--muted);
+}
+
+.oo-subbar__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.oo-subbar__name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -.2px;
+}
+
+.oo-subbar__star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  background: transparent;
+  color: var(--muted);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.oo-subbar__star svg {
+  width: 15px;
+  height: 15px;
+}
+
+.oo-subbar__star:hover {
+  color: var(--text);
+}
+
+.oo-subbar__star:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* favourited */
+.oo-subbar__star[aria-pressed="true"],
+.oo-subbar__star.is-on {
+  color: var(--yellow);
+}
+
+/* ── flexible spacer ────────────────────────────────────── */
+.oo-subbar__spacer {
+  flex: 1;
+}
+
+/* ── time-range cluster ─────────────────────────────────── */
+.oo-subbar__range {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.oo-subbar__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-2);
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  transition: border-color var(--transition);
+}
+
+.oo-subbar__pill:hover,
+.oo-subbar__pill:focus-within {
+  border-color: var(--teal);
+}
+
+.oo-subbar__tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--on-accent);
+  background: var(--teal);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-2);
+  text-transform: lowercase;
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+
+.oo-subbar__lbl {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  padding-right: var(--space-1);
+  white-space: nowrap;
+}
+
+.oo-subbar__clr {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+
+.oo-subbar__clr svg {
+  width: 11px;
+  height: 11px;
+  display: block;
+}
+
+.oo-subbar__clr:hover {
+  color: var(--text);
+  background: var(--border);
+}
+
+.oo-subbar__clr:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-subbar__date {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── trailing action buttons (30×30 square) ─────────────── */
+.oo-subbar__action {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.oo-subbar__action svg {
+  width: 15px;
+  height: 15px;
+}
+
+.oo-subbar__action:hover {
+  background: var(--card);
+  color: var(--text);
+}
+
+.oo-subbar__action:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  color: var(--text);
+}
+
+/* pressed / sticky-active (e.g. fullscreen engaged) */
+.oo-subbar__action[aria-pressed="true"],
+.oo-subbar__action.is-active {
+  background: var(--teal2);
+  color: var(--teal);
+}
+
+/* ── disabled treatment (any control in the bar) ────────── */
+.oo-subbar__arrow:disabled,
+.oo-subbar__arrow.is-disabled,
+.oo-subbar__star:disabled,
+.oo-subbar__star.is-disabled,
+.oo-subbar__clr:disabled,
+.oo-subbar__clr.is-disabled,
+.oo-subbar__action:disabled,
+.oo-subbar__action.is-disabled {
+  color: var(--dim);
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: .55;
+}
+
+.oo-subbar__arrow:disabled,
+.oo-subbar__arrow.is-disabled {
+  border-color: var(--border);
+  background: var(--card);
+}

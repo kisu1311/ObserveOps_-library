@@ -1,0 +1,13 @@
+{
+  "name": "table-row",
+  "category": "items",
+  "title": "Data Table Row",
+  "description": "Hairline-ruled status/monitor data table with an uppercase sticky header and a soft hover fill that sweeps the whole row. Cells carry inline status dots, Up/Down labels and severity badges; an optional clickable variant adds keyboard single-selection.",
+  "rootClass": "oo-table-row",
+  "variants": ["monitor", "alert-log", "clickable", "scroll"],
+  "states": ["default", "hover", "selected", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-grid-widget", "dashboard-alerts-widget", "dashboard-canvas"],
+  "tags": ["table", "grid", "row", "status", "severity", "monitor", "list"],
+  "demoHeight": 320
+}

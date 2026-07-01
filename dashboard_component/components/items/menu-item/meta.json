@@ -1,0 +1,13 @@
+{
+  "name": "menu-item",
+  "category": "items",
+  "title": "Menu Item",
+  "description": "Dropdown / context-menu option row: a leading action glyph + label, with a danger variant for destructive actions and a thin separator. Refined from the dashboard widget '···' overflow menu (Edit / Clone / Full Screen / sep / Delete); supports an optional trailing keyboard-shortcut hint and roving arrow-key focus.",
+  "rootClass": "oo-menu",
+  "variants": ["default", "with-icon", "with-shortcut", "danger", "separator"],
+  "states": ["default", "hover", "focus", "active", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["widget-more-menu", "widget-header-actions", "context-menu"],
+  "tags": ["menu", "context-menu", "dropdown", "action", "item", "list", "overflow"],
+  "demoHeight": 360
+}

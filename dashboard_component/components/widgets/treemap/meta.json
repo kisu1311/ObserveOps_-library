@@ -1,0 +1,13 @@
+{
+  "name": "treemap",
+  "category": "widgets",
+  "title": "Treemap",
+  "description": "Space-filling treemap that sizes six token-colored cells in proportion to a metric, each labeled with a category name and value. Uses a squarified layout (Bruls et al.) so rectangles stay near-square, and hovering the chart spotlights one cell while dimming the rest. Deterministic from a seed via the OOW.treemap renderer mounted by auto-mount.js; tiny cells drop their labels automatically.",
+  "rootClass": "oo-treemap",
+  "variants": ["default", "no-values", "compact"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "utils/rng.js", "utils/series.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-canvas", "add-widget-panel", "create-widget-modal"],
+  "tags": ["treemap", "widget", "dataviz", "distribution", "proportion", "map", "squarified", "hierarchy"],
+  "demoHeight": 250
+}

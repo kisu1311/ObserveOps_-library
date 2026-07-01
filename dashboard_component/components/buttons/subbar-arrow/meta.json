@@ -1,0 +1,13 @@
+{
+  "name": "subbar-arrow",
+  "category": "buttons",
+  "title": "Subbar Panel-Toggle Arrow",
+  "description": "30×30 circular icon button in the dashboard subbar that collapses/expands the dashboard-list panel; its chevron rotates 180° in the open state.",
+  "rootClass": "oo-subbar-arrow",
+  "variants": ["chevron"],
+  "states": ["closed", "open", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-subbar", "dashboard-module"],
+  "tags": ["button", "toggle", "icon", "chevron", "panel", "collapse"],
+  "demoHeight": 80
+}

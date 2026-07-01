@@ -1,0 +1,167 @@
+/* noc-tile · tiles · variants: crit, warn, ok · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: noc-view, noc-grid */
+
+/* A single KPI tile on the NOC wallboard grid. Each tile shows a status stripe +
+   pulsing dot (severity at a glance), a monitor name, a sublabel, a large mono
+   value with an optional unit, and a representative sparkline of recent history.
+   Three severity variants — crit (red) / warn (orange) / ok (green) — drive the
+   accent colour, border tint and background wash via a single local --noc-c token,
+   so the markup only toggles one modifier class. The sparkline SVG is inlined in
+   markup (no JS) and tinted with currentColor. Presentational by default; an
+   optional interactive form (rendered as <button>) adds hover/focus/disabled
+   affordances for drilling into the underlying monitor. */
+
+.oo-noc-tile {
+  /* per-variant accent — overridden by the modifier classes below */
+  --noc-c: var(--green);
+  --noc-tint: transparent;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-height: 120px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  overflow: hidden;
+  font-family: var(--font-sans);
+  color: var(--text);
+  text-align: left;
+  transition: border-color var(--transition), transform var(--transition),
+    box-shadow var(--transition);
+}
+
+/* ── status stripe (left accent bar, severity-coloured) ──── */
+.oo-noc-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--noc-c);
+  opacity: .9;
+}
+
+/* ── severity variants ───────────────────────────────────── */
+.oo-noc-tile--crit {
+  --noc-c: var(--red);
+  --noc-tint: var(--red-bg);
+  border-color: color-mix(in srgb, var(--red) 50%, transparent);
+  background: linear-gradient(180deg, var(--noc-tint), var(--card) 70%);
+}
+.oo-noc-tile--warn {
+  --noc-c: var(--orange);
+  --noc-tint: var(--orange-bg);
+  border-color: color-mix(in srgb, var(--orange) 45%, transparent);
+  background: linear-gradient(180deg, var(--noc-tint), var(--card) 70%);
+}
+.oo-noc-tile--ok {
+  --noc-c: var(--green);
+  border-color: color-mix(in srgb, var(--green) 30%, transparent);
+}
+
+/* ── status dot (top-right, pulses on crit) ──────────────── */
+.oo-noc-tile__stat {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-pill);
+  background: var(--noc-c);
+}
+.oo-noc-tile--crit .oo-noc-tile__stat {
+  /* halo derives from the variant accent so the pulse matches the dot */
+  animation: oo-noc-pulse 1.6s infinite;
+}
+
+/* ── name (truncates, leaves room for the dot) ───────────── */
+.oo-noc-tile__name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: var(--space-4);
+}
+
+/* ── sublabel ────────────────────────────────────────────── */
+.oo-noc-tile__sub {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* ── big mono value + unit (pushed to the bottom) ────────── */
+.oo-noc-tile__value {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+}
+.oo-noc-tile__unit {
+  margin-left: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* ── sparkline (inline SVG, tinted via currentColor) ─────── */
+.oo-noc-tile__spark {
+  display: block;
+  width: 100%;
+  height: 26px;
+  margin-top: var(--space-1);
+  color: var(--noc-c);
+  opacity: .9;
+}
+
+/* ── interactive form (only when the tile drills into a monitor) ── */
+button.oo-noc-tile,
+a.oo-noc-tile {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  text-decoration: none;
+  width: 100%;
+}
+button.oo-noc-tile:hover,
+a.oo-noc-tile:hover {
+  border-color: var(--noc-c);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--noc-c) 24%, transparent);
+}
+
+/* keyboard focus — base.css supplies the ring; reinforce explicitly */
+.oo-noc-tile:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* ── disabled / stale treatment ──────────────────────────── */
+.oo-noc-tile:disabled,
+.oo-noc-tile.is-disabled {
+  opacity: .5;
+  filter: grayscale(.4);
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+.oo-noc-tile.is-disabled .oo-noc-tile__stat {
+  animation: none;
+}
+
+/* ── pulse: severity halo expanding out from the dot ─────── */
+@keyframes oo-noc-pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--noc-c) 55%, transparent); }
+  70%  { box-shadow: 0 0 0 7px color-mix(in srgb, var(--noc-c) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--noc-c) 0%, transparent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oo-noc-tile--crit .oo-noc-tile__stat { animation: none; }
+}

@@ -1,0 +1,55 @@
+<!-- variant: live mount (auto-rendered by OOW.numeric from data-seed) -->
+<div class="oo-numeric" data-widget="numeric" data-seed="14"
+     style="width:340px;height:180px" role="group" aria-label="SLA summary KPI grid"></div>
+
+<!-- variant: static markup (the structure the renderer emits) -->
+<div class="oo-numeric" style="width:340px;height:180px" role="group" aria-label="Infrastructure KPI grid">
+  <div class="oo-numeric-cell oo-numeric-cell--teal">
+    <span class="oo-numeric-label">CPU</span>
+    <span class="oo-numeric-value">62<span class="oo-numeric-unit">%</span></span>
+  </div>
+  <div class="oo-numeric-cell oo-numeric-cell--blue">
+    <span class="oo-numeric-label">Memory</span>
+    <span class="oo-numeric-value">48<span class="oo-numeric-unit">%</span></span>
+  </div>
+  <div class="oo-numeric-cell oo-numeric-cell--orange">
+    <span class="oo-numeric-label">Disk</span>
+    <span class="oo-numeric-value">71<span class="oo-numeric-unit">%</span></span>
+  </div>
+  <div class="oo-numeric-cell oo-numeric-cell--green">
+    <span class="oo-numeric-label">Network</span>
+    <span class="oo-numeric-value">34<span class="oo-numeric-unit">Mb</span></span>
+  </div>
+  <div class="oo-numeric-cell oo-numeric-cell--purple">
+    <span class="oo-numeric-label">Latency</span>
+    <span class="oo-numeric-value">88<span class="oo-numeric-unit">ms</span></span>
+  </div>
+  <div class="oo-numeric-cell oo-numeric-cell--red">
+    <span class="oo-numeric-label">Errors</span>
+    <span class="oo-numeric-value">5<span class="oo-numeric-unit">/m</span></span>
+  </div>
+</div>
+
+<!-- variant: compact + focusable cell (tabindex enables drill-down focus ring) -->
+<div class="oo-numeric oo-numeric--compact" style="width:300px;height:150px" role="group" aria-label="Compact KPI grid">
+  <div class="oo-numeric-cell oo-numeric-cell--teal" tabindex="0">
+    <span class="oo-numeric-label">CPU</span>
+    <span class="oo-numeric-value">62<span class="oo-numeric-unit">%</span></span>
+  </div>
+  <div class="oo-numeric-cell oo-numeric-cell--purple">
+    <span class="oo-numeric-label">Latency</span>
+    <span class="oo-numeric-value">88<span class="oo-numeric-unit">ms</span></span>
+  </div>
+</div>
+
+<!-- state: disabled (no-data / loading) -->
+<div class="oo-numeric is-disabled" style="width:300px;height:150px" role="group" aria-label="KPI grid, no data" aria-disabled="true">
+  <div class="oo-numeric-cell oo-numeric-cell--teal">
+    <span class="oo-numeric-label">CPU</span>
+    <span class="oo-numeric-value">--<span class="oo-numeric-unit">%</span></span>
+  </div>
+  <div class="oo-numeric-cell oo-numeric-cell--blue">
+    <span class="oo-numeric-label">Memory</span>
+    <span class="oo-numeric-value">--<span class="oo-numeric-unit">%</span></span>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "name": "stream",
+  "category": "widgets",
+  "title": "Streamgraph",
+  "description": "Stacked streamgraph widget — N seeded series (4 by default) accumulate into translucent flowing bands across 24 intervals. A declarative mount (data-widget=\"stream\") is filled by the OOW.stream renderer with a single SVG. The total stacked height is measured once to derive one stable y-scale shared by every band, so layers nest cleanly; each band is closed between its pre-stack floor and post-stack ceiling with a smooth cubic-bezier top edge. Output is deterministic from opts.seed, so the graph renders identically every load. Per-series category colours are emitted as var() token fills (no hardcoded hex). Hovering peels focus onto a single band; a focusable mount gains a keyboard ring and a stale/paused state veils the viz. Depends on the shared series / smoothPath utils.",
+  "rootClass": "oo-stream",
+  "variants": ["default", "alt-seed", "three-band"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/series.js", "utils/smooth-path.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-grid", "create-widget-modal", "add-widget-panel", "widget-fullscreen"],
+  "tags": ["widget", "stream", "streamgraph", "stacked", "area", "traffic", "viz", "renderer", "svg"],
+  "demoHeight": 240,
+  "hasJs": true
+}

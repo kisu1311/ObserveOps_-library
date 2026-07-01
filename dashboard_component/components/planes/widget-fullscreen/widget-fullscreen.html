@@ -1,0 +1,74 @@
+<!-- variant: default · interactive — trigger expands the widget, ✕ / backdrop / Esc collapse it -->
+<div class="oo-widget-fullscreen-stage">
+  <div class="oo-widget-fullscreen-stage__behind" aria-hidden="true">
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+  </div>
+
+  <button type="button" class="oo-widget-fullscreen__trigger" data-oo-wfs-open
+          aria-haspopup="dialog">Fullscreen widget</button>
+
+  <div class="oo-widget-fullscreen oo-widget-fullscreen--contained" role="presentation">
+    <div class="oo-widget-fullscreen__card" role="dialog" aria-modal="true" aria-labelledby="oo-wfs-title-1">
+      <div class="oo-widget-fullscreen__head">
+        <span class="oo-widget-fullscreen__title" id="oo-wfs-title-1">CPU Utilisation</span>
+        <span class="oo-widget-fullscreen__tag">Time Series</span>
+        <button type="button" class="oo-widget-fullscreen__close" data-oo-wfs-close aria-label="Exit fullscreen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true" focusable="false">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="oo-widget-fullscreen__body">
+        <div class="oo-widget-fullscreen__placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false">
+            <path d="M3 3v18h18" />
+            <path d="M7 14l4-5 3 3 4-7" />
+          </svg>
+          <span>Widget preview area</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- variant: contained · state: open — shown expanded with the deep scrim -->
+<div class="oo-widget-fullscreen-stage">
+  <div class="oo-widget-fullscreen-stage__behind" aria-hidden="true">
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+    <div class="oo-widget-fullscreen-stage__cell"></div>
+  </div>
+
+  <!-- state: open -->
+  <div class="oo-widget-fullscreen oo-widget-fullscreen--contained is-open" role="presentation">
+    <div class="oo-widget-fullscreen__card" role="dialog" aria-modal="true" aria-labelledby="oo-wfs-title-2">
+      <div class="oo-widget-fullscreen__head">
+        <span class="oo-widget-fullscreen__title" id="oo-wfs-title-2">Response Time (p95)</span>
+        <span class="oo-widget-fullscreen__tag">Area</span>
+        <!-- state: disabled — close locked while a render is in flight -->
+        <button type="button" class="oo-widget-fullscreen__close" disabled aria-label="Exit fullscreen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true" focusable="false">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="oo-widget-fullscreen__body">
+        <div class="oo-widget-fullscreen__placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false">
+            <path d="M3 3v18h18" />
+            <path d="M7 14l4-5 3 3 4-7" />
+          </svg>
+          <span>Widget preview area</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

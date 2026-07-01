@@ -1,0 +1,109 @@
+/* status-dot · items · variants: ok, crit, warn, muted, info, with-label, dot-only, pulse · states: default, glow, disabled · deps: tokens.css, base.css · used-in: monitor-table-widget, source-picker-modal */
+
+/* 8×8 colored status circle used inline before a label in tables (monitor lists,
+   the source-picker). Refined from the original .dot span: the variant color is
+   driven by a single per-variant custom property (--dot / --dot-soft) so the
+   glyph fill, optional glow ring and pulse animation all stay in sync. The root
+   is an inline-flex wrapper so a dot can ship standalone or with a label; a
+   non-interactive indicator, so it carries no hover/focus affordance of its own
+   (a disabled/dim treatment and reduced-motion guard are included). */
+
+/* wrapper ─ holds the glyph + optional label, default color = muted */
+.oo-status-dot {
+  --dot: var(--muted);
+  --dot-soft: rgba(82, 114, 160, .22);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  vertical-align: middle;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1;
+  color: var(--text);
+}
+
+/* the circle ─ original .dot */
+.oo-status-dot__glyph {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--dot);
+  transition: box-shadow var(--transition), background var(--transition);
+}
+
+/* optional trailing text */
+.oo-status-dot__label {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── status variants ──────────────────────────────────── */
+.oo-status-dot--ok {
+  --dot: var(--green);
+  --dot-soft: var(--green-bg);
+}
+
+.oo-status-dot--crit {
+  --dot: var(--red);
+  --dot-soft: var(--red-bg);
+}
+
+.oo-status-dot--warn {
+  --dot: var(--yellow);
+  --dot-soft: var(--yellow-bg);
+}
+
+.oo-status-dot--info {
+  --dot: var(--blue);
+  --dot-soft: var(--blue-bg);
+}
+
+.oo-status-dot--muted {
+  --dot: var(--muted);
+  --dot-soft: rgba(82, 114, 160, .22);
+}
+
+/* ── glow ring (steady emphasis) ──────────────────────── */
+.oo-status-dot--glow .oo-status-dot__glyph {
+  box-shadow: 0 0 0 3px var(--dot-soft);
+}
+
+/* ── pulse (live / active status) ─────────────────────── */
+.oo-status-dot--pulse .oo-status-dot__glyph {
+  animation: oo-status-dot-pulse 1.8s ease-out infinite;
+}
+
+@keyframes oo-status-dot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--dot-soft);
+  }
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+/* ── disabled / inactive ──────────────────────────────── */
+.oo-status-dot.is-disabled {
+  color: var(--dim);
+  cursor: not-allowed;
+}
+
+.oo-status-dot.is-disabled .oo-status-dot__glyph {
+  background: var(--dim);
+  box-shadow: none;
+  animation: none;
+}
+
+/* respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .oo-status-dot--pulse .oo-status-dot__glyph {
+    animation: none;
+    box-shadow: 0 0 0 3px var(--dot-soft);
+  }
+}

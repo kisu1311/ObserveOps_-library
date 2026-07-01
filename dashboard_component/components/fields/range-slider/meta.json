@@ -1,0 +1,13 @@
+{
+  "name": "range-slider",
+  "category": "fields",
+  "title": "Range Slider",
+  "description": "Custom-styled native range input with cross-browser thumb/track, a teal fill that tracks the value, and a small mono value-box. Used in the Create-Widget Style pane for numeric settings like Rotation and Line Width.",
+  "rootClass": "oo-range-slider",
+  "variants": ["default", "with-icon", "mid-range"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal", "style-config-pane"],
+  "tags": ["slider", "range", "input", "field", "config", "style-pane"],
+  "demoHeight": 170
+}

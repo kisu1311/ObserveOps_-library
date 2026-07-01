@@ -1,0 +1,85 @@
+/* text-input · fields · variants: default, with-value, focused, required, disabled · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: create-widget-modal, widget-config-panel */
+
+/* Labelled single-line text field used in the Create Widget flow (Widget Name /
+   Widget Description). A muted caption label sits above a borderless input whose
+   only chrome is a hairline bottom border; the border brightens to teal on focus.
+   Refined from .fld / .inp: namespaced to oo-*, tokenised geometry, plus a hover
+   cue, a keyboard focus-visible underline, an optional .is-focused demo state and
+   a disabled treatment. Purely presentational — native focus drives the styling,
+   so no JS ships with this partial. */
+
+.oo-text-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+/* ── caption label ─────────────────────────────────────── */
+.oo-text-input__label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.oo-text-input__req {
+  margin-left: 2px;
+  color: var(--red);
+}
+
+/* ── input ─────────────────────────────────────────────── */
+.oo-text-input__field {
+  width: 100%;
+  padding: 5px 2px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border2);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.oo-text-input__field::placeholder {
+  color: var(--dim);
+}
+
+/* hover: lift the resting hairline toward the label tone */
+.oo-text-input__field:hover:not(:disabled):not(:focus) {
+  border-bottom-color: var(--muted);
+}
+
+/* focus (pointer or programmatic): brighten the underline to teal */
+.oo-text-input__field:focus {
+  outline: none;
+  border-bottom-color: var(--teal);
+}
+
+/* keyboard focus: thicken the teal underline for a clear ring substitute */
+.oo-text-input__field:focus-visible {
+  outline: none;
+  border-bottom-color: var(--teal);
+  box-shadow: 0 1px 0 0 var(--teal);
+}
+
+/* static demo state so the gallery can show the focused look without runtime focus */
+.oo-text-input__field.is-focused {
+  border-bottom-color: var(--teal);
+  box-shadow: 0 1px 0 0 var(--teal);
+}
+
+/* ── disabled ──────────────────────────────────────────── */
+.oo-text-input__field:disabled {
+  color: var(--dim);
+  border-bottom-color: var(--border);
+  cursor: not-allowed;
+}
+
+.oo-text-input__field:disabled::placeholder {
+  color: var(--dim);
+}
+
+.oo-text-input.is-disabled .oo-text-input__label {
+  color: var(--dim);
+}

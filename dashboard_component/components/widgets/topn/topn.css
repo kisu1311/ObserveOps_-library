@@ -1,0 +1,102 @@
+/* topn · widgets · variants: teal, blue, purple, with-unit · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-canvas, create-widget-modal, ai-chat-answer */
+
+/* Horizontal Top-N bar list: a ranked column of up to 8 rows, each a truncated
+   entity name, a proportional horizontal bar (the longest = the list max) and a
+   right-aligned mono value. The OOW.topn renderer emits only structure from a
+   deterministic seed; this stylesheet owns all presentation. One local --topn-c
+   token drives the bar accent, so a single inline override (var(--teal|--blue|…))
+   recolours the whole list. Rows carry a subtle hover wash and, when made
+   interactive for drill-down (rendered as <button>/<a>), a keyboard focus ring;
+   an aria-disabled / .is-disabled list dims the whole set and freezes input. */
+
+.oo-topn {
+  --topn-c: var(--teal);              /* bar accent — override inline per mount */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-sans);
+}
+
+.oo-topn__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 2px var(--space-1);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.oo-topn__name {
+  width: 96px;
+  flex-shrink: 0;
+  font-size: 10.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--transition);
+}
+
+.oo-topn__track {
+  flex: 1;
+  min-width: 0;
+  height: 14px;
+  background: var(--card2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.oo-topn__bar {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  background: var(--topn-c);
+  transition: width var(--transition);
+}
+
+.oo-topn__val {
+  width: 40px;
+  flex-shrink: 0;
+  text-align: right;
+  font-family: var(--font-mono);      /* own the mono presentation (don't rely on the global .mono helper) */
+  font-size: 10.5px;
+  color: var(--text);
+}
+
+.oo-topn__unit {
+  margin-left: 1px;
+  font-size: 9px;
+  color: var(--muted);
+}
+
+/* refinement: hover — rows lift their wash + name brightens (drill-down affordance) */
+.oo-topn__row:hover {
+  background: var(--card);
+}
+.oo-topn__row:hover .oo-topn__name {
+  color: var(--text);
+}
+
+/* refinement: interactive rows (button / link) — strip native chrome, full width */
+button.oo-topn__row,
+a.oo-topn__row {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* refinement: keyboard focus (base.css also rings any oo- element; explicit for self-containment) */
+.oo-topn__row:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* state: disabled / no-data — dim the whole list and freeze interaction */
+.oo-topn.is-disabled,
+.oo-topn[aria-disabled="true"] {
+  opacity: .5;
+  pointer-events: none;
+}

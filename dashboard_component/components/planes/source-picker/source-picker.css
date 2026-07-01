@@ -1,0 +1,369 @@
+/* source-picker · planes · variants: open, floating, no-results, with-trigger · states: default, hover, focus, selected, indeterminate, filtered, disabled · deps: tokens.css, base.css, search-input.css, table-row.css · used-in: create-widget-modal, data-source-builder */
+
+/* Monitor / source picker popup. A floating panel that pairs a sticky search
+   field with a selectable monitor table so a metric source can be chosen while
+   building a widget. Refined from the live `.pop.table` (#sourcePop) into a
+   self-contained, namespaced plane that COMPOSES two atoms — `.oo-search-input`
+   (the sticky search header) and `.oo-table-row` (the table base: uppercase
+   sticky head, hairline rules, hover sweep, status dot, mono cells) — and adds
+   the source-specific affordances on top: a per-row checkbox, group / tag pills
+   and a footer summary. Selection is multi-select via checkboxes (single source
+   of truth = the checkbox `aria-checked`; the row fill is derived with :has()).
+   Renders in-flow by default (so the gallery can show it open) or as an anchored
+   `--floating` popup. Open/close is a single `.is-open` toggle. */
+
+/* ── frame ──────────────────────────────────────────────────── */
+.oo-source-picker {
+  --oo-sp-w: 720px;
+  box-sizing: border-box;
+  width: var(--oo-sp-w);
+  max-width: 92vw;
+  max-height: min(360px, 80vh);
+  display: none;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pop);
+  font-family: var(--font-sans);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.oo-source-picker.is-open {
+  display: flex;
+  animation: oo-source-picker-in .16s ease both;
+}
+
+@keyframes oo-source-picker-in {
+  from { opacity: 0; transform: translateY(6px) scale(.99); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* anchored floating popup (real usage: sits under a trigger field) */
+.oo-source-picker-anchor {
+  position: relative;
+  display: inline-block;
+}
+
+.oo-source-picker--floating {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  z-index: 90;
+}
+
+/* ── sticky search header (composes .oo-search-input) ───────── */
+.oo-source-picker__search {
+  flex: 0 0 auto;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: var(--space-2);
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── scrollable table body (composes .oo-table-row) ─────────── */
+.oo-source-picker__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.oo-source-picker__table {
+  width: 100%;
+  font-size: 11.5px;
+}
+
+/* keep the composed table header sticky over the scrolling body and
+   sitting just below the search bar */
+.oo-source-picker__table th {
+  font-size: 9.5px;
+  background: var(--panel);
+}
+
+/* the checkbox column is narrow */
+.oo-source-picker__table th:first-child,
+.oo-source-picker__table td:first-child {
+  width: 1%;
+  white-space: nowrap;
+  padding-right: 0;
+}
+
+.oo-source-picker__table td {
+  vertical-align: middle;
+}
+
+/* a secondary / dimmed cell (IP, Type) */
+.oo-source-picker__sub {
+  color: var(--muted);
+}
+
+.oo-source-picker__sub--cap {
+  text-transform: capitalize;
+}
+
+/* ── selectable rows ────────────────────────────────────────── */
+.oo-source-picker__row {
+  cursor: pointer;
+}
+
+.oo-source-picker__row td {
+  transition: background var(--transition), color var(--transition);
+}
+
+/* row fill derived from the checkbox state — no extra attribute to sync */
+.oo-source-picker__row:has(.oo-source-picker__check[aria-checked="true"]) td {
+  background: var(--teal2);
+  color: var(--text);
+}
+
+.oo-source-picker__row:has(.oo-source-picker__check[aria-checked="true"]) td:first-child {
+  box-shadow: inset 2px 0 0 var(--teal);
+}
+
+.oo-source-picker__row:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--teal);
+}
+
+/* disabled row — non-interactive, dimmed, no hover */
+.oo-source-picker__row.is-disabled,
+.oo-source-picker__row[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.oo-source-picker__row.is-disabled:hover td,
+.oo-source-picker__row[aria-disabled="true"]:hover td {
+  background: transparent;
+}
+
+/* hidden by the filter */
+.oo-source-picker__row[hidden] {
+  display: none;
+}
+
+/* ── per-row checkbox ───────────────────────────────────────── */
+.oo-source-picker__check {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: transparent;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.oo-source-picker__check svg {
+  width: 11px;
+  height: 11px;
+  pointer-events: none;
+}
+
+.oo-source-picker__check:hover {
+  border-color: var(--teal);
+}
+
+.oo-source-picker__check:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-source-picker__check[aria-checked="true"] {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--on-accent);
+}
+
+/* select-all header checkbox: partial / indeterminate state */
+.oo-source-picker__check[aria-checked="mixed"] {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--on-accent);
+}
+
+/* glyphs are swapped by state — tick when checked, dash when mixed */
+.oo-source-picker__check-tick,
+.oo-source-picker__check-dash { display: none; }
+.oo-source-picker__check[aria-checked="true"]  .oo-source-picker__check-tick { display: block; }
+.oo-source-picker__check[aria-checked="mixed"] .oo-source-picker__check-dash { display: block; }
+
+.oo-source-picker__check:disabled,
+.oo-source-picker__check[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: .5;
+  border-color: var(--border2);
+  background: var(--card);
+}
+
+/* ── group + tag pills ──────────────────────────────────────── */
+.oo-source-picker__group,
+.oo-source-picker__tag {
+  display: inline-block;
+  font-size: 10px;
+  line-height: 1.5;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+/* neutral group path pill (was .sp-grp) */
+.oo-source-picker__group {
+  padding: 2px var(--space-2);
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border2);
+}
+
+/* teal tag pill (was .sp-tag) */
+.oo-source-picker__tag {
+  padding: 1px var(--space-2);
+  color: var(--teal);
+  background: var(--teal2);
+  border: 1px solid color-mix(in srgb, var(--teal) 32%, transparent);
+}
+
+/* ── status dot (mirrors table-row, kept local for self-containment) ── */
+.oo-source-picker__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: var(--space-2);
+  border-radius: 50%;
+  vertical-align: middle;
+  background: var(--muted);
+}
+.oo-source-picker__dot--up   { background: var(--green); }
+.oo-source-picker__dot--down { background: var(--red); }
+.oo-source-picker__dot--warn { background: var(--orange); }
+
+/* ── empty / no-results state ───────────────────────────────── */
+.oo-source-picker__empty {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  min-height: 120px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.oo-source-picker__empty svg {
+  width: 34px;
+  height: 34px;
+  color: var(--dim);
+}
+
+.oo-source-picker.is-empty .oo-source-picker__body { display: none; }
+.oo-source-picker.is-empty .oo-source-picker__empty { display: flex; }
+
+/* ── footer summary + actions ───────────────────────────────── */
+.oo-source-picker__foot {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+.oo-source-picker__hint {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.oo-source-picker__count { color: var(--teal); font-weight: 600; }
+
+.oo-source-picker__actions {
+  margin-left: auto;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.oo-source-picker__btn {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border2);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.oo-source-picker__btn:hover {
+  border-color: var(--teal);
+}
+.oo-source-picker__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-source-picker__btn--primary {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--on-accent);
+}
+.oo-source-picker__btn--primary:hover {
+  background: color-mix(in srgb, var(--teal) 85%, var(--bg));
+  border-color: color-mix(in srgb, var(--teal) 85%, var(--bg));
+}
+.oo-source-picker__btn:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+  border-color: var(--border2);
+  background: var(--card);
+  color: var(--muted);
+}
+.oo-source-picker__btn--primary:disabled {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--on-accent);
+}
+
+/* ── trigger field (demo affordance to open an anchored popup) ─ */
+.oo-source-picker__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 220px;
+  font: inherit;
+  font-size: 12px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border2);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+.oo-source-picker__trigger:hover { border-color: var(--muted); }
+.oo-source-picker__trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-source-picker__trigger[aria-expanded="true"] { border-color: var(--teal); }
+.oo-source-picker__trigger .oo-source-picker__trigger-val { color: var(--text); }
+.oo-source-picker__trigger .oo-source-picker__trigger-val.is-placeholder { color: var(--muted); }
+.oo-source-picker__trigger svg {
+  width: 13px;
+  height: 13px;
+  margin-left: auto;
+  color: var(--muted);
+  transition: transform var(--transition);
+}
+.oo-source-picker__trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+.oo-source-picker__trigger:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}

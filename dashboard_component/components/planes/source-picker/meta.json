@@ -1,0 +1,13 @@
+{
+  "name": "source-picker",
+  "category": "planes",
+  "title": "Monitor Source Picker",
+  "description": "Floating popup for choosing a metric source while building a widget. Pairs a sticky search field with a selectable monitor table, composing two atoms — the search-input header and the table-row table base (uppercase sticky head, hairline rules, hover sweep, status dot, mono IP cells) — then layers on source-specific affordances: a per-row checkbox, group-path and tag pills, and a footer summary. Selection is multi-select via checkboxes with a tri-state select-all in the header (the row fill is derived from checkbox state with :has()), and the search filters rows live with a no-results empty state. Renders in-flow open by default or as an anchored --floating popup that a trigger field toggles; Escape and outside-click dismiss the floating variant.",
+  "rootClass": "oo-source-picker",
+  "variants": ["open", "floating", "with-trigger", "no-results"],
+  "states": ["default", "hover", "focus", "selected", "indeterminate", "filtered", "disabled"],
+  "deps": ["tokens.css", "base.css", "search-input.css", "table-row.css"],
+  "usedIn": ["create-widget-modal", "data-source-builder"],
+  "tags": ["picker", "popup", "monitor", "source", "table", "search", "multi-select", "checkbox", "plane", "compose"],
+  "demoHeight": 360
+}

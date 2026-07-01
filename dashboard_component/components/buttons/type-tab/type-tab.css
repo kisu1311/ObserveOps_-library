@@ -1,0 +1,58 @@
+/* type-tab · buttons · variants: scroll-row, disabled-option · states: default, hover, focus, active, disabled · deps: tokens.css, base.css · used-in: create-widget-modal */
+
+/* Horizontally scrollable, single-select tab row for picking a widget type
+   (Chart / Grid / Gauge / Heat Map / ...). The row scrolls sideways when the
+   tabs overflow; the active tab lifts to a card chip with an inset hairline. */
+.oo-type-tab {
+  flex-shrink: 0;
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.oo-type-tab__tab {
+  flex: none;
+  padding: 6px 13px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition),
+    box-shadow var(--transition);
+}
+
+.oo-type-tab__tab:hover {
+  color: var(--text);
+  background: var(--card);
+}
+
+/* keyboard focus — reinforces the shared base.css ring + brightens the label */
+.oo-type-tab__tab:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  color: var(--text);
+}
+
+/* active / selected tab */
+.oo-type-tab__tab[aria-pressed="true"],
+.oo-type-tab__tab.is-active,
+.oo-type-tab__tab.on {
+  background: var(--card);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--border2);
+}
+
+.oo-type-tab__tab:disabled,
+.oo-type-tab__tab.is-disabled {
+  color: var(--dim);
+  pointer-events: none;
+  cursor: default;
+}

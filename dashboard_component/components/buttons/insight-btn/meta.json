@@ -1,0 +1,13 @@
+{
+  "name": "insight-btn",
+  "category": "buttons",
+  "title": "Insight Action Button",
+  "description": "Small AI insight action buttons (Add as widget / Investigate / Dismiss) with default, primary and ghost variants; purple AI accent.",
+  "rootClass": "oo-insight-btn",
+  "variants": ["default", "primary", "ghost"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css"],
+  "usedIn": ["ai-insights-panel", "ai-annotation-popover"],
+  "tags": ["button", "ai", "insight", "action"],
+  "demoHeight": 80
+}

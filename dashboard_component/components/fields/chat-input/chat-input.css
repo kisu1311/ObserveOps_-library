@@ -1,0 +1,92 @@
+/* chat-input · fields · variants: empty, typed · states: default, focus-within, hover, disabled · deps: tokens.css, base.css · used-in: ai-copilot-chat, ask-ai-panel */
+
+/* AI Copilot message composer: a rounded input row with a trailing gradient
+   send button. The wrapper owns the border and the focus-within highlight; the
+   inner field is a borderless, transparent <input>; the button is a teal→purple
+   gradient send glyph.
+   Refined from .ai-input / .ai-send: namespaced to .oo-chat-input, tokenised
+   radius / spacing / transition, with hover, active and keyboard focus-visible
+   states on the button plus a disabled treatment for both the button and the
+   whole composer. The actual send action is wired by the host page. */
+.oo-chat-input {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition);
+}
+
+/* highlight the whole composer while the field inside is focused */
+.oo-chat-input:focus-within {
+  border-color: var(--purple);
+}
+
+/* borderless transparent text field — the wrapper draws the chrome */
+.oo-chat-input__field {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.oo-chat-input__field::placeholder {
+  color: var(--muted);
+}
+
+/* trailing gradient send button */
+.oo-chat-input__send {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--teal), var(--purple));
+  color: var(--on-accent);                 /* on-accent glyph; white is not a palette token */
+  cursor: pointer;
+  transition: filter var(--transition), box-shadow var(--transition);
+}
+
+.oo-chat-input__send svg {
+  width: 15px;
+  height: 15px;
+}
+
+.oo-chat-input__send:hover {
+  filter: brightness(1.08);
+}
+
+.oo-chat-input__send:active {
+  filter: brightness(.93);
+}
+
+/* keyboard focus ring (base.css also supplies this for any .oo- control) */
+.oo-chat-input__send:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* disabled send — e.g. an empty composer with nothing to send */
+.oo-chat-input__send:disabled,
+.oo-chat-input__send.is-disabled {
+  filter: none;
+  opacity: .45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* disabled composer — e.g. while the AI is generating a response */
+.oo-chat-input.is-disabled {
+  opacity: .55;
+  pointer-events: none;
+}

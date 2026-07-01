@@ -1,0 +1,119 @@
+/* menu-item · items · variants: default, with-icon, danger, with-shortcut, separator · states: default, hover, focus, active, disabled · deps: tokens.css, base.css · used-in: widget-more-menu, widget-header-actions, context-menu */
+
+/* Dropdown / context-menu option row: a leading action glyph + label, a danger
+   variant for destructive actions, and a thin separator. Refined from the
+   monolith's .pop .opt / .opt.menu-row / .menu-sep (the widget "···" menu).
+   Root is the menu surface itself — a single item rarely stands alone — so the
+   documented rootClass is the shorter .oo-menu and the parts are BEM children
+   (__item, __label, __shortcut, __sep). Highlight/active state is .is-active,
+   disabled is :disabled / .is-disabled / aria-disabled. Icons follow the
+   menu-icons output style (24-grid, stroke=currentColor). */
+
+/* ── menu surface ─────────────────────────────────────── */
+.oo-menu {
+  min-width: 180px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: var(--space-1);
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pop);
+  font-family: var(--font-sans);
+}
+
+/* ── option row ───────────────────────────────────────── */
+.oo-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.oo-menu__item svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+  transition: color var(--transition);
+}
+
+.oo-menu__label { flex: 1; }
+
+/* trailing keyboard-shortcut hint */
+.oo-menu__shortcut {
+  margin-left: auto;
+  padding-left: var(--space-3);
+  color: var(--dim);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .3px;
+}
+
+/* ── hover + active (highlighted) ─────────────────────── */
+.oo-menu__item:hover,
+.oo-menu__item.is-active,
+.oo-menu__item[aria-current="true"] {
+  background: var(--teal2);
+  color: var(--teal);
+}
+.oo-menu__item:hover svg,
+.oo-menu__item.is-active svg,
+.oo-menu__item[aria-current="true"] svg {
+  color: var(--teal);
+}
+
+/* ── keyboard focus (base.css supplies the ring; add the tint) ── */
+.oo-menu__item:focus-visible {
+  background: var(--teal2);
+  color: var(--teal);
+}
+.oo-menu__item:focus-visible svg { color: var(--teal); }
+
+/* ── danger variant (Delete / destructive) ───────────── */
+.oo-menu__item--danger { color: var(--red); }
+.oo-menu__item--danger svg { color: var(--red); }
+.oo-menu__item--danger:hover,
+.oo-menu__item--danger.is-active,
+.oo-menu__item--danger:focus-visible {
+  background: var(--red-bg);
+  color: var(--red);
+}
+.oo-menu__item--danger:hover svg,
+.oo-menu__item--danger.is-active svg,
+.oo-menu__item--danger:focus-visible svg { color: var(--red); }
+
+/* ── disabled ─────────────────────────────────────────── */
+.oo-menu__item:disabled,
+.oo-menu__item.is-disabled,
+.oo-menu__item[aria-disabled="true"] {
+  background: transparent;
+  color: var(--dim);
+  cursor: not-allowed;
+}
+.oo-menu__item:disabled svg,
+.oo-menu__item.is-disabled svg,
+.oo-menu__item[aria-disabled="true"] svg { color: var(--dim); }
+.oo-menu__item:disabled .oo-menu__shortcut,
+.oo-menu__item.is-disabled .oo-menu__shortcut,
+.oo-menu__item[aria-disabled="true"] .oo-menu__shortcut { color: var(--dim); }
+
+/* ── separator ────────────────────────────────────────── */
+.oo-menu__sep {
+  height: 1px;
+  margin: var(--space-1) var(--space-2);
+  background: var(--border);
+  border: 0;
+}

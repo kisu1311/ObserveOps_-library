@@ -1,0 +1,13 @@
+{
+  "name": "fab",
+  "category": "buttons",
+  "title": "Floating Action Button",
+  "description": "Circular teal floating action button, icon-only, with a teal glow shadow. Pinned bottom-right of the dashboard canvas to trigger the Add Widget flow.",
+  "rootClass": "oo-fab",
+  "variants": ["default", "fixed", "lg"],
+  "states": ["default", "hover", "focus", "active", "disabled"],
+  "deps": ["tokens.css"],
+  "usedIn": ["dashboard-canvas", "add-widget-flow"],
+  "tags": ["button", "fab", "floating", "icon", "add", "action"],
+  "demoHeight": 140
+}

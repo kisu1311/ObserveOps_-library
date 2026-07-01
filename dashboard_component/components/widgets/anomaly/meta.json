@@ -1,0 +1,13 @@
+{
+  "name": "anomaly",
+  "category": "widgets",
+  "title": "Anomaly Detection Widget",
+  "description": "The dashboard's AI/ML anomaly-detection renderer. A declarative mount (data-widget=\"anomaly\") is filled by the OOW.anomaly renderer with a single token-themed SVG: a seeded time-series drawn as a smooth cubic-bezier line, wrapped in a shaded confidence band (the learned baseline ± a tolerance), a faint dashed mean baseline, and any sample that breaches the band flagged as a red dot inside a soft pulsing ring. The series colour is data-driven (data-color, a SVAR key or hex) and injected as generated SVG data, while the band opacity, baseline and the always-red anomaly markers are decoupled from the series colour and themed from design tokens. Output is deterministic from opts.seed, so it renders identically every load. Depends on the shared series / smoothPath / rng / SVAR utils. Presentational by default, with a focus ring when the mount is focusable and a stale/paused disabled treatment.",
+  "rootClass": "oo-anomaly",
+  "variants": ["blue", "purple", "teal", "wide-band"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/series.js", "utils/smooth-path.js", "utils/rng.js", "utils/colors.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-grid", "create-widget-modal", "widget-fullscreen", "ai-insights-answer", "ai-generate-widget"],
+  "tags": ["anomaly", "widget", "renderer", "ai", "ml", "confidence-band", "outlier", "timeseries", "svg", "viz"],
+  "demoHeight": 200
+}

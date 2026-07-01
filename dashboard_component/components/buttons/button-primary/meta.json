@@ -1,0 +1,13 @@
+{
+  "name": "button-primary",
+  "category": "buttons",
+  "title": "Primary Button",
+  "description": "Solid teal call-to-action for primary actions (Create, Save). Renders solid teal by default; supports an optional leading/trailing icon, sm/md sizes, and a disabled state.",
+  "rootClass": "oo-btn",
+  "variants": ["solid", "with-icon", "sm", "md"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal", "add-widget-panel"],
+  "tags": ["button", "cta", "action", "primary", "teal"],
+  "demoHeight": 80
+}

@@ -1,0 +1,123 @@
+/* ruler · planes · variants: default, now-marked · states: default, hover, focus, grabbing, disabled · deps: tokens.css, base.css · used-in: dashboard-module */
+
+/* Canvas timeline ruler — the slim header strip that sits at the top of the
+   dashboard canvas, above the widget grid. It is a row of evenly-spaced mono
+   time-tick labels sitting on a dashed baseline, plus a draggable range
+   indicator (the "brush") that scrubs the visible time window. Every part is
+   namespaced under .oo-ruler so the partial stays isolated and reusable. */
+
+.oo-ruler {
+  position: relative;
+  flex-shrink: 0;
+  height: 44px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 18px 5px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-sans);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ── tick row ───────────────────────────────────────────── */
+.oo-ruler__ticks {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+/* dashed baseline behind the labels */
+.oo-ruler__ticks::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--border) 0 1px, transparent 1px 26px);
+}
+
+.oo-ruler__tick {
+  position: relative;
+  z-index: 1;
+  padding: 0 3px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1;
+  color: var(--muted);
+  background: var(--bg);
+  white-space: nowrap;
+}
+
+/* current / "now" tick emphasis */
+.oo-ruler__tick.is-now {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+/* ── draggable range indicator (brush) ──────────────────── */
+.oo-ruler__slider {
+  position: absolute;
+  top: 8px;
+  left: 56%;
+  width: 38%;
+  height: 5px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-pill);
+  cursor: grab;
+  touch-action: none;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.oo-ruler__slider:hover {
+  border-color: var(--teal);
+}
+
+.oo-ruler__slider:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-ruler__slider.is-grabbing,
+.oo-ruler__slider:active {
+  cursor: grabbing;
+  background: var(--teal2);
+  border-color: var(--teal);
+}
+
+/* right-edge grip dot */
+.oo-ruler__handle {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-pill);
+  background: var(--muted);
+  transition: background var(--transition);
+}
+
+.oo-ruler__slider:hover .oo-ruler__handle,
+.oo-ruler__slider:focus-visible .oo-ruler__handle,
+.oo-ruler__slider.is-grabbing .oo-ruler__handle {
+  background: var(--teal);
+}
+
+/* ── disabled treatment ─────────────────────────────────── */
+.oo-ruler.is-disabled,
+.oo-ruler__slider.is-disabled,
+.oo-ruler__slider:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: .55;
+}
+
+.oo-ruler.is-disabled .oo-ruler__handle {
+  background: var(--dim);
+}

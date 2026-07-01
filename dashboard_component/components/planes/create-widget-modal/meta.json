@@ -1,0 +1,14 @@
+{
+  "name": "create-widget-modal",
+  "category": "planes",
+  "title": "Create Widget Modal",
+  "description": "The full Create Widget plane — the dashboard's largest surface. A flex-column panel stacking a header (title, time-range pill + date stamp, close), a scrollable widget-type tab strip (Chart, Grid, Top N, Gauge, Heat Map, Anomaly, AI Insights, …), a mid row of live preview pane and a config column with Style / Sorting / Markers / Timeline sub-tabs (chart style chooser, rotation & line-width sliders, legend / points / grid toggles, granularity select, order pills), the data-source builder (vertical colour-coded source tabs, a counter row of Counter / Aggregation / Source Filter / Source / Result By controls with a Σ math button and add/remove, a Filters bar, and source-category chips), and a footer action bar (Reset / Create Widget / Create & Add Widget). Every atom is namespaced under .oo-cwm so toggles, sliders, the style chooser and data-source rows can also render standalone. Default renders in-flow for the gallery; .oo-cwm--overlay + .is-open gives the production fixed-overlay scale-in.",
+  "rootClass": "oo-cwm",
+  "variants": ["create", "edit", "overlay", "style-pane", "sorting-pane", "markers-pane", "timeline-pane"],
+  "states": ["default", "hover", "focus", "selected", "on", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-module", "add-widget-panel", "dashboard-grid"],
+  "tags": ["modal", "plane", "create-widget", "config", "data-source", "tabs", "style-chooser", "toggle", "slider", "dashboard"],
+  "demoHeight": 560,
+  "hasJs": true
+}

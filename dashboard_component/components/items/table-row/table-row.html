@@ -1,0 +1,101 @@
+<!-- variant: monitor — status dot + inline Up/Down label -->
+<table class="oo-table-row" aria-label="Monitor status">
+  <thead>
+    <tr>
+      <th scope="col">Monitor</th>
+      <th scope="col">Traffic</th>
+      <th scope="col">Interface</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="oo-table-row__dot oo-table-row__dot--up" aria-hidden="true"></span>fg_firewall.mindarray</td>
+      <td class="oo-table-row__num">23.4 Kbps</td>
+      <td>l2t.root-36</td>
+      <td><span class="oo-table-row__status">Up</span></td>
+    </tr>
+    <tr>
+      <td><span class="oo-table-row__dot oo-table-row__dot--up" aria-hidden="true"></span>cisco_core.local</td>
+      <td class="oo-table-row__num">11.2 Kbps</td>
+      <td>To_PaloAlto-38</td>
+      <td><span class="oo-table-row__status">Up</span></td>
+    </tr>
+    <tr>
+      <td><span class="oo-table-row__dot oo-table-row__dot--down" aria-hidden="true"></span>ipv6R6.test.com</td>
+      <td class="oo-table-row__num">4.8 Kbps</td>
+      <td>ssl.root-16</td>
+      <td><span class="oo-table-row__status oo-table-row__status--down">Down</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- variant: alert-log — severity badge + mono timestamp -->
+<table class="oo-table-row" aria-label="Recent alerts">
+  <thead>
+    <tr>
+      <th scope="col">Severity</th>
+      <th scope="col">Alert</th>
+      <th scope="col">Source</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="oo-table-row__sev oo-table-row__sev--crit">Critical</span></td>
+      <td>CPU saturation &gt; 90%</td>
+      <td class="oo-table-row__num">172.16.4.118</td>
+      <td class="oo-table-row__num">12m ago</td>
+    </tr>
+    <tr>
+      <td><span class="oo-table-row__sev oo-table-row__sev--warn">Warning</span></td>
+      <td>Disk usage breach</td>
+      <td class="oo-table-row__num">172.16.9.42</td>
+      <td class="oo-table-row__num">27m ago</td>
+    </tr>
+    <tr>
+      <td><span class="oo-table-row__sev oo-table-row__sev--info">Info</span></td>
+      <td>Interface flapping</td>
+      <td class="oo-table-row__num">172.16.2.201</td>
+      <td class="oo-table-row__num">5m ago</td>
+    </tr>
+    <tr>
+      <td><span class="oo-table-row__sev oo-table-row__sev--ok">Clear</span></td>
+      <td>Service down</td>
+      <td class="oo-table-row__num">172.16.14.88</td>
+      <td class="oo-table-row__num">41m ago</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- variant: clickable — selectable rows in a sticky-header scroll wrapper; states: selected, disabled -->
+<div class="oo-table-row-scroll" style="max-height:150px">
+  <table class="oo-table-row" aria-label="Select a monitor">
+    <thead>
+      <tr>
+        <th scope="col">Monitor</th>
+        <th scope="col">Traffic</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- state: selected -->
+      <tr class="oo-table-row__row oo-table-row__row--clickable" tabindex="0" aria-selected="true" aria-label="mpls1.mpls1.com, up">
+        <td><span class="oo-table-row__dot oo-table-row__dot--up" aria-hidden="true"></span>mpls1.mpls1.com</td>
+        <td class="oo-table-row__num">38.1 Kbps</td>
+        <td><span class="oo-table-row__status">Up</span></td>
+      </tr>
+      <tr class="oo-table-row__row oo-table-row__row--clickable" tabindex="0" aria-selected="false" aria-label="PA-3020x, warning">
+        <td><span class="oo-table-row__dot oo-table-row__dot--warn" aria-hidden="true"></span>PA-3020x</td>
+        <td class="oo-table-row__num">17.6 Kbps</td>
+        <td><span class="oo-table-row__status">Up</span></td>
+      </tr>
+      <!-- state: disabled -->
+      <tr class="oo-table-row__row oo-table-row__row--clickable is-disabled" aria-disabled="true" aria-selected="false" aria-label="zimbra-server, unreachable (disabled)">
+        <td><span class="oo-table-row__dot oo-table-row__dot--down" aria-hidden="true"></span>zimbra-server</td>
+        <td class="oo-table-row__num">—</td>
+        <td><span class="oo-table-row__status oo-table-row__status--down">Down</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,13 @@
+{
+  "name": "topn",
+  "category": "widgets",
+  "title": "Top N Bar List",
+  "description": "Horizontal Top-N ranked bar list widget: up to 8 rows, each a truncated entity name, a proportional horizontal bar (longest = the list max) and a right-aligned mono value with optional unit. Rendered by the pure OOW.topn renderer from a deterministic seed; a single --topn-c token recolours the bars (teal/blue/purple/…). Rows carry a hover wash and, when made interactive for drill-down, a keyboard focus ring; an aria-disabled list dims for no-data/loading.",
+  "rootClass": "oo-topn",
+  "variants": ["teal", "blue", "purple", "with-unit"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/series.js", "utils/esc.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-canvas", "create-widget-modal", "ai-chat-answer"],
+  "tags": ["widget", "top-n", "bar-list", "ranking", "horizontal-bar", "leaderboard", "data-viz"],
+  "demoHeight": 230
+}

@@ -1,0 +1,900 @@
+/* create-widget-modal · planes · variants: create, edit, overlay, style/sorting/markers/timeline panes · states: default, hover, focus, selected, on, disabled · deps: tokens.css, base.css · used-in: dashboard-module, add-widget-panel */
+
+/* The full Create Widget plane — the largest dashboard surface. A flex-column
+   panel that stacks: header (title + time-range + close), a horizontal
+   widget-type tab strip, a mid row of live preview pane + scrollable config
+   (Style / Sorting / Markers / Timeline sub-tabs, the chart style chooser,
+   toggles, sliders, pills, selects), the data-source builder (vertical
+   coloured source tabs + counter rows + category chips) and a footer action
+   bar. Every child is namespaced under .oo-cwm (flat BEM) so the partial is
+   isolated and its atoms (toggle, slider, style chooser, ds-row, buttons) can
+   render standalone. Root rendered in-flow for the gallery; add
+   .oo-cwm--overlay + .is-open for the production fixed-overlay behaviour. */
+
+/* ── root panel ─────────────────────────────────────────── */
+.oo-cwm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-pop);
+  font-family: var(--font-sans);
+  color: var(--text);
+}
+
+/* production overlay treatment (fixed, scale-in on open) */
+.oo-cwm--overlay {
+  position: fixed;
+  inset: 24px;
+  z-index: 70;
+  width: auto;
+  height: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(.985);
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+}
+
+.oo-cwm--overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+/* ── header ─────────────────────────────────────────────── */
+.oo-cwm__head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.oo-cwm__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.oo-cwm__head-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.oo-cwm__range {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 3px 4px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+}
+
+.oo-cwm__range-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--on-accent);
+  background: var(--teal);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-2);
+}
+
+.oo-cwm__range-lbl {
+  font-size: 12px;
+  color: var(--text);
+  padding-right: var(--space-1);
+}
+
+.oo-cwm__date {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.oo-cwm__close {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.oo-cwm__close svg {
+  width: 14px;
+  height: 14px;
+}
+
+.oo-cwm__close:hover {
+  background: var(--card);
+  color: var(--text);
+}
+
+.oo-cwm__close:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  color: var(--text);
+}
+
+/* ── widget-type tab strip ──────────────────────────────── */
+.oo-cwm__types {
+  flex-shrink: 0;
+  display: flex;
+  gap: var(--space-1);
+  padding: 9px var(--space-4);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.oo-cwm__type {
+  padding: 6px 13px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.oo-cwm__type:hover {
+  color: var(--text);
+  background: var(--card);
+}
+
+.oo-cwm__type:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__type.is-on,
+.oo-cwm__type[aria-selected="true"] {
+  background: var(--card);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--border2);
+}
+
+/* ── mid row: preview | config ──────────────────────────── */
+.oo-cwm__mid {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.oo-cwm__preview {
+  flex: 1.45;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) 18px;
+  border-right: 1px solid var(--border);
+}
+
+.oo-cwm__preview-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.oo-cwm__preview-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.oo-cwm__cfg {
+  flex: 1;
+  min-width: 340px;
+  max-width: 46%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: var(--space-4) 18px;
+}
+
+/* ── name / description fields ──────────────────────────── */
+.oo-cwm__names {
+  display: flex;
+  gap: 16px;
+  margin-bottom: var(--space-4);
+}
+
+.oo-cwm__fld {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.oo-cwm__fld-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.oo-cwm__req {
+  color: var(--red);
+  margin-left: 2px;
+}
+
+.oo-cwm__inp {
+  padding: 5px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--border2);
+  background: transparent;
+  font-family: inherit;
+  font-size: 12.5px;
+  color: var(--text);
+}
+
+.oo-cwm__inp::placeholder {
+  color: var(--dim);
+}
+
+.oo-cwm__inp:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+/* ── config sub-tabs + panes ────────────────────────────── */
+.oo-cwm__subtabs {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.oo-cwm__subtab {
+  padding: 7px 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.oo-cwm__subtab:hover {
+  color: var(--text);
+}
+
+.oo-cwm__subtab:focus-visible {
+  outline: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__subtab.is-on,
+.oo-cwm__subtab[aria-selected="true"] {
+  color: var(--text);
+  border-color: var(--teal);
+}
+
+.oo-cwm__pane {
+  display: none;
+}
+
+.oo-cwm__pane.is-on {
+  display: block;
+}
+
+/* ── chart style chooser ────────────────────────────────── */
+.oo-cwm__style-row {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.oo-cwm__style-btn {
+  width: 42px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.oo-cwm__style-btn svg {
+  width: 22px;
+  height: 16px;
+}
+
+.oo-cwm__style-btn:hover {
+  color: var(--text);
+  border-color: var(--teal);
+}
+
+.oo-cwm__style-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__style-btn.is-on,
+.oo-cwm__style-btn[aria-pressed="true"] {
+  color: var(--teal);
+  border-color: var(--teal);
+  background: var(--teal2);
+}
+
+/* ── config grid + items ────────────────────────────────── */
+.oo-cwm__cfg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 20px;
+}
+
+.oo-cwm__cfg-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.oo-cwm__clbl {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.oo-cwm__field-row {
+  display: flex;
+  gap: 9px;
+}
+
+/* ── toggle switch ──────────────────────────────────────── */
+.oo-cwm__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+.oo-cwm__tk {
+  position: relative;
+  width: 34px;
+  height: 18px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--dim);
+  transition: background var(--transition);
+}
+
+.oo-cwm__tk::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--on-accent);
+  transition: transform var(--transition);
+}
+
+.oo-cwm__toggle.is-on .oo-cwm__tk,
+.oo-cwm__toggle[aria-checked="true"] .oo-cwm__tk {
+  background: var(--teal);
+}
+
+.oo-cwm__toggle.is-on .oo-cwm__tk::after,
+.oo-cwm__toggle[aria-checked="true"] .oo-cwm__tk::after {
+  transform: translateX(16px);
+}
+
+.oo-cwm__tt {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  color: var(--muted);
+}
+
+.oo-cwm__toggle:focus-visible {
+  outline: none;
+}
+
+.oo-cwm__toggle:focus-visible .oo-cwm__tk {
+  box-shadow: var(--ring);
+}
+
+/* ── slider ─────────────────────────────────────────────── */
+.oo-cwm__slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.oo-cwm__slider-ic {
+  color: var(--muted);
+}
+
+.oo-cwm__range-input {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 3px;
+  background: var(--border2);
+}
+
+.oo-cwm__range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--on-accent);
+  border: 2px solid var(--teal);
+  cursor: pointer;
+}
+
+.oo-cwm__range-input::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--on-accent);
+  border: 2px solid var(--teal);
+  cursor: pointer;
+}
+
+.oo-cwm__range-input:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__sv {
+  width: 34px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ── mini pills (segmented radio) ───────────────────────── */
+.oo-cwm__pills {
+  display: flex;
+  width: fit-content;
+  padding: 2px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+}
+
+.oo-cwm__pill {
+  padding: 5px 16px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+
+.oo-cwm__pill:hover {
+  color: var(--text);
+}
+
+.oo-cwm__pill:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__pill.is-on,
+.oo-cwm__pill[aria-checked="true"] {
+  background: var(--card2);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--border2);
+}
+
+/* ── numeric input + select control ─────────────────────── */
+.oo-cwm__num {
+  width: 80px;
+  padding: 6px 9px;
+  border: 0;
+  border-bottom: 1px solid var(--border2);
+  background: transparent;
+  font-family: inherit;
+  font-size: 12.5px;
+  color: var(--text);
+}
+
+.oo-cwm__num:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.oo-cwm__sel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 7px 10px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: var(--card);
+  font-size: 12px;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+
+.oo-cwm__sel:hover {
+  border-color: var(--teal);
+}
+
+.oo-cwm__sel:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__v {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oo-cwm__v.is-ph {
+  color: var(--muted);
+}
+
+.oo-cwm__cv {
+  display: inline-flex;
+  margin-left: auto;
+  color: var(--muted);
+}
+
+.oo-cwm__cv svg {
+  width: 11px;
+  height: 11px;
+}
+
+.oo-cwm__hint {
+  margin-top: 12px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ── data-source builder ────────────────────────────────── */
+.oo-cwm__ds {
+  flex-shrink: 0;
+  max-height: 38%;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+  background: var(--card2);
+}
+
+.oo-cwm__ds-sec {
+  position: relative;
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+
+.oo-cwm__ds-tab {
+  flex-shrink: 0;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--on-accent);
+}
+
+.oo-cwm__ds-tab--metric { background: var(--teal); }
+.oo-cwm__ds-tab--rum    { background: var(--green); }
+.oo-cwm__ds-tab--log    { background: var(--blue); }
+.oo-cwm__ds-tab--apm    { background: var(--purple); }
+.oo-cwm__ds-tab--flow   { background: var(--orange); }
+.oo-cwm__ds-tab--alert  { background: var(--red); }
+
+.oo-cwm__ds-body {
+  flex: 1;
+  min-width: 0;
+  padding: 12px var(--space-4);
+}
+
+.oo-cwm__ds-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.1fr 1.4fr 1.1fr auto auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 10px;
+}
+
+.oo-cwm__ds-fld {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.oo-cwm__ds-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.oo-cwm__ds-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 7px 10px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: var(--card);
+  font-size: 12px;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+
+.oo-cwm__ds-ctrl:hover {
+  border-color: var(--teal);
+}
+
+.oo-cwm__ds-ctrl:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__ds-sigma {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  font-size: 15px;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.oo-cwm__ds-sigma:hover {
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+.oo-cwm__ds-sigma:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__ds-plus {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--teal);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.oo-cwm__ds-plus:hover {
+  background: var(--teal);
+  color: var(--on-accent);
+  border-color: var(--teal);
+}
+
+.oo-cwm__ds-rm {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--red) 40%, transparent);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--red);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.oo-cwm__ds-rm:hover {
+  background: var(--red-bg);
+}
+
+.oo-cwm__ds-plus:focus-visible,
+.oo-cwm__ds-rm:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__ds-plus svg,
+.oo-cwm__ds-rm svg {
+  width: 12px;
+  height: 12px;
+}
+
+.oo-cwm__ds-filters {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: var(--space-1);
+  padding: 8px var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  cursor: pointer;
+}
+
+.oo-cwm__ds-filters svg {
+  width: 13px;
+  height: 13px;
+  color: var(--muted);
+}
+
+.oo-cwm__ds-filters span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.oo-cwm__ds-cats {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  padding: 12px var(--space-4);
+}
+
+.oo-cwm__ds-cat {
+  padding: 8px 18px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: var(--card);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+
+.oo-cwm__ds-cat:hover {
+  border-color: var(--teal);
+}
+
+.oo-cwm__ds-cat:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__ds-cat.is-on,
+.oo-cwm__ds-cat[aria-pressed="true"] {
+  background: var(--teal2);
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+/* ── footer action bar ──────────────────────────────────── */
+.oo-cwm__foot {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.oo-cwm__btn {
+  padding: 9px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), filter var(--transition);
+}
+
+.oo-cwm__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-cwm__btn--ghost {
+  color: var(--text);
+  border-color: var(--border2);
+}
+
+.oo-cwm__btn--ghost:hover {
+  border-color: var(--muted);
+}
+
+.oo-cwm__btn--outline {
+  color: var(--text);
+  border-color: var(--teal);
+}
+
+.oo-cwm__btn--outline:hover {
+  background: var(--teal2);
+}
+
+.oo-cwm__btn--solid {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--on-accent);
+}
+
+.oo-cwm__btn--solid:hover {
+  filter: brightness(.92);
+}
+
+/* ── shared disabled treatment ──────────────────────────── */
+.oo-cwm__close:disabled,
+.oo-cwm__type:disabled,
+.oo-cwm__subtab:disabled,
+.oo-cwm__style-btn:disabled,
+.oo-cwm__toggle:disabled,
+.oo-cwm__pill:disabled,
+.oo-cwm__ds-ctrl:disabled,
+.oo-cwm__ds-sigma:disabled,
+.oo-cwm__ds-plus:disabled,
+.oo-cwm__ds-rm:disabled,
+.oo-cwm__ds-cat:disabled,
+.oo-cwm__btn:disabled,
+.oo-cwm.is-disabled .oo-cwm__btn,
+.is-disabled.oo-cwm__btn {
+  opacity: .5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

@@ -1,0 +1,92 @@
+/* range-pill · buttons · variants: default, static · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-toolbar, timeline-range */
+
+/* Time-range pill: a card-colored chip pairing a teal .oo-tag badge with a
+   .oo-lbl label and an optional .oo-clr clear (✕) control. Used in the
+   dashboard sub-toolbar to show the active time range with a one-click clear. */
+
+.oo-range-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-2);
+  font-family: var(--font-sans);
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.oo-range-pill:hover {
+  border-color: var(--teal);
+}
+
+/* keep the whole pill highlighted while the clear button is keyboard-focused */
+.oo-range-pill:focus-within {
+  border-color: var(--teal);
+}
+
+/* ── teal badge ─────────────────────────────────────────── */
+.oo-range-pill .oo-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--on-accent);                 /* on-accent text; white is not a palette token */
+  background: var(--teal);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-2);
+  text-transform: lowercase;
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+
+/* ── label ──────────────────────────────────────────────── */
+.oo-range-pill .oo-lbl {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  padding-right: var(--space-1);
+  white-space: nowrap;
+}
+
+/* ── clear (✕) control ──────────────────────────────────── */
+.oo-range-pill .oo-clr {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+
+.oo-range-pill .oo-clr svg {
+  width: 11px;
+  height: 11px;
+  display: block;
+}
+
+.oo-range-pill .oo-clr:hover {
+  color: var(--text);
+  background: var(--border);
+}
+
+.oo-range-pill .oo-clr:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* ── disabled ───────────────────────────────────────────── */
+.oo-range-pill.is-disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.oo-range-pill.is-disabled .oo-tag {
+  background: var(--dim);
+}

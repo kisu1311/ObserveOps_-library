@@ -1,0 +1,13 @@
+{
+  "name": "forecast",
+  "category": "widgets",
+  "title": "Forecast Widget",
+  "description": "The dashboard's capacity / predictive forecast renderer. A declarative mount (data-widget=\"forecast\") is filled by the OOW.forecast renderer with a single token-themed SVG: a 4-row gridline backdrop, right-aligned y-axis labels, a solid line of observed history, a dashed line projecting the forecast horizon, a confidence cone that widens downrange as uncertainty grows, a dashed vertical separator marking 'now' (observed vs forecast), and a marker dot at the handoff. The forecast continues as a seeded random-walk from the last observed value, so output is deterministic from opts.seed and renders identically every load. The series colour is injected as generated SVG data; the grid, axis labels, separator and cone opacity are decoupled from it and themed from design tokens. Presentational by default, with a focus ring when the mount is focusable and a stale/paused disabled treatment. opts: seed, color (SVAR key or hex), n (history samples), fc (forecast samples).",
+  "rootClass": "oo-forecast",
+  "variants": ["teal", "blue", "warn", "long-horizon"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/series.js", "utils/smooth-path.js", "utils/colors.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-grid", "create-widget-modal", "ai-insights-answer", "ai-copilot-chat"],
+  "tags": ["forecast", "widget", "renderer", "predictive", "capacity", "confidence-cone", "svg", "viz", "ai-ml"],
+  "demoHeight": 200
+}

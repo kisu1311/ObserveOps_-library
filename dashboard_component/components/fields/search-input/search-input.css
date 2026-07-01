@@ -1,0 +1,82 @@
+/* search-input · fields · variants: default, compact, block · states: default, hover, focus, filled, disabled · deps: tokens.css · used-in: dashboard-list-panel, add-widget-panel */
+
+.oo-search-input {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+/* leading magnifier glyph */
+.oo-search-input > svg {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+  transition: color var(--transition);
+}
+
+.oo-search-input input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  outline: none;
+}
+
+.oo-search-input input::placeholder {
+  color: var(--muted);
+}
+
+/* hover — strengthen the outline */
+.oo-search-input:hover {
+  border-color: var(--border2);
+}
+
+/* focus — teal ring driven by the inner input, no visible outline jump */
+.oo-search-input:focus-within {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-glow);
+}
+
+.oo-search-input:focus-within > svg {
+  color: var(--teal);
+}
+
+/* compact — tighter padding for dense side panels (was .dp-search) */
+.oo-search-input.oo-search-input--compact {
+  padding: var(--space-2) var(--space-2);
+  border-radius: var(--radius);
+}
+
+.oo-search-input.oo-search-input--compact > svg {
+  width: 13px;
+  height: 13px;
+}
+
+.oo-search-input.oo-search-input--compact input {
+  font-size: 11.5px;
+}
+
+/* block — span the full width of its container */
+.oo-search-input.oo-search-input--block {
+  width: 100%;
+}
+
+/* disabled */
+.oo-search-input.is-disabled,
+.oo-search-input:has(input:disabled) {
+  opacity: .55;
+  pointer-events: none;
+  border-color: var(--border);
+  box-shadow: none;
+}

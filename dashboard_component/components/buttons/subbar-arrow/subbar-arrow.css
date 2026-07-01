@@ -1,0 +1,59 @@
+/* subbar-arrow · buttons · variants: chevron · states: closed, open, hover, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-subbar */
+
+/* 30×30 circular panel-toggle button.
+   Open state is driven by the button's OWN aria-expanded (or .is-open),
+   so the component is self-contained — no parent .shell.panelopen needed. */
+.oo-subbar-arrow {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border2);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+
+.oo-subbar-arrow:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+/* keyboard focus: base.css supplies the ring; reinforce with a teal edge */
+.oo-subbar-arrow:focus-visible {
+  outline: none;
+  border-color: var(--teal);
+  color: var(--teal);
+  box-shadow: var(--ring);
+}
+
+.oo-subbar-arrow svg {
+  width: 14px;
+  height: 14px;
+  transition: transform .2s ease;
+}
+
+/* open: panel revealed → chevron flips 180° */
+.oo-subbar-arrow[aria-expanded="true"] svg,
+.oo-subbar-arrow.is-open svg {
+  transform: rotate(180deg);
+}
+
+/* disabled */
+.oo-subbar-arrow:disabled,
+.oo-subbar-arrow.is-disabled {
+  cursor: not-allowed;
+  opacity: .45;
+  border-color: var(--border);
+  color: var(--dim);
+}
+
+.oo-subbar-arrow:disabled:hover,
+.oo-subbar-arrow.is-disabled:hover {
+  border-color: var(--border);
+  color: var(--dim);
+}

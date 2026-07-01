@@ -1,0 +1,13 @@
+{
+  "name": "subbar",
+  "category": "planes",
+  "title": "Dashboard Subbar",
+  "description": "The full dashboard sub-toolbar under the topbar: a panel-toggle arrow, a grid glyph + dashboard name + favourite star, a flexible spacer, the active time-range pill with its date stamp, and trailing action buttons (Fullscreen, Snapshot, More). Composes the subbar-arrow, range-pill and subbar-action atoms into one assembled bar.",
+  "rootClass": "oo-subbar",
+  "variants": ["default", "starred", "panel-open"],
+  "states": ["default", "hover", "focus", "panel-open", "starred", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-module"],
+  "tags": ["subbar", "toolbar", "plane", "dashboard", "time-range", "header", "actions"],
+  "demoHeight": 120
+}

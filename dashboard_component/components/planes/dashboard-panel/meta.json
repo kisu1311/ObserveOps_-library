@@ -1,0 +1,13 @@
+{
+  "name": "dashboard-panel",
+  "category": "planes",
+  "title": "Dashboard List Panel",
+  "description": "Slide-in left dashboard-list panel for the Dashboard module shell, shown in its open state. Composes a segmented Dashboard / NOC tab control, an add-widget circle button, a search field and a scrollable two-level dashboard tree (category node with count -> dashboard leaf with lock icon and favourite star). Tabs, category rows, leaves and stars are real controls with hover, focus-visible and disabled states; selection, expand/collapse and favourite toggling are driven by ARIA attributes.",
+  "rootClass": "oo-dashboard-panel",
+  "variants": ["dashboard-tab", "noc-tab"],
+  "states": ["default", "hover", "focus", "expanded", "selected", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-shell", "dashboard-module", "noc-view"],
+  "tags": ["panel", "drawer", "sidebar", "tree", "tabs", "search", "dashboard-list", "navigation", "slide-in"],
+  "demoHeight": 480
+}

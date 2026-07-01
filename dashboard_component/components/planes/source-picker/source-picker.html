@@ -1,0 +1,169 @@
+<!-- variant: open — full source picker, in-flow + open; sticky search, selectable monitor table, 2 selected, a disabled row, footer summary -->
+<div class="oo-source-picker is-open" role="dialog" aria-label="Select monitor source">
+  <div class="oo-source-picker__search">
+    <div class="oo-search-input oo-search-input--block">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" placeholder="Search monitors" aria-label="Search monitors" />
+    </div>
+  </div>
+
+  <div class="oo-source-picker__body">
+    <table class="oo-table-row oo-source-picker__table" aria-label="Monitors">
+      <thead>
+        <tr>
+          <th scope="col">
+            <button type="button" role="checkbox" aria-checked="mixed" class="oo-source-picker__check" aria-label="Select all monitors">
+              <svg class="oo-source-picker__check-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <svg class="oo-source-picker__check-dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 12h12"/></svg>
+            </button>
+          </th>
+          <th scope="col">Monitor</th>
+          <th scope="col">IP</th>
+          <th scope="col">Type</th>
+          <th scope="col">Groups</th>
+          <th scope="col">Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- state: selected -->
+        <tr class="oo-source-picker__row">
+          <td>
+            <button type="button" role="checkbox" aria-checked="true" class="oo-source-picker__check" aria-label="Select zimbra-server">
+              <svg class="oo-source-picker__check-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <svg class="oo-source-picker__check-dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 12h12"/></svg>
+            </button>
+          </td>
+          <td><span class="oo-source-picker__dot oo-source-picker__dot--down" aria-hidden="true"></span>zimbra-server</td>
+          <td class="oo-table-row__num">172.16.8.231</td>
+          <td class="oo-source-picker__sub oo-source-picker__sub--cap">linux</td>
+          <td><span class="oo-source-picker__group">Server &gt; Linux</span></td>
+          <td><span class="oo-source-picker__tag">+3</span></td>
+        </tr>
+        <tr class="oo-source-picker__row">
+          <td>
+            <button type="button" role="checkbox" aria-checked="false" class="oo-source-picker__check" aria-label="Select xen71master">
+              <svg class="oo-source-picker__check-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <svg class="oo-source-picker__check-dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 12h12"/></svg>
+            </button>
+          </td>
+          <td><span class="oo-source-picker__dot oo-source-picker__dot--up" aria-hidden="true"></span>xen71master</td>
+          <td class="oo-table-row__num">172.16.10.231</td>
+          <td class="oo-source-picker__sub oo-source-picker__sub--cap">citrix</td>
+          <td><span class="oo-source-picker__group">Virtualization</span></td>
+          <td><span class="oo-source-picker__tag">+1</span></td>
+        </tr>
+        <!-- state: selected -->
+        <tr class="oo-source-picker__row">
+          <td>
+            <button type="button" role="checkbox" aria-checked="true" class="oo-source-picker__check" aria-label="Select worker1">
+              <svg class="oo-source-picker__check-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <svg class="oo-source-picker__check-dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 12h12"/></svg>
+            </button>
+          </td>
+          <td><span class="oo-source-picker__dot oo-source-picker__dot--down" aria-hidden="true"></span>worker1</td>
+          <td class="oo-table-row__num">172.16.14.94</td>
+          <td class="oo-source-picker__sub oo-source-picker__sub--cap">linux</td>
+          <td><span class="oo-source-picker__group">Server &gt; Linux</span></td>
+          <td><span class="oo-source-picker__tag">+1</span></td>
+        </tr>
+        <!-- state: disabled — unmanaged monitor, not selectable -->
+        <tr class="oo-source-picker__row is-disabled" aria-disabled="true">
+          <td>
+            <button type="button" role="checkbox" aria-checked="false" aria-disabled="true" disabled class="oo-source-picker__check" aria-label="Windwsserver154 (unavailable)">
+              <svg class="oo-source-picker__check-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              <svg class="oo-source-picker__check-dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 12h12"/></svg>
+            </button>
+          </td>
+          <td><span class="oo-source-picker__dot" aria-hidden="true"></span>Windwsserver154</td>
+          <td class="oo-table-row__num">172.16.8.104</td>
+          <td class="oo-source-picker__sub oo-source-picker__sub--cap">win</td>
+          <td><span class="oo-source-picker__group">Server &gt; Windows</span></td>
+          <td><span class="oo-source-picker__tag">+1</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- shown via .is-empty when the search matches nothing -->
+    <div class="oo-source-picker__empty" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <span>No monitors match your search.</span>
+    </div>
+  </div>
+
+  <div class="oo-source-picker__foot">
+    <span class="oo-source-picker__hint"><span class="oo-source-picker__count" data-oo-source-count>2</span> selected</span>
+    <div class="oo-source-picker__actions">
+      <button type="button" class="oo-source-picker__btn">Clear</button>
+      <button type="button" class="oo-source-picker__btn oo-source-picker__btn--primary">Apply</button>
+    </div>
+  </div>
+</div>
+
+<!-- variant: with-trigger (floating) — closed popup anchored under a select field; the trigger toggles it open -->
+<div class="oo-source-picker-anchor">
+  <button type="button" class="oo-source-picker__trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="oo-sp-demo">
+    <span class="oo-source-picker__trigger-val is-placeholder">Select source</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+
+  <div class="oo-source-picker oo-source-picker--floating" id="oo-sp-demo" role="dialog" aria-label="Select monitor source">
+    <div class="oo-source-picker__search">
+      <div class="oo-search-input oo-search-input--block">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" placeholder="Search monitors" aria-label="Search monitors" />
+      </div>
+    </div>
+    <div class="oo-source-picker__body">
+      <table class="oo-table-row oo-source-picker__table" aria-label="Monitors">
+        <thead>
+          <tr>
+            <th scope="col">
+              <button type="button" role="checkbox" aria-checked="false" class="oo-source-picker__check" aria-label="Select all monitors">
+                <svg class="oo-source-picker__check-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <svg class="oo-source-picker__check-dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 12h12"/></svg>
+              </button>
+            </th>
+            <th scope="col">Monitor</th>
+            <th scope="col">IP</th>
+            <th scope="col">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="oo-source-picker__row">
+            <td>
+              <button type="button" role="checkbox" aria-checked="false" class="oo-source-picker__check" aria-label="Select YASH | APM Observer">
+                <svg class="oo-source-picker__check-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <svg class="oo-source-picker__check-dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 12h12"/></svg>
+              </button>
+            </td>
+            <td><span class="oo-source-picker__dot oo-source-picker__dot--down" aria-hidden="true"></span>YASH | APM Observer</td>
+            <td class="oo-table-row__num">172.16.15.213</td>
+            <td class="oo-source-picker__sub oo-source-picker__sub--cap">linux</td>
+          </tr>
+          <tr class="oo-source-picker__row">
+            <td>
+              <button type="button" role="checkbox" aria-checked="false" class="oo-source-picker__check" aria-label="Select xen71bkp">
+                <svg class="oo-source-picker__check-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <svg class="oo-source-picker__check-dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 12h12"/></svg>
+              </button>
+            </td>
+            <td><span class="oo-source-picker__dot oo-source-picker__dot--up" aria-hidden="true"></span>xen71bkp</td>
+            <td class="oo-table-row__num">172.16.10.232</td>
+            <td class="oo-source-picker__sub oo-source-picker__sub--cap">citrix</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="oo-source-picker__empty" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <span>No monitors match your search.</span>
+      </div>
+    </div>
+    <div class="oo-source-picker__foot">
+      <span class="oo-source-picker__hint"><span class="oo-source-picker__count" data-oo-source-count>0</span> selected</span>
+      <div class="oo-source-picker__actions">
+        <button type="button" class="oo-source-picker__btn" disabled>Clear</button>
+        <button type="button" class="oo-source-picker__btn oo-source-picker__btn--primary">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>

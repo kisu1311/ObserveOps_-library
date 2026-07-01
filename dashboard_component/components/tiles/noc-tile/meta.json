@@ -1,0 +1,13 @@
+{
+  "name": "noc-tile",
+  "category": "tiles",
+  "title": "NOC KPI Tile",
+  "description": "A KPI tile for the NOC wallboard grid: a severity status stripe and pulsing dot, a monitor name, a sublabel, a large mono value with optional unit, and an inline sparkline of recent history. Three variants — crit (red) / warn (orange) / ok (green) — drive accent, border tint and background wash from one local token. Presentational by default; renders as a button/link for drill-down with hover, focus and disabled states.",
+  "rootClass": "oo-noc-tile",
+  "variants": ["crit", "warn", "ok"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["noc-view", "noc-grid"],
+  "tags": ["tile", "kpi", "noc", "wallboard", "sparkline", "status", "monitor"],
+  "demoHeight": 180
+}

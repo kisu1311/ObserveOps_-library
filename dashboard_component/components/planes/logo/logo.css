@@ -1,0 +1,115 @@
+/* logo · planes · variants: default, sm, lg, stacked, mark-only · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: topbar, app-chrome */
+
+/* Motadata brand lockup: a conic-gradient circular "mark" (a teal disc with a
+   pie-slice notch and a punched-out center hole) sitting next to the "motadata"
+   wordmark, where the "data" half is rendered in the teal accent. In the app it
+   lives in the dashboard topbar (.tb-logo) at a 27px mark. The mark is built
+   entirely from CSS gradients — no SVG or raster asset — so it recolours with the
+   theme tokens. A single `--oo-logo-size` knob drives the mark diameter and the
+   wordmark scales proportionally from it, so every size variant stays in lockstep.
+   When rendered as an <a>/<button> (a "home" affordance) it gains hover, focus and
+   disabled treatments; as a plain wrapper it is a static, decorative lockup. */
+
+.oo-logo {
+  --oo-logo-size: 27px;                  /* mark diameter; the word scales from this */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  line-height: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ── mark: conic disc with notch + centre hole ──────────── */
+.oo-logo__mark {
+  flex: none;
+  width: var(--oo-logo-size);
+  height: var(--oo-logo-size);
+  border-radius: 50%;
+  /* teal → deeper teal (mixed toward bg) for the arc, then bg to cut the notch */
+  background: conic-gradient(
+    from 210deg,
+    var(--teal),
+    color-mix(in srgb, var(--teal) 78%, var(--bg)) 55%,
+    var(--bg) 55%,
+    var(--bg)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: filter var(--transition), transform var(--transition);
+}
+.oo-logo__mark::after {
+  content: '';
+  width: calc(var(--oo-logo-size) * 0.37);
+  height: calc(var(--oo-logo-size) * 0.37);
+  border-radius: 50%;
+  background: var(--nav);                 /* punched-out hole matches the topbar surface */
+}
+
+/* ── wordmark ───────────────────────────────────────────── */
+.oo-logo__word {
+  font-size: calc(var(--oo-logo-size) * 0.70);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  color: var(--on-accent);                /* brand white */
+  white-space: nowrap;
+}
+.oo-logo__word b {
+  color: var(--teal);
+  font-weight: 800;
+}
+
+/* ── size variants ──────────────────────────────────────── */
+.oo-logo--sm { --oo-logo-size: 20px }
+.oo-logo--lg { --oo-logo-size: 40px }
+
+/* stacked lockup (e.g. auth / splash screens) */
+.oo-logo--stacked {
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* collapsed rail — mark only, wordmark hidden but kept for a11y label */
+.oo-logo--mark-only .oo-logo__word {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── interactive lockup (home link / button) ────────────── */
+a.oo-logo,
+button.oo-logo {
+  cursor: pointer;
+  text-decoration: none;
+  border: 0;
+  background: none;
+  padding: var(--space-1);
+  margin: calc(var(--space-1) * -1);
+  border-radius: var(--radius);
+  transition: background var(--transition);
+}
+a.oo-logo:hover,
+button.oo-logo:hover { background: var(--teal2) }
+a.oo-logo:hover .oo-logo__mark,
+button.oo-logo:hover .oo-logo__mark { filter: brightness(1.12) }
+
+.oo-logo:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* ── disabled ───────────────────────────────────────────── */
+.oo-logo.is-disabled,
+.oo-logo[aria-disabled="true"],
+.oo-logo:disabled {
+  opacity: 0.45;
+  filter: grayscale(0.3);
+  pointer-events: none;
+}

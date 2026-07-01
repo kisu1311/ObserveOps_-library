@@ -1,0 +1,138 @@
+/* pie · widgets · variants: donut, pie, no-legend · states: default, hover, focus, disabled · deps: tokens.css, utils/rng.js, utils/series.js, widgets/auto-mount.js · used-in: dashboard-canvas, add-widget-panel, create-widget-modal */
+
+/* Pie / donut distribution chart. The mount is a flex row: a square SVG chart
+   (5 proportional slices, optional donut hole with a center total) beside a
+   value legend. The renderer (pie.js) injects the inner markup from a seed; this
+   file only themes it. Slice fills and swatches resolve from severity/accent
+   tokens, so nothing is hardcoded. Hovering the chart dims the other slices to
+   spotlight one; legend rows highlight on hover. */
+
+.oo-pie {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-2);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+/* host may make the mount focusable (tabindex) — lean on the shared ring */
+.oo-pie:focus-visible {
+  outline: none;
+  border-radius: var(--radius);
+  box-shadow: var(--ring);
+}
+
+/* ── chart ─────────────────────────────────────────────── */
+.oo-pie__chart {
+  flex: 0 0 46%;
+  min-width: 0;
+  max-width: 200px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oo-pie__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.oo-pie__slice {
+  stroke: var(--card);
+  stroke-width: 1.5;
+  transform-box: view-box;
+  transform-origin: 110px 100px;        /* pie center in viewBox units */
+  transition: opacity var(--transition), transform var(--transition);
+  cursor: pointer;
+}
+
+/* spotlight: dim siblings, lift the hovered wedge */
+.oo-pie__svg:hover .oo-pie__slice {
+  opacity: .42;
+}
+
+.oo-pie__svg:hover .oo-pie__slice:hover {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.oo-pie__hole {
+  fill: var(--card2);
+}
+
+.oo-pie__value {
+  fill: var(--text);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.oo-pie__caption {
+  fill: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+
+/* ── legend ────────────────────────────────────────────── */
+.oo-pie__legend {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.oo-pie__legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 3px var(--space-1);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  transition: background var(--transition);
+}
+
+.oo-pie__legend-item:hover {
+  background: var(--card2);
+}
+
+.oo-pie__swatch {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+}
+
+.oo-pie__legend-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--text);
+}
+
+.oo-pie__legend-val {
+  flex: none;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* ── disabled / no-data ────────────────────────────────── */
+.oo-pie.is-disabled {
+  opacity: .45;
+  filter: grayscale(.35);
+  pointer-events: none;
+}

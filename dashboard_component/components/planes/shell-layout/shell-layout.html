@@ -1,0 +1,95 @@
+<!-- variant: default · banner + topbar + subbar + sidebar + content, panel collapsed -->
+<div class="oo-shell-layout" role="group" aria-label="Application shell layout">
+  <div class="oo-shell-layout__banner">
+    <span class="oo-shell-layout__label">alert-banner</span>
+  </div>
+  <header class="oo-shell-layout__topbar">
+    <span class="oo-shell-layout__label">topbar</span>
+  </header>
+  <div class="oo-shell-layout__subbar">
+    <button type="button" class="oo-shell-layout__toggle" data-oo-shell-toggle
+            aria-expanded="false" aria-label="Show dashboard panel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true" focusable="false">
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+    </button>
+    <span class="oo-shell-layout__label">subbar</span>
+  </div>
+  <div class="oo-shell-layout__body">
+    <nav class="oo-shell-layout__sidebar" aria-label="Primary navigation">
+      <span class="oo-shell-layout__dot oo-shell-layout__dot--active" aria-hidden="true"></span>
+      <span class="oo-shell-layout__dot" aria-hidden="true"></span>
+      <span class="oo-shell-layout__dot" aria-hidden="true"></span>
+    </nav>
+    <aside class="oo-shell-layout__panel" aria-label="Dashboard list" aria-hidden="true">
+      <span class="oo-shell-layout__label">dashboard-panel</span>
+    </aside>
+    <main class="oo-shell-layout__content">
+      <div class="oo-shell-layout__canvas">
+        <span class="oo-shell-layout__label">canvas / content</span>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- variant: panel-open · dashboard-panel docked, toggle in pressed/expanded state -->
+<div class="oo-shell-layout oo-shell-layout--panel-open" role="group" aria-label="Application shell layout, dashboard panel open">
+  <div class="oo-shell-layout__banner">
+    <span class="oo-shell-layout__label">alert-banner</span>
+  </div>
+  <header class="oo-shell-layout__topbar">
+    <span class="oo-shell-layout__label">topbar</span>
+  </header>
+  <div class="oo-shell-layout__subbar">
+    <button type="button" class="oo-shell-layout__toggle" data-oo-shell-toggle
+            aria-expanded="true" aria-label="Hide dashboard panel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true" focusable="false">
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+    </button>
+    <span class="oo-shell-layout__label">subbar</span>
+  </div>
+  <div class="oo-shell-layout__body">
+    <nav class="oo-shell-layout__sidebar" aria-label="Primary navigation">
+      <span class="oo-shell-layout__dot oo-shell-layout__dot--active" aria-hidden="true"></span>
+      <span class="oo-shell-layout__dot" aria-hidden="true"></span>
+      <span class="oo-shell-layout__dot" aria-hidden="true"></span>
+    </nav>
+    <aside class="oo-shell-layout__panel" aria-label="Dashboard list">
+      <span class="oo-shell-layout__label">dashboard-panel</span>
+    </aside>
+    <main class="oo-shell-layout__content">
+      <div class="oo-shell-layout__canvas">
+        <span class="oo-shell-layout__label">canvas / content</span>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- variant: no-banner · banner dismissed, shell starts at the topbar -->
+<div class="oo-shell-layout" role="group" aria-label="Application shell layout without banner">
+  <header class="oo-shell-layout__topbar">
+    <span class="oo-shell-layout__label">topbar</span>
+  </header>
+  <div class="oo-shell-layout__subbar">
+    <button type="button" class="oo-shell-layout__toggle" data-oo-shell-toggle
+            aria-expanded="false" aria-label="Show dashboard panel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true" focusable="false">
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+    </button>
+    <span class="oo-shell-layout__label">subbar</span>
+  </div>
+  <div class="oo-shell-layout__body">
+    <nav class="oo-shell-layout__sidebar" aria-label="Primary navigation">
+      <span class="oo-shell-layout__dot oo-shell-layout__dot--active" aria-hidden="true"></span>
+      <span class="oo-shell-layout__dot" aria-hidden="true"></span>
+      <span class="oo-shell-layout__dot" aria-hidden="true"></span>
+    </nav>
+    <main class="oo-shell-layout__content">
+      <div class="oo-shell-layout__canvas">
+        <span class="oo-shell-layout__label">canvas / content</span>
+      </div>
+    </main>
+  </div>
+</div>

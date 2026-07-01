@@ -1,0 +1,23 @@
+<!-- variant: critical — default red source + alert message -->
+<span class="oo-ticker-item">
+  <b class="oo-ticker-item__src">DATASTORE-01</b>
+  <span class="oo-ticker-item__msg">Disk Usage 80.9% &gt; 80</span>
+</span>
+
+<!-- variant: warn — orange source for a warning-severity alert -->
+<span class="oo-ticker-item oo-ticker-item--warn">
+  <b class="oo-ticker-item__src">app-cluster</b>
+  <span class="oo-ticker-item__msg">Response time 1240ms</span>
+</span>
+
+<!-- variant: link — rendered as an anchor that drills into the alert (hover/focus) -->
+<a class="oo-ticker-item" href="#" aria-label="core-router-01: CPU Load 94% sustained — open alert">
+  <b class="oo-ticker-item__src">core-router-01</b>
+  <span class="oo-ticker-item__msg">CPU Load 94% sustained</span>
+</a>
+
+<!-- state: disabled — acknowledged alert dims out, no interaction -->
+<span class="oo-ticker-item is-disabled" aria-disabled="true">
+  <b class="oo-ticker-item__src">mq-broker</b>
+  <span class="oo-ticker-item__msg">Queue depth 14.2k exceeds limit (acknowledged)</span>
+</span>

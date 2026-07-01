@@ -1,0 +1,294 @@
+/* dashboard-panel · planes · variants: dashboard-tab, noc-tab · states: default, hover, focus, expanded, selected, disabled · deps: tokens.css, base.css · used-in: dashboard-shell, dashboard-module, noc-view */
+
+/* Slide-in left dashboard-list panel from the Dashboard module shell, shown in
+   its open state. Composes a segmented Dashboard / NOC tab control, an add-widget
+   circle button, a search field and a scrollable two-level dashboard tree
+   (category node -> dashboard leaf with lock + favourite star). Refined from
+   .dpanel / .dp-head / .dp-tabs / .dp-search / .dp-add and the .tnode / .tleaf
+   tree into one namespaced block: real <button> controls with hover /
+   focus-visible / disabled states, aria-driven active + expanded styling, and
+   token-only colour, spacing, radius and motion (no hardcoded palette hex). */
+
+/* ── panel shell ────────────────────────────────────────────── */
+.oo-dashboard-panel {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  max-width: 100%;
+  height: 100%;
+  min-height: 0;
+  background: var(--nav);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pop);
+  font-family: var(--font-sans);
+  overflow: hidden;
+  transition: transform .26s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ── head: segmented tabs + add button ──────────────────────── */
+.oo-dashboard-panel__head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 12px 13px 10px;
+}
+
+.oo-dashboard-panel__tabs {
+  display: flex;
+  padding: 2px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+}
+.oo-dashboard-panel__tab {
+  padding: 5px 13px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+.oo-dashboard-panel__tab:hover {
+  color: var(--text);
+}
+.oo-dashboard-panel__tab[aria-selected="true"] {
+  color: var(--on-accent);
+  background: var(--teal);
+}
+.oo-dashboard-panel__tab:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-dashboard-panel__tab:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  color: var(--muted);
+  background: transparent;
+}
+
+.oo-dashboard-panel__add {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
+}
+.oo-dashboard-panel__add svg {
+  width: 16px;
+  height: 16px;
+}
+.oo-dashboard-panel__add:hover {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--on-accent);
+  transform: rotate(90deg);
+}
+.oo-dashboard-panel__add:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-dashboard-panel__add:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  background: var(--card);
+  border-color: var(--border2);
+  color: var(--muted);
+  transform: none;
+}
+
+/* ── search field ───────────────────────────────────────────── */
+.oo-dashboard-panel__search {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 13px var(--space-2);
+  padding: 7px 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition);
+}
+.oo-dashboard-panel__search:focus-within {
+  border-color: var(--teal);
+}
+.oo-dashboard-panel__search svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.oo-dashboard-panel__search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 11.5px;
+  color: var(--text);
+}
+.oo-dashboard-panel__search input::placeholder {
+  color: var(--muted);
+}
+.oo-dashboard-panel__search input:focus-visible {
+  outline: none;
+}
+
+/* ── scrollable dashboard tree ──────────────────────────────── */
+.oo-dashboard-panel__tree {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 2px 8px 14px;
+}
+.oo-dashboard-panel__node {
+  border-radius: var(--radius-sm);
+}
+
+/* category row (expand / collapse) */
+.oo-dashboard-panel__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: inherit;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.oo-dashboard-panel__row:hover {
+  background: var(--card);
+}
+.oo-dashboard-panel__row:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-dashboard-panel__caret {
+  display: flex;
+  width: 12px;
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform var(--transition);
+}
+.oo-dashboard-panel__caret svg {
+  width: 9px;
+  height: 9px;
+}
+.oo-dashboard-panel__row[aria-expanded="true"] .oo-dashboard-panel__caret {
+  transform: rotate(90deg);
+}
+.oo-dashboard-panel__label {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.oo-dashboard-panel__count {
+  flex-shrink: 0;
+  min-width: 18px;
+  padding: 1px 7px;
+  font-size: 9.5px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--muted);
+  background: var(--card2);
+  border-radius: var(--radius-pill);
+}
+
+/* children group — toggled by the row's aria-expanded */
+.oo-dashboard-panel__children {
+  display: none;
+  padding-left: 14px;
+}
+.oo-dashboard-panel__row[aria-expanded="true"] + .oo-dashboard-panel__children {
+  display: block;
+}
+
+/* dashboard leaf */
+.oo-dashboard-panel__leaf {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.oo-dashboard-panel__leaf:hover {
+  background: var(--card);
+  color: var(--text);
+}
+.oo-dashboard-panel__leaf:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-dashboard-panel__leaf[aria-selected="true"] {
+  background: var(--teal-glow);
+  color: var(--text);
+}
+.oo-dashboard-panel__lock {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  color: var(--dim);
+}
+.oo-dashboard-panel__leaf-label {
+  flex: 1;
+  min-width: 0;
+  font-size: 11.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* favourite star toggle (nested control) */
+.oo-dashboard-panel__star {
+  flex-shrink: 0;
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.oo-dashboard-panel__star svg {
+  width: 12px;
+  height: 12px;
+}
+.oo-dashboard-panel__star:hover {
+  color: var(--text);
+}
+.oo-dashboard-panel__star:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-dashboard-panel__star[aria-pressed="true"] {
+  color: var(--yellow);
+}

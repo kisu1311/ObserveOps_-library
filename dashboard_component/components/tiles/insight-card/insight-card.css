@@ -1,0 +1,174 @@
+/* insight-card · tiles · variants: default, crit, warn, ok, info · states: default, hover, focus, disabled, dismissing · deps: tokens.css, base.css · used-in: ai-insights-panel, ai-copilot-drawer · composes: insight-btn */
+
+/* AI insight card surfaced in the Copilot drawer's "AI Insights" tab. A quiet
+   card with a coloured left rail keyed to severity (purple = generic/anomaly,
+   red = critical, orange = warning, green = resolved, blue = informational).
+   Top row carries an uppercase kind tag + a right-aligned confidence%, then a
+   title, a description, a full-width sample sparkline (inline SVG that inherits
+   the severity colour via currentColor), and an action row. The action buttons
+   reuse the `oo-insight-btn` component classes; those rules are restated here
+   scoped under the card root so the tile renders self-contained in the gallery.
+   All colours/spacing/radius come from tokens — nothing is hardcoded. */
+
+.oo-insight-card {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+/* coloured left rail — purple is the default (generic / anomaly) accent */
+.oo-insight-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--purple);
+}
+.oo-insight-card--crit::before { background: var(--red); }
+.oo-insight-card--warn::before { background: var(--orange); }
+.oo-insight-card--ok::before   { background: var(--green); }
+.oo-insight-card--info::before { background: var(--blue); }
+
+/* ── top row: kind tag + confidence ────────────────────── */
+.oo-insight-card__top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.oo-insight-card__kind {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  color: var(--purple2);
+  background: var(--purple-bg);
+}
+.oo-insight-card--crit .oo-insight-card__kind { color: var(--red);    background: var(--red-bg); }
+.oo-insight-card--warn .oo-insight-card__kind { color: var(--orange); background: var(--orange-bg); }
+.oo-insight-card--ok   .oo-insight-card__kind { color: var(--green);  background: var(--green-bg); }
+.oo-insight-card--info .oo-insight-card__kind { color: var(--blue);   background: var(--blue-bg); }
+
+.oo-insight-card__conf {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.oo-insight-card__conf b { color: var(--text); }
+
+/* ── body: title + description ─────────────────────────── */
+.oo-insight-card__title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--space-1);
+}
+
+.oo-insight-card__desc {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.oo-insight-card__desc b {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ── sample sparkline — inherits the severity colour ───── */
+.oo-insight-card__spark {
+  display: block;
+  width: 100%;
+  height: 30px;
+  margin: var(--space-2) 0 2px;
+  color: var(--purple);
+}
+.oo-insight-card--crit .oo-insight-card__spark { color: var(--red); }
+.oo-insight-card--warn .oo-insight-card__spark { color: var(--orange); }
+.oo-insight-card--ok   .oo-insight-card__spark { color: var(--green); }
+.oo-insight-card--info .oo-insight-card__spark { color: var(--blue); }
+
+/* ── action row ────────────────────────────────────────── */
+.oo-insight-card__acts {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+/* composed insight-btn — scoped to the card so the tile is self-contained */
+.oo-insight-card .oo-insight-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.oo-insight-card .oo-insight-btn svg { width: 12px; height: 12px; flex: none; }
+
+.oo-insight-card .oo-insight-btn:hover {
+  border-color: var(--purple);
+  color: var(--purple2);
+}
+.oo-insight-card .oo-insight-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* primary — emphasised "Add as widget" */
+.oo-insight-card .oo-insight-btn.primary {
+  background: var(--purple-bg);
+  border-color: var(--purple);
+  color: var(--purple2);
+}
+.oo-insight-card .oo-insight-btn.primary:hover {
+  background: var(--purple);
+  color: var(--on-accent);
+}
+
+/* ghost — borderless trailing icon action (Dismiss) */
+.oo-insight-card .oo-insight-btn.ghost {
+  margin-left: auto;
+  border-color: transparent;
+  color: var(--muted);
+  padding: var(--space-2) 6px;
+}
+.oo-insight-card .oo-insight-btn.ghost:hover {
+  border-color: transparent;
+  color: var(--text);
+}
+
+/* disabled */
+.oo-insight-card .oo-insight-btn:disabled,
+.oo-insight-card .oo-insight-btn.is-disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── dismissing state (driven by insight-card.js) ──────── */
+.oo-insight-card.is-dismissing {
+  opacity: 0;
+  transform: translateX(8px);
+  pointer-events: none;
+}

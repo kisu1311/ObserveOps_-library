@@ -1,0 +1,28 @@
+<!-- variant: default — 14×7 alert severity grid (seed 21) -->
+<div class="oo-heatmap" data-widget="heatmap" data-seed="21"
+     role="img" aria-label="Alert severity heat map, 14 by 7 hexagonal grid"
+     style="width:380px;height:200px"></div>
+
+<!-- variant: dense — larger grid for a wide dashboard tile -->
+<div class="oo-heatmap" data-widget="heatmap" data-seed="7" data-cols="20" data-rows="9"
+     role="img" aria-label="Severity heat map, 20 by 9 hexagonal grid"
+     style="width:380px;height:200px"></div>
+
+<!-- variant: compact — small inline preview -->
+<div class="oo-heatmap" data-widget="heatmap" data-seed="44" data-cols="8" data-rows="5"
+     role="img" aria-label="Severity heat map, 8 by 5 hexagonal grid"
+     style="width:200px;height:140px"></div>
+
+<!-- state: disabled — inert / loading placeholder -->
+<div class="oo-heatmap is-disabled" data-widget="heatmap" data-seed="21" aria-disabled="true"
+     role="img" aria-label="Severity heat map (unavailable)"
+     style="width:380px;height:200px"></div>
+
+<!-- variant: legend — severity scale key (standalone, not a renderer mount) -->
+<ul class="oo-heatmap-legend" aria-label="Severity scale, healthy to critical">
+  <li><span class="oo-heatmap-legend__sw oo-heatmap-legend__sw--0"></span>Healthy</li>
+  <li><span class="oo-heatmap-legend__sw oo-heatmap-legend__sw--1"></span>Low</li>
+  <li><span class="oo-heatmap-legend__sw oo-heatmap-legend__sw--2"></span>Warning</li>
+  <li><span class="oo-heatmap-legend__sw oo-heatmap-legend__sw--3"></span>Major</li>
+  <li><span class="oo-heatmap-legend__sw oo-heatmap-legend__sw--4"></span>Critical</li>
+</ul>

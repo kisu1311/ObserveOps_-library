@@ -1,0 +1,94 @@
+/* gauge · widgets · variants: teal, auto-threshold, severity-color · states: default, hover, focus, disabled, loading · deps: tokens.css, base.css, utils/series.js, utils/esc.js, widgets/auto-mount.js · used-in: create-widget-modal, add-widget-panel, dashboard-grid, noc-wallboard */
+
+/* A semicircular (180°) progress gauge dial. A muted track arc, a coloured value
+   arc whose sweep maps a 0–100 value, and centred text: a large mono value + a
+   small muted caption. The arc colour comes from --oo-gauge-fill (set by the
+   renderer to a token: var(--teal) by default, or a severity token in "auto"
+   threshold mode). Presentational; refined here with a draw-in animation, hover
+   glow, keyboard focus ring and a disabled treatment. */
+
+.oo-gauge {
+  /* fill colour is injected by the renderer as a token reference */
+  --oo-gauge-fill: var(--teal);
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  transition: filter var(--transition), opacity var(--transition);
+}
+
+.oo-gauge__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* background track of the dial */
+.oo-gauge__track {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 16;
+  stroke-linecap: round;
+}
+
+/* coloured value arc — drawn via stroke-dasharray/offset by the renderer */
+.oo-gauge__fill {
+  fill: none;
+  stroke: var(--oo-gauge-fill);
+  stroke-width: 16;
+  stroke-linecap: round;
+  transition: stroke-dashoffset .9s cubic-bezier(.25, .9, .3, 1), stroke var(--transition);
+}
+
+/* centred numeric value */
+.oo-gauge__value {
+  fill: var(--text);
+  font-family: var(--font-mono);
+  font-size: 36px;
+  font-weight: 700;
+}
+
+/* caption under the value */
+.oo-gauge__label {
+  fill: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* hover: lift the arc with a subtle glow of its own colour
+   (follows --oo-gauge-fill so severity/auto variants glow their own hue, not teal) */
+.oo-gauge:hover .oo-gauge__fill {
+  filter: drop-shadow(0 0 6px var(--oo-gauge-fill));
+}
+
+/* keyboard focus (when the mount is made focusable via tabindex) */
+.oo-gauge:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* loading: faint pulsing track before data resolves */
+.oo-gauge.is-loading .oo-gauge__fill { opacity: 0; }
+.oo-gauge.is-loading .oo-gauge__track { animation: oo-gauge-pulse 1.2s ease-in-out infinite; }
+
+/* disabled / no-data: desaturated and dimmed, non-interactive */
+.oo-gauge.is-disabled,
+.oo-gauge[aria-disabled="true"] {
+  opacity: .45;
+  filter: grayscale(1);
+  pointer-events: none;
+}
+
+@keyframes oo-gauge-pulse {
+  0%, 100% { opacity: .5; }
+  50% { opacity: 1; }
+}
+
+/* respect reduced-motion: no draw-in, no pulse */
+@media (prefers-reduced-motion: reduce) {
+  .oo-gauge__fill { transition: stroke var(--transition); }
+  .oo-gauge.is-loading .oo-gauge__track { animation: none; }
+}

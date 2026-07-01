@@ -1,0 +1,120 @@
+/* aiinsights · widgets · variants: feed, alt-seed, static-list, interactive-row · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-grid, create-widget-modal, widget-fullscreen, ai-generate-widget */
+
+/* AI Insights feed: a scrollable column of compact insight cards. Each row is a
+   small card carrying a coloured severity rail on its left edge, an uppercase
+   "kind" label (anomaly / forecast / root cause / noise) tinted by its own
+   category colour, a right-aligned mono confidence read-out, then a bold title
+   and a muted one-line description. The OOW.aiinsights renderer emits only
+   structure (a role="list" <ul> of <li> rows) from a deterministic seed and sets
+   two per-row accent tokens inline — --ins-sev (the severity rail) and --ins-kc
+   (the kind label colour) — both pointing at design tokens; this stylesheet owns
+   all presentation. Rows lift on hover, expose a keyboard focus ring when made
+   interactive for drill-down (rendered as <button>/<a>), and an aria-disabled
+   feed dims the whole set and freezes interaction for no-data / loading. */
+
+.oo-aiinsights {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;                       /* themed scrollbars come from base.css */
+  padding-right: var(--space-1);
+  font-family: var(--font-sans);
+}
+
+.oo-aiinsights__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.oo-aiinsights__item {
+  --ins-sev: var(--teal);               /* severity rail — set inline by renderer */
+  --ins-kc: var(--muted);               /* kind label colour — set inline by renderer */
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--ins-sev);
+  border-radius: var(--radius);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.oo-aiinsights__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: 3px;
+}
+
+.oo-aiinsights__type {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--ins-kc);
+}
+
+.oo-aiinsights__type svg {
+  width: 10px;
+  height: 10px;
+}
+
+.oo-aiinsights__conf {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
+.oo-aiinsights__title {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.oo-aiinsights__desc {
+  margin-top: 2px;
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
+/* refinement: hover — card lifts onto the brighter surface, rail reads stronger */
+.oo-aiinsights__item:hover {
+  background: var(--card);
+  border-color: var(--border2);
+}
+
+/* refinement: interactive rows (button / link) — strip native chrome, full width */
+button.oo-aiinsights__item,
+a.oo-aiinsights__item {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+/* refinement: keyboard focus (base.css also rings any oo- element; explicit for self-containment) */
+.oo-aiinsights__item:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* state: disabled / no-data — dim the whole feed and freeze interaction */
+.oo-aiinsights.is-disabled,
+.oo-aiinsights[aria-disabled="true"] {
+  opacity: .5;
+  pointer-events: none;
+}
+
+/* state: a single dismissed / stale row */
+.oo-aiinsights__item.is-disabled,
+.oo-aiinsights__item[aria-disabled="true"] {
+  opacity: .5;
+  pointer-events: none;
+}

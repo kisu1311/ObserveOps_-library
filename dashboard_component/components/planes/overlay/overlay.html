@@ -1,0 +1,71 @@
+<!-- variant: with-dialog · interactive — trigger opens the scrim, backdrop/✕/Esc dismiss -->
+<div class="oo-overlay-stage">
+  <div class="oo-overlay-stage__behind" aria-hidden="true">
+    <div class="oo-overlay-stage__bar oo-overlay-stage__bar--wide"></div>
+    <div class="oo-overlay-stage__bar"></div>
+    <div class="oo-overlay-stage__grid">
+      <div class="oo-overlay-stage__cell"></div>
+      <div class="oo-overlay-stage__cell"></div>
+      <div class="oo-overlay-stage__cell"></div>
+    </div>
+  </div>
+
+  <button type="button" class="oo-overlay__trigger" data-oo-overlay-open
+          aria-haspopup="dialog">Open dialog</button>
+
+  <div class="oo-overlay oo-overlay--contained" role="presentation">
+    <div class="oo-overlay__box" role="dialog" aria-modal="true" aria-labelledby="oo-ov-title-1">
+      <div class="oo-overlay__head">
+        <span class="oo-overlay__title" id="oo-ov-title-1">Delete widget?</span>
+        <button type="button" class="oo-overlay__x" data-oo-overlay-close aria-label="Close dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true" focusable="false">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="oo-overlay__body">
+        This removes <strong>CPU Utilisation</strong> from the dashboard. The scrim dims and blurs
+        every plane behind it to pull focus to this decision.
+      </div>
+      <div class="oo-overlay__foot">
+        <button type="button" class="oo-overlay__btn" data-oo-overlay-close>Cancel</button>
+        <button type="button" class="oo-overlay__btn oo-overlay__btn--primary">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- variant: strong · heavier fullscreen scrim (widget-fullscreen), shown open -->
+<div class="oo-overlay-stage">
+  <div class="oo-overlay-stage__behind" aria-hidden="true">
+    <div class="oo-overlay-stage__bar oo-overlay-stage__bar--wide"></div>
+    <div class="oo-overlay-stage__bar"></div>
+    <div class="oo-overlay-stage__grid">
+      <div class="oo-overlay-stage__cell"></div>
+      <div class="oo-overlay-stage__cell"></div>
+      <div class="oo-overlay-stage__cell"></div>
+    </div>
+  </div>
+
+  <!-- state: open -->
+  <div class="oo-overlay oo-overlay--contained oo-overlay--strong is-open" role="presentation">
+    <div class="oo-overlay__box" role="dialog" aria-modal="true" aria-labelledby="oo-ov-title-2">
+      <div class="oo-overlay__head">
+        <span class="oo-overlay__title" id="oo-ov-title-2">Save changes</span>
+        <button type="button" class="oo-overlay__x" data-oo-overlay-close aria-label="Close dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true" focusable="false">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="oo-overlay__body">
+        Apply your edits to <strong>Response Time</strong> before leaving fullscreen.
+      </div>
+      <div class="oo-overlay__foot">
+        <!-- state: disabled -->
+        <button type="button" class="oo-overlay__btn" disabled>Discard</button>
+        <button type="button" class="oo-overlay__btn oo-overlay__btn--primary" data-oo-overlay-close>Save</button>
+      </div>
+    </div>
+  </div>
+</div>

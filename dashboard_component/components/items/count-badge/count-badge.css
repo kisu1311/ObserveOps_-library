@@ -1,0 +1,52 @@
+/* count-badge · items · variants: default, sm, lg, teal, red, green, solid · states: default · deps: tokens.css, base.css · used-in: dashboard-tree-nav, dashboard-list-panel */
+
+/* Small pill that shows a count — the folder item-counts on the dashboard
+   tree rows ("Applications 5", "Log 15"). Quiet by default (muted text on a
+   nested-card fill); tone modifiers recolor it for teal / red / green totals,
+   and size modifiers shrink it to the 9.5px tree size or grow it for headers.
+   Non-interactive: it is a label, so it carries no hover / focus / disabled
+   states of its own — when it sits inside a clickable row, the row owns those. */
+
+.oo-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 20px;
+  padding: 2px var(--space-2);
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--muted);
+  background: var(--card2);
+  border-radius: var(--radius-pill);
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ── tone modifiers ─────────────────────────────────────── */
+.oo-count-badge--teal  { color: var(--teal);  background: var(--teal2); }
+.oo-count-badge--red   { color: var(--red);   background: var(--red-bg); }
+.oo-count-badge--green { color: var(--green); background: var(--green-bg); }
+
+/* solid teal — emphasis count; glyphs sit on the accent fill */
+.oo-count-badge--solid {
+  color: var(--on-accent);
+  background: var(--teal);
+}
+
+/* ── size modifiers ─────────────────────────────────────── */
+.oo-count-badge--sm {
+  min-width: 18px;
+  padding: 1px var(--space-2);
+  font-size: 9.5px;            /* the original tree-row size */
+}
+
+.oo-count-badge--lg {
+  min-width: 24px;
+  padding: var(--space-1) var(--space-3);
+  font-size: 12px;
+}

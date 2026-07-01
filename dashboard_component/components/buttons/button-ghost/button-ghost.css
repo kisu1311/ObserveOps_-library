@@ -1,0 +1,62 @@
+/* button-ghost · buttons · variants: ghost, with-icon, block · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: create-widget-modal */
+
+/* Secondary transparent/bordered button (Cancel / Reset).
+   Self-contained: folds the monolith's base `.btn` geometry into the root
+   class so the partial does not depend on a separate base-button rule. */
+.oo-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 9px 20px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition),
+    color var(--transition);
+}
+
+/* hover: border brightens to the muted tone (+ faint neutral fill for feedback) */
+.oo-btn-ghost:hover {
+  border-color: var(--muted);
+  background: var(--card2);
+}
+
+.oo-btn-ghost:active {
+  background: var(--card);
+}
+
+/* keyboard focus ring (mirrors base.css [class*=oo-]:focus-visible) */
+.oo-btn-ghost:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* disabled — supports the [disabled] attribute and a .is-disabled hook */
+.oo-btn-ghost:disabled,
+.oo-btn-ghost.is-disabled {
+  color: var(--dim);
+  border-color: var(--border);
+  background: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* leading/trailing icons inherit currentColor */
+.oo-btn-ghost svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+/* block: full-width variant for stacked/modal-footer layouts */
+.oo-btn-ghost.is-block {
+  width: 100%;
+}

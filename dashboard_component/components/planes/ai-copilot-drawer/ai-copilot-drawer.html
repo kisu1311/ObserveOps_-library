@@ -1,0 +1,182 @@
+<!-- AI Copilot drawer. The drawer chrome is owned by this component; the insight
+     tiles, chips, chat bubbles and composer are composed atoms (oo-insight-card,
+     oo-suggestion-chip, oo-chat-message, oo-chat-input — see deps). Tabs toggle
+     aria-selected + the [hidden] tabpanels (driven by ai-copilot-drawer.js). -->
+
+<!-- variant: insights (default — Insights tab active, populated) -->
+<aside class="oo-ai-copilot-drawer" aria-label="AI Copilot">
+  <div class="oo-ai-copilot-drawer__head">
+    <div class="oo-ai-copilot-drawer__mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" focusable="false">
+        <path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z"/>
+        <path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z"/>
+      </svg>
+    </div>
+    <div class="oo-ai-copilot-drawer__titles">
+      <h2 class="oo-ai-copilot-drawer__title">AI Copilot</h2>
+      <div class="oo-ai-copilot-drawer__sub">ObserveOps AIOps · build 8.2.5</div>
+    </div>
+    <button type="button" class="oo-ai-copilot-drawer__x" aria-label="Close AI Copilot">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <div class="oo-ai-copilot-drawer__tabs" role="tablist" aria-label="Copilot view">
+    <button type="button" class="oo-ai-copilot-drawer__tab" role="tab" aria-selected="true" aria-controls="oo-aix-insights" data-oo-tab="insights">
+      Insights <span class="oo-ai-copilot-drawer__count">5</span>
+    </button>
+    <button type="button" class="oo-ai-copilot-drawer__tab" role="tab" aria-selected="false" aria-controls="oo-aix-ask" data-oo-tab="ask">
+      Ask AI
+    </button>
+  </div>
+
+  <!-- Insights tabpanel -->
+  <div class="oo-ai-copilot-drawer__body" id="oo-aix-insights" role="tabpanel" data-oo-panel="insights">
+    <div class="oo-ai-copilot-drawer__note">Live analysis · 5 findings · 1 critical</div>
+
+    <!-- composed: oo-insight-card (crit) -->
+    <article class="oo-insight-card oo-insight-card--crit" aria-label="Critical AI insight">
+      <div class="oo-insight-card__top">
+        <span class="oo-insight-card__kind">Anomaly</span>
+        <span class="oo-insight-card__conf">Confidence <b>94%</b></span>
+      </div>
+      <div class="oo-insight-card__title">Disk usage anomaly on DATASTORE-01</div>
+      <div class="oo-insight-card__desc">Current-partition usage is <b>80.9%</b> — 3.1&sigma; above the 14-day learned baseline. Sustained climb began ~46m ago.</div>
+      <svg class="oo-insight-card__spark" viewBox="0 0 320 30" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 23 L29 21 L58 24 L87 19 L116 21 L145 16 L174 18 L203 12 L232 14 L261 7 L290 4 L320 2 L320 30 L0 30 Z" fill="currentColor" opacity=".13"/>
+        <path d="M0 23 L29 21 L58 24 L87 19 L116 21 L145 16 L174 18 L203 12 L232 14 L261 7 L290 4 L320 2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+      <div class="oo-insight-card__acts">
+        <button type="button" class="oo-insight-btn primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          Add as widget
+        </button>
+        <button type="button" class="oo-insight-btn">Investigate</button>
+        <button type="button" class="oo-insight-btn ghost" data-oo-dismiss aria-label="Dismiss insight">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </article>
+
+    <!-- composed: oo-insight-card (warn) -->
+    <article class="oo-insight-card oo-insight-card--warn" aria-label="Warning AI insight">
+      <div class="oo-insight-card__top">
+        <span class="oo-insight-card__kind">Forecast</span>
+        <span class="oo-insight-card__conf">Confidence <b>82%</b></span>
+      </div>
+      <div class="oo-insight-card__title">sql-primary will breach session limit</div>
+      <div class="oo-insight-card__desc">Active sessions are projected to cross <b>350</b> in ~<b>3h 10m</b> at the current rate. Consider scaling the connection pool.</div>
+      <svg class="oo-insight-card__spark" viewBox="0 0 320 30" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 25 L29 22 L58 23 L87 20 L116 21 L145 17 L174 18 L203 14 L232 15 L261 11 L290 9 L320 6 L320 30 L0 30 Z" fill="currentColor" opacity=".13"/>
+        <path d="M0 25 L29 22 L58 23 L87 20 L116 21 L145 17 L174 18 L203 14 L232 15 L261 11 L290 9 L320 6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+      <div class="oo-insight-card__acts">
+        <button type="button" class="oo-insight-btn primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          Add as widget
+        </button>
+        <button type="button" class="oo-insight-btn">Investigate</button>
+        <button type="button" class="oo-insight-btn ghost" data-oo-dismiss aria-label="Dismiss insight">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <!-- Ask AI tabpanel (hidden until selected) -->
+  <div class="oo-ai-copilot-drawer__ask" id="oo-aix-ask" role="tabpanel" data-oo-panel="ask" hidden>
+    <div class="oo-ai-copilot-drawer__chat" role="log" aria-label="Copilot conversation">
+      <!-- composed: oo-chat-message (ai) -->
+      <div class="oo-chat-message oo-chat-message--ai" tabindex="0" aria-label="Copilot said">
+        <div class="oo-chat-message__avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false">
+            <path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z"/>
+            <path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z"/>
+          </svg>
+        </div>
+        <div class="oo-chat-message__bubble">
+          <p>Hi 👋 I’m your ObserveOps AI Copilot. Ask about anomalies, forecasts, or root cause — or tap a suggestion below.</p>
+        </div>
+      </div>
+      <!-- composed: oo-chat-message (user) -->
+      <div class="oo-chat-message oo-chat-message--user" tabindex="0" aria-label="You said">
+        Why is DATASTORE-01 disk high?
+      </div>
+    </div>
+
+    <div class="oo-ai-copilot-drawer__foot">
+      <!-- composed: oo-suggestion-chip row -->
+      <div class="oo-ai-copilot-drawer__chips">
+        <button type="button" class="oo-suggestion-chip">Summarize dashboard health</button>
+        <button type="button" class="oo-suggestion-chip">Forecast core-router-01 CPU</button>
+        <button type="button" class="oo-suggestion-chip">Top 5 hosts by latency</button>
+      </div>
+      <!-- composed: oo-chat-input -->
+      <div class="oo-chat-input">
+        <input class="oo-chat-input__field" type="text" aria-label="Ask the AI copilot about your infrastructure" placeholder="Ask about your infrastructure…">
+        <button type="button" class="oo-chat-input__send is-disabled" disabled aria-label="Send message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- variant: ask (Ask AI tab active) · state: disabled drawer -->
+<aside class="oo-ai-copilot-drawer is-disabled" aria-label="AI Copilot" aria-disabled="true">
+  <div class="oo-ai-copilot-drawer__head">
+    <div class="oo-ai-copilot-drawer__mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" focusable="false">
+        <path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z"/>
+        <path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z"/>
+      </svg>
+    </div>
+    <div class="oo-ai-copilot-drawer__titles">
+      <h2 class="oo-ai-copilot-drawer__title">AI Copilot</h2>
+      <div class="oo-ai-copilot-drawer__sub">ObserveOps AIOps · build 8.2.5</div>
+    </div>
+    <button type="button" class="oo-ai-copilot-drawer__x" aria-label="Close AI Copilot" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <div class="oo-ai-copilot-drawer__tabs" role="tablist" aria-label="Copilot view">
+    <button type="button" class="oo-ai-copilot-drawer__tab" role="tab" aria-selected="false" data-oo-tab="insights">
+      Insights <span class="oo-ai-copilot-drawer__count">5</span>
+    </button>
+    <button type="button" class="oo-ai-copilot-drawer__tab" role="tab" aria-selected="true" data-oo-tab="ask">
+      Ask AI
+    </button>
+  </div>
+
+  <div class="oo-ai-copilot-drawer__ask" role="tabpanel" data-oo-panel="ask">
+    <div class="oo-ai-copilot-drawer__chat" role="log" aria-label="Copilot conversation">
+      <div class="oo-chat-message oo-chat-message--ai" aria-label="Copilot is typing" aria-live="polite">
+        <div class="oo-chat-message__avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false">
+            <path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z"/>
+            <path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z"/>
+          </svg>
+        </div>
+        <div class="oo-chat-message__bubble">
+          <div class="oo-chat-message__typing" role="status" aria-label="Copilot is thinking">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="oo-ai-copilot-drawer__foot">
+      <div class="oo-ai-copilot-drawer__chips">
+        <button type="button" class="oo-suggestion-chip" disabled>Summarize dashboard health</button>
+        <button type="button" class="oo-suggestion-chip" disabled>Top 5 hosts by latency</button>
+      </div>
+      <div class="oo-chat-input is-disabled" aria-disabled="true">
+        <input class="oo-chat-input__field" type="text" aria-label="Ask the AI copilot about your infrastructure" placeholder="Ask about your infrastructure…" disabled>
+        <button type="button" class="oo-chat-input__send is-disabled" disabled aria-label="Send message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</aside>

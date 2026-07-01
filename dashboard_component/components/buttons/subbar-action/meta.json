@@ -1,0 +1,13 @@
+{
+  "name": "subbar-action",
+  "category": "buttons",
+  "title": "Subbar Action Button",
+  "description": "30x30 square icon action button for the dashboard subbar (Fullscreen, Snapshot, More). Muted by default, lifts to a card chip on hover, with a teal pressed/active state.",
+  "rootClass": "oo-subbar-action",
+  "variants": ["default", "active"],
+  "states": ["default", "hover", "focus", "active", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-subbar"],
+  "tags": ["button", "icon", "action", "subbar", "fullscreen", "snapshot"],
+  "demoHeight": 80
+}

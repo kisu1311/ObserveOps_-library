@@ -1,0 +1,13 @@
+{
+  "name": "ticker-item",
+  "category": "items",
+  "title": "Ticker Item",
+  "description": "A single scrolling alert in the NOC 'Critical' ticker strip: a bold severity-coloured source/host name plus its alert message, with a leading status dot. Reads red by default (critical) and orange in the warn variant; an optional anchor/button form lets the item drill into the underlying alert. Marquee motion lives on the parent track.",
+  "rootClass": "oo-ticker-item",
+  "variants": ["critical", "warn", "link"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["noc-view", "noc-ticker"],
+  "tags": ["ticker", "alert", "marquee", "noc", "scrolling", "item"],
+  "demoHeight": 110
+}

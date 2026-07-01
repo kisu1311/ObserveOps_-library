@@ -1,0 +1,122 @@
+/* checkbox · fields · variants: box-only, with-label, indeterminate · states: unchecked, checked, hover, focus, disabled · deps: tokens.css, base.css · used-in: source-picker-table, create-widget-modal */
+
+/* 15×15 bordered checkbox that fills teal with a check when selected.
+   Built on a real, visually-hidden <input type=checkbox> so it is keyboard
+   focusable and toggles natively — no JS required. The .oo-checkbox__box is
+   the visual proxy driven by the input's :checked / :disabled / :focus-visible
+   pseudo-classes via the adjacent-sibling selector. Indeterminate is a
+   class-driven visual state (.is-indeterminate) for select-all partials. */
+
+.oo-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  position: relative;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* the real control — visually hidden but focusable & in the a11y tree */
+.oo-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* the styled box */
+.oo-checkbox__box {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+/* the check glyph — hidden until checked */
+.oo-checkbox__check {
+  width: 9px;
+  height: 9px;
+  color: var(--on-accent);
+  opacity: 0;
+  transform: scale(.5);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+/* hover on an interactive, unchecked box hints selectability */
+.oo-checkbox:hover .oo-checkbox__input:not(:checked):not(:disabled) + .oo-checkbox__box {
+  border-color: var(--teal);
+  background: var(--teal2);
+}
+
+/* keyboard focus ring on the proxy box */
+.oo-checkbox__input:focus-visible + .oo-checkbox__box {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* checked */
+.oo-checkbox__input:checked + .oo-checkbox__box {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+.oo-checkbox__input:checked + .oo-checkbox__box .oo-checkbox__check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* indeterminate — class-driven (native .indeterminate needs JS); shows a dash */
+.oo-checkbox.is-indeterminate .oo-checkbox__box {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+.oo-checkbox.is-indeterminate .oo-checkbox__check {
+  opacity: 0;
+}
+
+.oo-checkbox.is-indeterminate .oo-checkbox__box::after {
+  content: "";
+  width: 8px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--on-accent);
+}
+
+/* optional text label */
+.oo-checkbox__label {
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1;
+  user-select: none;
+}
+
+/* disabled — drive off the input, with an .is-disabled fallback on the root */
+.oo-checkbox:has(.oo-checkbox__input:disabled),
+.oo-checkbox.is-disabled {
+  cursor: not-allowed;
+}
+
+.oo-checkbox__input:disabled + .oo-checkbox__box,
+.oo-checkbox.is-disabled .oo-checkbox__box {
+  opacity: .45;
+}
+
+.oo-checkbox:has(.oo-checkbox__input:disabled) .oo-checkbox__label,
+.oo-checkbox.is-disabled .oo-checkbox__label {
+  opacity: .45;
+}

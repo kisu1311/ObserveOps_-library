@@ -1,0 +1,112 @@
+/* alert-banner · planes · variants: warning, critical, info · states: default, x:hover, x:focus, x:disabled, dismissing · deps: tokens.css, base.css · used-in: dashboard-shell, alert-notification */
+
+/* Top-of-shell warning banner that sits above the topbar: a severity chip
+   (icon + uppercase label), a muted message with bold-emphasised counts /
+   entity names, and a dismiss button pushed to the far right. Refined from
+   .alert-banner / .alert-chip / .alert-text / .alert-x into a namespaced block
+   with selectable severity tone (warning · critical · info), a real <button>
+   dismiss control carrying hover / focus-visible / disabled states, and a
+   collapse-on-dismiss transition. Every colour and metric comes from tokens. */
+
+/* ── banner row ─────────────────────────────────────────────── */
+.oo-alert-banner {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--nav);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-sans);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+/* collapse-out when the dismiss button is pressed */
+.oo-alert-banner.is-dismissing {
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+}
+
+/* ── severity chip (default tone = warning / orange) ────────── */
+.oo-alert-banner__chip {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--orange);
+  background: var(--orange-bg);
+  border: 1px solid color-mix(in srgb, var(--orange) 40%, transparent);
+}
+.oo-alert-banner__chip svg {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+}
+
+/* ── severity tone modifiers (set on the root) ─────────────── */
+.oo-alert-banner.is-critical .oo-alert-banner__chip {
+  color: var(--red);
+  background: var(--red-bg);
+  border-color: color-mix(in srgb, var(--red) 40%, transparent);
+}
+.oo-alert-banner.is-info .oo-alert-banner__chip {
+  color: var(--blue);
+  background: var(--blue-bg);
+  border-color: color-mix(in srgb, var(--blue) 40%, transparent);
+}
+
+/* ── message ────────────────────────────────────────────────── */
+.oo-alert-banner__text {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.oo-alert-banner__text strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ── dismiss control ────────────────────────────────────────── */
+.oo-alert-banner__x {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--muted);
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+.oo-alert-banner__x svg {
+  width: 12px;
+  height: 12px;
+}
+.oo-alert-banner__x:hover {
+  color: var(--text);
+  background: var(--card);
+}
+.oo-alert-banner__x:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-alert-banner__x:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  color: var(--muted);
+  background: transparent;
+}

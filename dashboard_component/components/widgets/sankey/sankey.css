@@ -1,0 +1,66 @@
+/* sankey · widgets · variants: dependency-flow, alt-seed · states: default, hover, focus, disabled · deps: tokens.css, base.css, utils/rng.js, widgets/auto-mount.js · used-in: create-widget-modal, add-widget-panel, dashboard-canvas */
+
+/* Sankey flow widget — three left source tiers fan out to four right
+   destinations through translucent bezier "flow ribbons", each coloured by its
+   source node. The geometry is rendered by OOW.sankey (sankey.js) into a
+   declarative [data-widget="sankey"] mount; this stylesheet only themes the
+   injected SVG (nodes, ribbons, labels) with design tokens and adds the
+   interaction layer: hover-to-peel focus on a ribbon, a keyboard focus ring on
+   a focusable mount, and a disabled / no-data veil. Per-series category colours
+   are set inline as var() fills in the renderer, so theme tokens stay the single
+   source of truth and nothing is hardcoded here. */
+
+.oo-sankey {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  color: var(--text);
+}
+
+.oo-sankey__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* category nodes — fill is set inline per series (var(--teal), var(--blue) …) */
+.oo-sankey__node {
+  transition: opacity var(--transition);
+}
+
+/* category labels flanking the node columns */
+.oo-sankey__label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  fill: var(--text);
+  pointer-events: none;
+}
+
+/* translucent flow ribbons — stroke is set inline (its source-node colour) */
+.oo-sankey__flow {
+  opacity: .35;
+  stroke-linecap: round;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+/* hover-to-peel: dim the whole field, then light only the hovered ribbon
+   (the second rule out-specifies the first so the hovered ribbon wins) */
+.oo-sankey:hover .oo-sankey__flow { opacity: .15; }
+.oo-sankey:hover .oo-sankey__flow:hover { opacity: .85; }
+
+/* keyboard focus on a focusable mount (tabindex) */
+.oo-sankey:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* disabled / no-data veil */
+.oo-sankey.is-disabled {
+  opacity: .45;
+  filter: grayscale(.6);
+  pointer-events: none;
+}

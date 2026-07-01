@@ -1,0 +1,13 @@
+{
+  "name": "add-as-widget",
+  "category": "buttons",
+  "title": "Add-as-Widget Button",
+  "description": "Small purple chip shown under an AI Copilot chat answer that pins the suggested visualization to the dashboard as a widget. Tinted purple at rest, solid purple on hover.",
+  "rootClass": "oo-add-as-widget",
+  "variants": ["default", "with-target-label"],
+  "states": ["default", "hover", "active", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["ai-copilot-chat", "ai-explorer-drawer"],
+  "tags": ["button", "ai", "copilot", "add-widget", "purple", "chip"],
+  "demoHeight": 80
+}

@@ -1,0 +1,24 @@
+<!-- query · single big numeric value + sparkline + signed % delta. -->
+<!-- Each tile is a declarative mount hydrated by OOW.query (query.js) from its -->
+<!-- data-* options; the visible markup (.oo-query root + children) is produced -->
+<!-- at runtime, so this fragment ships only the mounts. -->
+
+<!-- variant: teal (default) · state: up — throughput trending up, green delta -->
+<div data-widget="query" data-seed="98328" data-accent="teal"
+     data-label="Total Requests / min"
+     style="width:280px;height:200px"></div>
+
+<!-- variant: blue · state: up — custom metric caption -->
+<div data-widget="query" data-seed="69615" data-accent="blue"
+     data-label="Throughput / sec"
+     style="width:280px;height:200px"></div>
+
+<!-- variant: purple · state: down — negative delta flips the badge red -->
+<div data-widget="query" data-seed="127772" data-accent="purple"
+     data-label="Active Sessions"
+     style="width:280px;height:200px"></div>
+
+<!-- variant: interactive (orange) · state: down — focusable drill-down tile -->
+<div data-widget="query" data-seed="12189" data-accent="orange"
+     data-label="Errors / min" data-interactive="true"
+     style="width:280px;height:200px"></div>

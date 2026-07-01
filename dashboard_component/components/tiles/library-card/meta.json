@@ -1,0 +1,13 @@
+{
+  "name": "library-card",
+  "category": "tiles",
+  "title": "Library Card",
+  "description": "Compact 3-up library card from the Add Widget panel's Predefined and User Define galleries. A teal icon over a widget name and an uppercase type sub-label; clicking it drops that saved widget onto the dashboard. Refined into a real button with hover lift, focus ring, a selected/current state and a disabled treatment. Lay them out via .oo-library-card-grid.",
+  "rootClass": "oo-library-card",
+  "variants": ["predefined", "user-define", "grid"],
+  "states": ["default", "hover", "focus", "selected", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["add-widget-panel", "predefined-widget-gallery", "user-define-widget-gallery"],
+  "tags": ["card", "tile", "library", "widget", "gallery", "predefined", "add-widget"],
+  "demoHeight": 240
+}

@@ -1,0 +1,13 @@
+{
+  "name": "popup-menu",
+  "category": "planes",
+  "title": "Popup Menu",
+  "description": "Generic floating dropdown / context-menu surface: a rounded, shadowed panel that holds a list of options. Refined from the monolith's `.pop` popovers (the widget '···' more-menu, counter picker and source picker). It is the plane only — option rows are the composed menu-item atom (.oo-menu__item / .oo-menu__sep) — and adds an optional sticky search header, uppercase group labels, and a floating/anchored open-close behaviour. Base renders in flow (always-open surface); a --floating modifier plus a '···' trigger and -host wrapper drive a real anchored dropdown with outside-click / Esc dismissal.",
+  "rootClass": "oo-popup-menu",
+  "variants": ["static", "floating", "end", "with-search", "with-groups"],
+  "states": ["default", "open", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "menu-item.css"],
+  "usedIn": ["widget-more-menu", "counter-picker", "source-picker", "ai-insights", "context-menu"],
+  "tags": ["popup", "menu", "dropdown", "context-menu", "floating", "popover", "plane", "compose"],
+  "demoHeight": 420
+}

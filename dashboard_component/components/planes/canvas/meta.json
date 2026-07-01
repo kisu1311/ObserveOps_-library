@@ -1,0 +1,13 @@
+{
+  "name": "canvas",
+  "category": "planes",
+  "title": "Dashboard Canvas",
+  "description": "The dashboard's main editing plane: a flex column stacking a time ruler (tick scale + range slider) over a scrollable 2-column widget grid, with a floating 'Add widget' FAB pinned bottom-right. It is the composition surface for the canvas — ruler + widget-card(s) + fab — and ships lightweight placeholder widget cards so it previews in isolation without the live widget renderer. Cards support a wide modifier spanning both columns; includes an empty state, hover/focus-visible affordances on the tool buttons and FAB, and a disabled/locked treatment.",
+  "rootClass": "oo-canvas",
+  "variants": ["default", "with-wide-widget", "empty"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "ruler", "widget-card", "fab"],
+  "usedIn": ["dashboard-module"],
+  "tags": ["plane", "canvas", "widget-grid", "ruler", "fab", "composition", "dashboard"],
+  "demoHeight": 420
+}

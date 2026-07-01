@@ -1,0 +1,229 @@
+/* widget-fullscreen · planes · variants: default, contained · states: hidden, open, close:hover, close:focus, close:disabled · deps: tokens.css, base.css · used-in: dashboard-module, canvas, create-widget-modal */
+
+/* Fullscreen widget modal — a dark, blurred backdrop scrim centring one large
+   card (header bar + big scrollable body) used when a dashboard widget is
+   expanded to fill the screen. Refined from the live `.wfs-overlay` / `.wfs-card`
+   pair into a single namespaced block: the scrim tone is derived from --bg with
+   color-mix (no raw hex), open/close is one `.is-open` toggle (fade scrim +
+   lift-in card, matching the live fullscreenWidget()/closeFullscreen() pair),
+   and the header carries the widget title + a teal type tag + a ✕ close control
+   with hover / focus-visible / disabled treatments. A `--contained` modifier
+   confines the plane to a positioned ancestor for the gallery stage. The body is
+   a neutral placeholder so the partial stays decoupled from any widget renderer. */
+
+/* ── backdrop / scrim ───────────────────────────────────────── */
+.oo-widget-fullscreen {
+  /* deep fullscreen scrim derived from the app background, not a raw hex */
+  --oo-wfs-scrim: color-mix(in srgb, var(--bg) 84%, transparent);
+
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 38px;
+
+  background: var(--oo-wfs-scrim);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+
+  /* hidden by default; fade out then drop visibility so it stops catching clicks */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease, visibility 0s linear .18s;
+}
+
+.oo-widget-fullscreen.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .18s ease, visibility 0s linear 0s;
+}
+
+/* confine the plane to a positioned ancestor (gallery stage / embedded region) */
+.oo-widget-fullscreen--contained {
+  position: absolute;
+  padding: var(--space-4);
+}
+
+/* ── large card ─────────────────────────────────────────────── */
+.oo-widget-fullscreen__card {
+  width: min(1120px, 100%);
+  height: min(720px, 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pop);
+  font-family: var(--font-sans);
+  color: var(--text);
+
+  /* lift-in when the scrim opens */
+  opacity: 0;
+  transform: translateY(10px) scale(.985);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.oo-widget-fullscreen.is-open .oo-widget-fullscreen__card {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── header bar ─────────────────────────────────────────────── */
+.oo-widget-fullscreen__head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.oo-widget-fullscreen__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* widget type tag (live .w-tag) */
+.oo-widget-fullscreen__tag {
+  margin-left: var(--space-1);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  color: var(--teal);
+  background: var(--teal2);
+  border: 1px solid var(--teal-glow);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+}
+
+/* ── ✕ close control ────────────────────────────────────────── */
+.oo-widget-fullscreen__close {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+.oo-widget-fullscreen__close svg {
+  width: 14px;
+  height: 14px;
+}
+.oo-widget-fullscreen__close:hover {
+  background: var(--card2);
+  color: var(--text);
+}
+.oo-widget-fullscreen__close:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-widget-fullscreen__close:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  background: transparent;
+  color: var(--muted);
+}
+
+/* ── big body ───────────────────────────────────────────────── */
+.oo-widget-fullscreen__body {
+  flex: 1;
+  min-height: 0;
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* neutral placeholder standing in for the enlarged widget render */
+.oo-widget-fullscreen__placeholder {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  border: 1px dashed var(--border2);
+  border-radius: var(--radius);
+  background: var(--card2);
+  color: var(--muted);
+  text-align: center;
+}
+.oo-widget-fullscreen__placeholder svg {
+  width: 46px;
+  height: 46px;
+  color: var(--dim);
+}
+.oo-widget-fullscreen__placeholder span {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* ── open trigger (demo affordance) ─────────────────────────── */
+.oo-widget-fullscreen__trigger {
+  position: relative;
+  z-index: 1;
+  font: inherit;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--teal);
+  background: var(--teal);
+  color: var(--on-accent);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.oo-widget-fullscreen__trigger:hover {
+  background: color-mix(in srgb, var(--teal) 85%, var(--bg));
+}
+.oo-widget-fullscreen__trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* ── demo stage (frames a contained modal for the gallery) ──── */
+.oo-widget-fullscreen-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card2);
+}
+
+/* faux dashboard grid sitting behind the scrim so the dimming reads */
+.oo-widget-fullscreen-stage__behind {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: var(--space-2);
+  padding: var(--space-3);
+}
+.oo-widget-fullscreen-stage__cell {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--card);
+}

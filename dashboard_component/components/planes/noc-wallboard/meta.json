@@ -1,0 +1,14 @@
+{
+  "name": "noc-wallboard",
+  "category": "planes",
+  "title": "NOC Wallboard",
+  "description": "Full-screen Network-Operations-Centre wallboard plane: a header (title + pulsing Live indicator + KPI status counters), a responsive 4-column grid of severity status tiles (stripe + pulsing dot, name, sublabel, big mono value, sparkline), and a scrolling Critical alert ticker. Composes the noc-kpi, noc-tile and ticker-item patterns inline so it renders fully self-contained. KPI counters double as single-select severity filters that dim non-matching tiles, and the ticker has a pause/play toggle.",
+  "rootClass": "oo-noc-wallboard",
+  "variants": ["default", "filtered"],
+  "states": ["default", "filter-active", "ticker-paused", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["noc-view", "dashboard-module", "dashboard-panel-tab"],
+  "tags": ["plane", "noc", "wallboard", "operations-center", "status-grid", "ticker", "kpi", "live", "sparkline"],
+  "hasJs": true,
+  "demoHeight": 560
+}

@@ -1,0 +1,13 @@
+{
+  "name": "template-card",
+  "category": "tiles",
+  "title": "Widget Template Card",
+  "description": "Add-Widget template selector: a teal type glyph over a name (plus an optional uppercase type subtitle in the library variant). Clicking it launches the create-widget flow; hover lifts the card 2px and switches its border to teal with brighter text.",
+  "rootClass": "oo-template-card",
+  "variants": ["default", "lib"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["add-widget-panel", "create-widget-flow", "widget-library-predefined", "widget-library-user-defined"],
+  "tags": ["card", "tile", "template", "selector", "widget-type", "add-widget"],
+  "demoHeight": 168
+}

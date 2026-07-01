@@ -1,0 +1,93 @@
+/* grid · widgets · variants: status-up, status-down, scrollable · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-canvas, create-widget-modal */
+
+/* Tabular status widget: a scrollable table (Monitor / Traffic / Interface /
+   Status) with a sticky header, hairline row dividers and a hover wash. Each
+   row leads with a coloured status dot and ends with an up/down state chip.
+   OOW.grid (grid.js) writes the <table> into the mount from a deterministic
+   seed; this stylesheet owns all presentation. The mount itself is the scroll
+   container, so the table can exceed the widget body and scroll independently.
+   Rows are keyboard-focusable for drill-down (base ring); an aria-disabled
+   grid dims the whole table and freezes interaction (no-data / loading). */
+
+.oo-grid {
+  overflow: auto;                       /* mount is the scroll container */
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-sans);
+}
+
+/* ── table ─────────────────────────────────────────────────────────────── */
+.oo-grid__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.oo-grid__table th {
+  position: sticky;                     /* header pins while body scrolls */
+  top: 0;
+  z-index: 1;
+  text-align: left;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--card);              /* matches widget body so rows scroll under */
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.oo-grid__table td {
+  padding: var(--space-2) var(--space-3);
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+/* refinement: hover — row wash signals the drill-down affordance */
+.oo-grid__table tbody tr {
+  transition: background var(--transition);
+}
+.oo-grid__table tbody tr:hover td {
+  background: var(--card2);
+}
+
+/* refinement: keyboard focus on a focusable row (base.css also rings any
+   oo- element; explicit here for self-containment) */
+.oo-grid__table tbody tr:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* ── status dot ────────────────────────────────────────────────────────── */
+.oo-grid__dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: var(--space-2);
+  border-radius: var(--radius-pill);
+  vertical-align: middle;
+  background: var(--muted);             /* fallback when no state set */
+}
+.oo-grid__dot--up   { background: var(--green); }
+.oo-grid__dot--down { background: var(--red); }
+
+/* ── up / down state chip ──────────────────────────────────────────────── */
+.oo-grid__chip {
+  font-size: 10px;
+  font-weight: 600;
+}
+.oo-grid__chip--up   { color: var(--green); }
+.oo-grid__chip--down { color: var(--red); }
+
+/* ── numeric cells (traffic) ───────────────────────────────────────────── */
+.oo-grid__num {
+  font-family: var(--font-mono);
+}
+
+/* state: disabled / no-data — dim the whole table and freeze interaction */
+.oo-grid.is-disabled,
+.oo-grid[aria-disabled="true"] {
+  opacity: .5;
+  pointer-events: none;
+}

@@ -1,0 +1,76 @@
+/* icon-button · buttons · variants: ghost, badged, ai · states: default, hover, focus, disabled · deps: tokens.css · used-in: dashboard-topbar, ai-copilot-launcher, alerts-tray */
+
+/* 30x30 topbar icon button. Ghost by default; supports a notification
+   badge and the AI sparkle variant. All colors/geometry come from tokens. */
+.oo-icon-button {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+  position: relative;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.oo-icon-button svg {
+  width: 17px;
+  height: 17px;
+}
+
+.oo-icon-button:hover {
+  background: var(--card);
+  color: var(--text);
+}
+
+.oo-icon-button:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-icon-button:disabled,
+.oo-icon-button.is-disabled {
+  color: var(--dim);
+  background: transparent;
+  border-color: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── notification badge ───────────────────────────────── */
+.oo-icon-button__badge {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  min-width: 16px;
+  height: 14px;
+  padding: 0 3px;
+  border: 1.5px solid var(--nav);
+  border-radius: var(--radius);
+  background: var(--red);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+}
+
+/* ── AI sparkle variant ───────────────────────────────── */
+.oo-icon-button--ai {
+  color: var(--purple2);
+  background: linear-gradient(135deg, var(--teal2), var(--purple-bg));
+  border-color: var(--border2);
+}
+
+.oo-icon-button--ai:hover {
+  color: var(--text);
+  border-color: var(--purple);
+}

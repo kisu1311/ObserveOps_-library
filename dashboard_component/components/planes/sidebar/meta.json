@@ -1,0 +1,13 @@
+{
+  "name": "sidebar",
+  "category": "planes",
+  "title": "Sidebar Nav Rail",
+  "description": "Left icon nav-rail — the shell's primary navigation plane. A 46px vertical column that composes sidebar-icon buttons with a flexible spacer that pins a trailing Settings action to the bottom; exactly one item is active at a time. Includes a section divider and a whole-rail disabled state.",
+  "rootClass": "oo-sidebar",
+  "variants": ["full-rail", "state-showcase", "compact-disabled"],
+  "states": ["default", "active", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "buttons/sidebar-icon/sidebar-icon.css", "buttons/sidebar-icon/sidebar-icon.js"],
+  "usedIn": ["dashboard-shell", "app-nav-rail", "global-navigation"],
+  "tags": ["sidebar", "nav", "rail", "navigation", "icon", "plane", "single-select"],
+  "demoHeight": 420
+}

@@ -1,0 +1,13 @@
+{
+  "name": "trend-chip",
+  "category": "items",
+  "title": "Trend Chip",
+  "description": "Inline trend / status chip: a directional triangle glyph plus a value, tinted green for an up trend and red for a down trend (neutral = flat). Refined from the dashboard grid widget's bare green/red .chip-up / .chip-dn Status text, with a tinted-pill default and a `--bare` text-only variant.",
+  "rootClass": "oo-trend-chip",
+  "variants": ["up", "down", "neutral", "bare"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["grid-widget-status", "kpi-delta"],
+  "tags": ["chip", "trend", "delta", "status", "up", "down", "indicator"],
+  "demoHeight": 76
+}

@@ -1,0 +1,13 @@
+{
+  "name": "chat-input",
+  "category": "fields",
+  "title": "AI Chat Input",
+  "description": "AI Copilot message composer: a rounded input row with a trailing teal→purple gradient send button. The wrapper highlights its border on focus; the send button disables when there is nothing to send.",
+  "rootClass": "oo-chat-input",
+  "variants": ["empty", "typed"],
+  "states": ["default", "focus-within", "hover", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["ai-copilot-chat", "ask-ai-panel"],
+  "tags": ["field", "input", "chat", "ai", "copilot", "send", "composer"],
+  "demoHeight": 160
+}

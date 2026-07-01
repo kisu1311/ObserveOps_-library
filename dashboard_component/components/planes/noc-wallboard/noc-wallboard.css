@@ -1,0 +1,410 @@
+/* noc-wallboard · planes · variants: default, filtered · states: default, filter-active, ticker-paused, hover, focus, disabled · deps: tokens.css, base.css · used-in: noc-view, dashboard-module */
+
+/* Full-screen Network-Operations-Centre wallboard plane. Composes three patterns
+   inline so the board renders fully self-contained (no sibling CSS required):
+     · header  — title + pulsing "Live" indicator + a right-aligned row of KPI
+                 status counters (Monitors / Critical / Warning / Up / Down);
+     · grid    — a responsive 4-column wall of status tiles, each with a severity
+                 stripe + dot, name, sublabel, a big mono value and a sparkline;
+     · ticker  — a "Critical" marquee strip of scrolling alert items.
+   Severity drives accent / border tint / wash via one local --noc-c token per
+   tile, so markup only toggles a modifier class. Optional behaviour (noc-wallboard.js):
+   KPI counters can act as single-select severity filters that dim non-matching
+   tiles, and the ticker has a pause/play toggle. All colour & geometry come from
+   tokens; the only hexes are sparkline path geometry inside the inlined SVGs. */
+
+.oo-noc-wallboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 360px;
+  height: 100%;
+  padding: var(--space-4);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 120% at 70% -10%,
+      color-mix(in srgb, var(--nav) 70%, var(--bg)) 0%,
+      var(--bg) 60%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+/* ════════════════════════════════════════════════════════
+   HEADER
+   ════════════════════════════════════════════════════════ */
+.oo-noc-wallboard__top {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.oo-noc-wallboard__title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.2px;
+  color: var(--text);
+}
+.oo-noc-wallboard__title b {
+  color: var(--teal);
+  font-weight: 800;
+}
+
+/* ── pulsing live indicator (green) ──────────────────────── */
+.oo-noc-wallboard__live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--green);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.oo-noc-wallboard__live::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  animation: oo-nocwb-pulse 1.8s infinite;
+}
+
+/* ════════════════════════════════════════════════════════
+   KPI COUNTER ROW
+   ════════════════════════════════════════════════════════ */
+.oo-noc-wallboard__kpis {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.oo-noc-wallboard__kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 82px;
+  padding: var(--space-2) var(--space-4);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-sans);
+  text-align: center;
+  transition: border-color var(--transition), background var(--transition),
+    box-shadow var(--transition);
+}
+.oo-noc-wallboard__kpi-v {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.oo-noc-wallboard__kpi-l {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* tone modifiers recolour the value only — chrome stays neutral */
+.oo-noc-wallboard__kpi--neutral  .oo-noc-wallboard__kpi-v { color: var(--text); }
+.oo-noc-wallboard__kpi--critical .oo-noc-wallboard__kpi-v { color: var(--red); }
+.oo-noc-wallboard__kpi--warning  .oo-noc-wallboard__kpi-v { color: var(--orange); }
+.oo-noc-wallboard__kpi--up       .oo-noc-wallboard__kpi-v { color: var(--green); }
+.oo-noc-wallboard__kpi--down     .oo-noc-wallboard__kpi-v { color: var(--red); }
+
+/* selectable form — single-select severity filter */
+button.oo-noc-wallboard__kpi {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+button.oo-noc-wallboard__kpi:hover {
+  border-color: var(--border2);
+  background: var(--card2);
+}
+button.oo-noc-wallboard__kpi[aria-pressed="true"] {
+  border-color: var(--teal);
+  background: var(--teal2);
+  box-shadow: inset 0 0 0 1px var(--teal);
+}
+
+/* ════════════════════════════════════════════════════════
+   STATUS-TILE GRID
+   ════════════════════════════════════════════════════════ */
+.oo-noc-wallboard__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: var(--space-3);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.oo-noc-wallboard__tile {
+  /* per-variant accent — overridden by the modifier classes below */
+  --noc-c: var(--green);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-height: 120px;
+  padding: var(--space-3) var(--space-4);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-align: left;
+  color: var(--text);
+  transition: border-color var(--transition), transform var(--transition),
+    box-shadow var(--transition), opacity var(--transition), filter var(--transition);
+}
+
+/* left severity stripe */
+.oo-noc-wallboard__tile::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--noc-c);
+  opacity: .9;
+}
+
+/* severity variants */
+.oo-noc-wallboard__tile--crit {
+  --noc-c: var(--red);
+  border-color: color-mix(in srgb, var(--red) 50%, transparent);
+  background: linear-gradient(180deg, var(--red-bg), var(--card) 70%);
+}
+.oo-noc-wallboard__tile--warn {
+  --noc-c: var(--orange);
+  border-color: color-mix(in srgb, var(--orange) 45%, transparent);
+  background: linear-gradient(180deg, var(--orange-bg), var(--card) 70%);
+}
+.oo-noc-wallboard__tile--ok {
+  --noc-c: var(--green);
+  border-color: color-mix(in srgb, var(--green) 30%, transparent);
+}
+
+/* status dot (top-right) — pulses on crit */
+.oo-noc-wallboard__stat {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-pill);
+  background: var(--noc-c);
+  color: var(--noc-c);
+}
+.oo-noc-wallboard__tile--crit .oo-noc-wallboard__stat {
+  animation: oo-nocwb-pulse 1.6s infinite;
+}
+
+.oo-noc-wallboard__name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: var(--space-4);
+}
+.oo-noc-wallboard__sub {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.oo-noc-wallboard__value {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+}
+.oo-noc-wallboard__unit {
+  margin-left: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.oo-noc-wallboard__spark {
+  display: block;
+  width: 100%;
+  height: 26px;
+  margin-top: var(--space-1);
+  color: var(--noc-c);
+  opacity: .9;
+}
+
+/* interactive tile (drills into the monitor) */
+button.oo-noc-wallboard__tile,
+a.oo-noc-wallboard__tile {
+  cursor: pointer;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  text-decoration: none;
+}
+button.oo-noc-wallboard__tile:hover,
+a.oo-noc-wallboard__tile:hover {
+  border-color: var(--noc-c);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--noc-c) 24%, transparent);
+}
+
+/* filter-dimmed (set by noc-wallboard.js when a KPI filter excludes this tile) */
+.oo-noc-wallboard__tile.is-dimmed {
+  opacity: .28;
+  filter: grayscale(.5);
+  transform: none;
+  box-shadow: none;
+}
+
+/* ════════════════════════════════════════════════════════
+   TICKER STRIP
+   ════════════════════════════════════════════════════════ */
+.oo-noc-wallboard__ticker {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 38px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.oo-noc-wallboard__ticker-lbl {
+  flex: none;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-4);
+  background: var(--red);
+  color: var(--on-accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.oo-noc-wallboard__ticker-track {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+.oo-noc-wallboard__ticker-row {
+  display: inline-flex;
+  gap: 28px;
+  padding-left: 100%;
+  white-space: nowrap;
+  animation: oo-nocwb-ticker 26s linear infinite;
+}
+
+/* ticker item */
+.oo-noc-wallboard__tk {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text);
+}
+.oo-noc-wallboard__tk b {
+  color: var(--red);
+  font-weight: 700;
+}
+.oo-noc-wallboard__tk--warn b { color: var(--orange); }
+
+/* pause / play control */
+.oo-noc-wallboard__ticker-pause {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  align-self: stretch;
+  background: transparent;
+  border: 0;
+  border-left: 1px solid var(--border);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+.oo-noc-wallboard__ticker-pause:hover {
+  color: var(--text);
+  background: var(--card2);
+}
+.oo-noc-wallboard__ticker-pause svg {
+  width: 12px;
+  height: 12px;
+}
+/* swap which glyph shows based on paused state */
+.oo-noc-wallboard__ticker-pause .oo-noc-wallboard__ico-play { display: none; }
+.oo-noc-wallboard.is-ticker-paused .oo-noc-wallboard__ticker-pause .oo-noc-wallboard__ico-pause { display: none; }
+.oo-noc-wallboard.is-ticker-paused .oo-noc-wallboard__ticker-pause .oo-noc-wallboard__ico-play { display: inline; }
+.oo-noc-wallboard.is-ticker-paused .oo-noc-wallboard__ticker-row { animation-play-state: paused; }
+
+/* ════════════════════════════════════════════════════════
+   SHARED STATES
+   ════════════════════════════════════════════════════════ */
+
+/* keyboard focus — base.css supplies the ring; reinforce explicitly */
+.oo-noc-wallboard__kpi:focus-visible,
+.oo-noc-wallboard__tile:focus-visible,
+.oo-noc-wallboard__ticker-pause:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* disabled / stale treatment (offline monitor, unavailable metric) */
+.oo-noc-wallboard__kpi:disabled,
+.oo-noc-wallboard__kpi.is-disabled,
+.oo-noc-wallboard__tile:disabled,
+.oo-noc-wallboard__tile.is-disabled {
+  cursor: not-allowed;
+  opacity: .5;
+  filter: grayscale(.4);
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+.oo-noc-wallboard__kpi:disabled .oo-noc-wallboard__kpi-v,
+.oo-noc-wallboard__kpi.is-disabled .oo-noc-wallboard__kpi-v {
+  color: var(--dim);
+}
+.oo-noc-wallboard__tile.is-disabled .oo-noc-wallboard__stat,
+.oo-noc-wallboard__tile:disabled .oo-noc-wallboard__stat {
+  animation: none;
+}
+
+/* ════════════════════════════════════════════════════════
+   KEYFRAMES (namespaced)
+   ════════════════════════════════════════════════════════ */
+@keyframes oo-nocwb-pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 55%, transparent); }
+  70%  { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+@keyframes oo-nocwb-ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oo-noc-wallboard__live::before,
+  .oo-noc-wallboard__tile--crit .oo-noc-wallboard__stat { animation: none; }
+  /* without the marquee, anchor the alerts at the left so they stay readable
+     instead of parked off-screen at padding-left:100% */
+  .oo-noc-wallboard__ticker-row { animation: none; padding-left: var(--space-4); }
+}

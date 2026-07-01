@@ -1,0 +1,61 @@
+<!-- variant: feed (default — declarative mount filled by OOW.aiinsights) -->
+<div class="oo-aiinsights" data-widget="aiinsights" data-seed="53"
+     aria-label="AI insights feed"
+     style="width:320px;height:220px"></div>
+
+<!-- variant: alt-seed (same layout, different seeded confidence values) -->
+<div class="oo-aiinsights" data-widget="aiinsights" data-seed="7"
+     aria-label="AI insights feed"
+     style="width:320px;height:220px"></div>
+
+<!-- state: disabled (no recent analysis — feed dimmed, interaction frozen) -->
+<div class="oo-aiinsights is-disabled" data-widget="aiinsights" data-seed="53" aria-disabled="true"
+     aria-label="AI insights feed, no recent analysis"
+     style="width:320px;height:220px"></div>
+
+<!-- variant: static-list (script-free anatomy — severity rail + kind tint + confidence) -->
+<div class="oo-aiinsights" style="width:320px;height:220px">
+  <ul class="oo-aiinsights__list" role="list" aria-label="AI insights feed">
+
+    <li class="oo-aiinsights__item" style="--ins-sev:var(--red);--ins-kc:var(--purple2)">
+      <div class="oo-aiinsights__head">
+        <span class="oo-aiinsights__type">anomaly</span>
+        <span class="oo-aiinsights__conf">96% conf</span>
+      </div>
+      <div class="oo-aiinsights__title">Disk anomaly · DATASTORE-01</div>
+      <div class="oo-aiinsights__desc">Usage 80.9% — 3.1&#963; above baseline</div>
+    </li>
+
+    <li class="oo-aiinsights__item" style="--ins-sev:var(--orange);--ins-kc:var(--orange)">
+      <div class="oo-aiinsights__head">
+        <span class="oo-aiinsights__type">forecast</span>
+        <span class="oo-aiinsights__conf">88% conf</span>
+      </div>
+      <div class="oo-aiinsights__title">sql-primary sessions trending up</div>
+      <div class="oo-aiinsights__desc">Will breach 350 in ~3h</div>
+    </li>
+
+    <!-- interactive row: drill into the correlated incident -->
+    <li>
+      <button class="oo-aiinsights__item" style="--ins-sev:var(--blue);--ins-kc:var(--blue)"
+              aria-label="Open root-cause group: 6 alerts share one root cause, 82% confidence">
+        <div class="oo-aiinsights__head">
+          <span class="oo-aiinsights__type">root cause</span>
+          <span class="oo-aiinsights__conf">82% conf</span>
+        </div>
+        <div class="oo-aiinsights__title">6 alerts share one root cause</div>
+        <div class="oo-aiinsights__desc">edge-fw-01 throughput saturation</div>
+      </button>
+    </li>
+
+    <li class="oo-aiinsights__item" style="--ins-sev:var(--green);--ins-kc:var(--green)">
+      <div class="oo-aiinsights__head">
+        <span class="oo-aiinsights__type">noise</span>
+        <span class="oo-aiinsights__conf">90% conf</span>
+      </div>
+      <div class="oo-aiinsights__title">38 flapping alerts suppressed</div>
+      <div class="oo-aiinsights__desc">k8s-prod restarts grouped &#8594; 1 incident</div>
+    </li>
+
+  </ul>
+</div>

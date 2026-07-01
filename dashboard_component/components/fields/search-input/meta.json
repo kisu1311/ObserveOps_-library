@@ -1,0 +1,13 @@
+{
+  "name": "search-input",
+  "category": "fields",
+  "title": "Search Input",
+  "description": "Search field with a leading magnifier glyph, used inside side panels and modals to filter dashboards and widget lists. Ships empty and with-value states.",
+  "rootClass": "oo-search-input",
+  "variants": ["default", "compact", "block"],
+  "states": ["default", "hover", "focus", "filled", "disabled"],
+  "deps": ["tokens.css"],
+  "usedIn": ["dashboard-list-panel", "add-widget-panel"],
+  "tags": ["search", "input", "field", "filter"],
+  "demoHeight": 200
+}

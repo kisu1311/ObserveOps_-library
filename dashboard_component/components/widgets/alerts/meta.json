@@ -1,0 +1,13 @@
+{
+  "name": "alerts",
+  "category": "widgets",
+  "title": "Active Alerts Table",
+  "description": "Active-alerts table widget: a vertically scrollable, sticky-header table where each row is a severity badge (Critical / Warning / Info / Clear), the alert message, a source IP and a mono \"Xm ago\" timestamp. Rendered by the pure OOW.alerts renderer from a deterministic seed; severity badges use the --*-bg tints. The mount is the scroll region and is keyboard-focusable; rows carry a hover wash, and an aria-disabled table dims for no-data/loading.",
+  "rootClass": "oo-alerts",
+  "variants": ["critical", "warning", "info", "clear"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/esc.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-canvas", "create-widget-modal", "ai-chat-answer"],
+  "tags": ["widget", "alerts", "table", "severity", "incidents", "monitoring", "data-viz"],
+  "demoHeight": 260
+}

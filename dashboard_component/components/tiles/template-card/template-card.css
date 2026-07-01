@@ -1,0 +1,98 @@
+/* template-card · tiles · variants: default, lib · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: add-widget-panel, create-widget-flow, widget-library */
+
+/* Add-Widget template selector card: a type glyph + name (+ optional type
+   subtitle). It is a single clickable action that launches the create-widget
+   flow, so the root is a <button>. Idle is a quiet muted card; hover lifts it
+   2px and switches the border to teal with brighter text. The "lib" variant is
+   the predefined / user-defined library card — free height with an uppercase
+   type subtitle instead of the square type-grid tile. */
+
+.oo-template-card {
+  width: 100%;
+  box-sizing: border-box;
+  aspect-ratio: 1 / .92;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: var(--space-3);
+  font-family: var(--font-sans);
+  text-align: center;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    background var(--transition),
+    color var(--transition);
+}
+
+.oo-template-card:hover {
+  border-color: var(--teal);
+  background: var(--card2);
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+/* keyboard focus: tint the border to match hover; base.css supplies the ring */
+.oo-template-card:focus-visible {
+  border-color: var(--teal);
+  color: var(--text);
+}
+
+/* ── icon ──────────────────────────────────────────────── */
+.oo-template-card__ic {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal);
+}
+.oo-template-card__ic svg { width: 34px; height: 28px; }
+
+/* ── name ──────────────────────────────────────────────── */
+.oo-template-card__name {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ── type subtitle (library variant) ───────────────────── */
+.oo-template-card__sub {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+
+/* ── lib variant: predefined / user-defined library card ── */
+.oo-template-card--lib {
+  aspect-ratio: auto;
+  gap: var(--space-2);
+  padding: 16px 12px 14px;
+}
+.oo-template-card--lib .oo-template-card__ic { width: 34px; height: 34px; }
+
+/* ── disabled ──────────────────────────────────────────── */
+.oo-template-card:disabled,
+.oo-template-card.is-disabled {
+  cursor: not-allowed;
+  opacity: .55;
+}
+.oo-template-card:disabled:hover,
+.oo-template-card.is-disabled:hover {
+  transform: none;
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--muted);
+}
+.oo-template-card:disabled .oo-template-card__ic,
+.oo-template-card.is-disabled .oo-template-card__ic { color: var(--muted); }
+.oo-template-card:disabled .oo-template-card__name,
+.oo-template-card.is-disabled .oo-template-card__name { color: var(--dim); }

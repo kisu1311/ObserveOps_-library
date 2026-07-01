@@ -1,0 +1,158 @@
+/* tree-node · items · variants: collapsed, expanded, with-children · states: default, hover, open, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-list-panel, dashboard-tree */
+
+/* Collapsible dashboard-tree category row: a caret that rotates 90deg when the
+   node is open, a flexible label, and a trailing count badge. Clicking the row
+   toggles the node open to reveal its children container.
+   Refined from .tnode/.trow/.caret/.tlabel/.tcount: the clickable row is a real
+   <button> (aria-expanded driven), open state is .is-open (a styling alias of the
+   original .open), and a lightweight child-leaf treatment is included so the
+   expanded variant renders self-contained. Tokenised radius/spacing/transition,
+   added hover/focus-visible/disabled. See tree-node.js for the toggle behaviour. */
+
+/* node wrapper ─ original .tnode */
+.oo-tree-node {
+  border-radius: var(--radius-sm);
+}
+
+/* clickable category row ─ original .trow (now a <button>) */
+.oo-tree-node__row {
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  margin: 0;
+  padding: var(--space-2) 8px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+/* hover ─ original .trow:hover */
+.oo-tree-node__row:hover {
+  background: var(--card);
+}
+
+/* keyboard focus ring (base.css also rings any .oo- control) */
+.oo-tree-node__row:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* caret ─ original .caret; rotates to point down when the node is open */
+.oo-tree-node__caret {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform var(--transition);
+}
+
+.oo-tree-node__caret svg {
+  width: 9px;
+  height: 9px;
+}
+
+.oo-tree-node.is-open > .oo-tree-node__row .oo-tree-node__caret {
+  transform: rotate(90deg);
+}
+
+/* label ─ original .tlabel */
+.oo-tree-node__label {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* count badge ─ original .tcount */
+.oo-tree-node__count {
+  flex-shrink: 0;
+  min-width: 18px;
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--card2);
+  color: var(--muted);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* children container ─ original .tchildren */
+.oo-tree-node__children {
+  display: none;
+  padding-left: var(--space-4);
+}
+
+.oo-tree-node.is-open > .oo-tree-node__children {
+  display: block;
+}
+
+/* lightweight child leaf (so the expanded variant is self-contained) */
+.oo-tree-node__child {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.oo-tree-node__child:hover {
+  background: var(--card);
+  color: var(--text);
+}
+
+.oo-tree-node__child:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-tree-node__child.is-active {
+  background: var(--teal-glow);
+  color: var(--text);
+}
+
+.oo-tree-node__child svg {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  color: var(--dim);
+}
+
+.oo-tree-node__child span {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* disabled node ─ row is inert and dimmed */
+.oo-tree-node__row:disabled,
+.oo-tree-node.is-disabled > .oo-tree-node__row {
+  color: var(--dim);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.oo-tree-node__row:disabled .oo-tree-node__caret,
+.oo-tree-node.is-disabled > .oo-tree-node__row .oo-tree-node__caret,
+.oo-tree-node__row:disabled .oo-tree-node__count,
+.oo-tree-node.is-disabled > .oo-tree-node__row .oo-tree-node__count {
+  color: var(--dim);
+}

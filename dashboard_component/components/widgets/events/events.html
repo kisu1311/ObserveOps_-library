@@ -1,0 +1,15 @@
+<!-- events · vertical event timeline widget. Declarative mounts only —
+     OOW.events (events.js) renders each one from its data-* attributes;
+     auto-mount.js wires them up. No inline scripts. -->
+
+<!-- variant: default (seed 47 — "Recent Events") -->
+<div class="oo-events" data-widget="events" data-seed="47" aria-label="Recent Events"
+     style="width:340px;height:240px"></div>
+
+<!-- variant: alternate stream (different seed → different timestamps) -->
+<div class="oo-events" data-widget="events" data-seed="12" aria-label="Audit Trail"
+     style="width:340px;height:240px"></div>
+
+<!-- state: disabled / no-data (dimmed, interaction frozen) -->
+<div class="oo-events" data-widget="events" data-seed="91" aria-disabled="true"
+     aria-label="Event Timeline (loading)" style="width:340px;height:240px"></div>

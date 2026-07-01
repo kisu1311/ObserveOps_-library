@@ -1,0 +1,13 @@
+{
+  "name": "add-widget-tab",
+  "category": "buttons",
+  "title": "Add-Widget Underline Tab",
+  "description": "Underline tab group for the Add New Widget panel header (Create Widget / Predefined / User Define). The selected tab carries a teal label and underline; interactive via document-level delegation with roving-tabindex keyboard nav.",
+  "rootClass": "oo-aw-tabs",
+  "variants": ["default", "with-disabled"],
+  "states": ["default", "hover", "selected", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["add-widget-panel"],
+  "tags": ["tab", "tablist", "underline", "nav", "segmented", "add-widget"],
+  "demoHeight": 100
+}

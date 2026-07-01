@@ -1,0 +1,13 @@
+{
+  "name": "caret",
+  "category": "items",
+  "title": "Disclosure Caret",
+  "description": "Small chevron glyph that points right when collapsed and rotates 90° to point down when expanded; used in tree-nav rows, accordion headers and disclosure toggles. Open state can be driven by its own modifier or an expanded ancestor.",
+  "rootClass": "oo-caret",
+  "variants": ["glyph", "toggle-button"],
+  "states": ["closed", "open", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-picker-tree", "dashboard-module"],
+  "tags": ["caret", "chevron", "disclosure", "expand", "collapse", "tree"],
+  "demoHeight": 80
+}

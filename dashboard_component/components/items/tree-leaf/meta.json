@@ -1,0 +1,13 @@
+{
+  "name": "tree-leaf",
+  "category": "items",
+  "title": "Tree Leaf Row",
+  "description": "Tree child row in the dashboard picker: a lock glyph, an ellipsised label and a trailing star favourite toggle. The active leaf gets a teal-glow highlight; the star turns gold when favourited. Clicking a leaf single-selects it within its tree; the star toggles favourite via event delegation.",
+  "rootClass": "oo-tree-leaf",
+  "variants": ["default", "active", "favourited"],
+  "states": ["default", "hover", "focus", "selected", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-picker-panel", "dashboard-tree-nav"],
+  "tags": ["tree", "leaf", "nav", "favourite", "star", "dashboard", "item", "lock"],
+  "demoHeight": 180
+}

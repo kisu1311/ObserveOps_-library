@@ -1,0 +1,92 @@
+/* sidebar-icon · buttons · variants: rail, standalone, with-spacer · states: default, hover, focus, active, disabled · deps: tokens.css, base.css · used-in: dashboard-shell, app-nav-rail */
+
+/* ── the icon button ──────────────────────────────────────────────────────
+   32×32 nav-rail button. Muted by default; fills with a teal glow + grows a
+   left accent bar when active. Lives inside .oo-sidebar-icon-rail, which
+   provides the left gutter the accent bar bleeds into. */
+.oo-sidebar-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+          appearance: none;
+  border: none;
+  transition: color var(--transition), background-color var(--transition), box-shadow var(--transition);
+}
+
+.oo-sidebar-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* hover — only when interactive (not active, not disabled) */
+.oo-sidebar-icon:not(.is-active):not(:disabled):not([aria-disabled="true"]):hover {
+  background: var(--card);
+  color: var(--text);
+}
+
+/* keyboard focus — base.css supplies the global ring; restate so the
+   component reads correctly even when included standalone */
+.oo-sidebar-icon:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* ── active / current state ────────────────────────────────────────────── */
+.oo-sidebar-icon.is-active,
+.oo-sidebar-icon[aria-current="page"] {
+  background: var(--teal-glow);
+  color: var(--teal);
+  box-shadow: 0 0 14px -4px var(--teal);
+}
+
+/* left accent bar — bleeds into the rail's gutter to touch the rail edge */
+.oo-sidebar-icon.is-active::before,
+.oo-sidebar-icon[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--space-2));
+  top: var(--space-2);
+  bottom: var(--space-2);
+  width: 2px;
+  border-radius: 2px;
+  background: var(--teal);
+}
+
+/* ── disabled ──────────────────────────────────────────────────────────── */
+.oo-sidebar-icon:disabled,
+.oo-sidebar-icon.is-disabled,
+.oo-sidebar-icon[aria-disabled="true"] {
+  color: var(--dim);
+  background: transparent;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── the rail (optional container) ─────────────────────────────────────────
+   Vertical icon column with the nav surface + a right hairline. The 7px side
+   gutter (centring a 32px button in a 46px rail) is what the accent bar fills. */
+.oo-sidebar-icon-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  width: 46px;
+  flex-shrink: 0;
+  padding: var(--space-2) 0;
+  background: var(--nav);
+  border-right: 1px solid var(--border);
+}
+
+/* flexible spacer — pushes trailing items (e.g. Settings) to the rail bottom */
+.oo-sidebar-icon-sp {
+  flex: 1;
+}

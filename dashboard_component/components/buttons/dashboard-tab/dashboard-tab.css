@@ -1,0 +1,81 @@
+/* dashboard-tab · buttons · variants: two-up · states: default, hover, active, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-panel-header */
+
+/* Segmented tab control (Dashboard / NOC View) that sits in the dashboard
+   list-panel header and switches the main view. The selected segment fills
+   teal; idle segments are muted and brighten on hover.
+   Refined from .dp-tabs + .dp-tab(.on): tokenised radius/spacing/transition,
+   added hover/focus-visible/disabled, BEM-scoped under the root group class.
+   Selection is driven by aria-selected (see dashboard-tab.js); .is-active is a
+   styling alias so the partial renders correctly without JS. */
+
+/* group / track ─ equivalent of the original .dp-tabs */
+.oo-dashboard-tab {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+}
+
+/* one segment ─ equivalent of the original .dp-tab */
+.oo-dashboard-tab__opt {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  margin: 0;
+  background: transparent;
+  padding: 5px 13px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* small leading icon (optional) inherits the segment's text colour */
+.oo-dashboard-tab__opt svg {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  margin-right: var(--space-1);
+}
+
+/* hover: idle segment brightens toward primary text */
+.oo-dashboard-tab__opt:hover {
+  color: var(--text);
+}
+
+/* selected segment ─ original .dp-tab.on */
+.oo-dashboard-tab__opt.is-active,
+.oo-dashboard-tab__opt[aria-selected="true"] {
+  background: var(--teal);
+  color: var(--on-accent); /* on-accent text; white is not a palette token */
+}
+
+/* keep the selected colour stable while hovered */
+.oo-dashboard-tab__opt.is-active:hover,
+.oo-dashboard-tab__opt[aria-selected="true"]:hover {
+  color: var(--on-accent);
+}
+
+/* keyboard focus ring (base.css also supplies this for any .oo- control) */
+.oo-dashboard-tab__opt:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* disabled segment */
+.oo-dashboard-tab__opt:disabled,
+.oo-dashboard-tab__opt.is-disabled {
+  color: var(--dim);
+  cursor: not-allowed;
+  pointer-events: none;
+}

@@ -1,0 +1,19 @@
+<!-- topn · horizontal Top-N bar list widget. Declarative mounts only —
+     OOW.topn (topn.js) renders each one from its data-* attributes;
+     auto-mount.js wires them up. No inline scripts. -->
+
+<!-- variant: default (teal accent, seed 33 — "Top Talkers") -->
+<div class="oo-topn" data-widget="topn" data-seed="33" aria-label="Top Talkers"
+     style="width:340px;height:230px"></div>
+
+<!-- variant: blue accent (different seed) -->
+<div class="oo-topn" data-widget="topn" data-seed="7" data-color="blue" aria-label="Top Hosts by Traffic"
+     style="width:340px;height:230px"></div>
+
+<!-- variant: with-unit (purple accent, values suffixed "ms" — Top Hosts by Latency) -->
+<div class="oo-topn" data-widget="topn" data-seed="33" data-color="purple" data-unit="ms"
+     aria-label="Top Hosts by p95 Latency" style="width:340px;height:230px"></div>
+
+<!-- state: disabled / no-data (dimmed, interaction frozen) -->
+<div class="oo-topn" data-widget="topn" data-seed="12" aria-disabled="true" aria-label="Top N (loading)"
+     style="width:340px;height:230px"></div>

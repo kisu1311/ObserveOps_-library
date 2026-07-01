@@ -1,0 +1,242 @@
+/* counter-picker · planes · variants: default, empty, floating · states: default, hover, focus, selected, filtered, disabled · deps: tokens.css, base.css · used-in: create-widget-modal, data-source-config */
+
+/* Two-column metric/counter picker popup. The left rail composes a sticky
+   search field over a scrollable list of selectable counter rows; the right
+   pane is a metric-detail card (title + description + interpretation + RCA).
+   Refined from the monolith `.pop.wide` / `.cp-list` / `.cp-detail` into one
+   namespaced block: every colour, radius and gap is a token, the rows are real
+   <button>s with hover / focus-visible / selected / disabled states, and the
+   floating-popup chrome (fixed position, z-index, shadow) is opt-in via the
+   `--floating` modifier so the picker also renders as a self-contained card. */
+
+/* ── surface / shell ───────────────────────────────────────── */
+.oo-counter-picker {
+  display: flex;
+  width: 640px;
+  max-width: 90vw;
+  max-height: 340px;
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  font-family: var(--font-sans);
+  color: var(--text);
+}
+
+/* floating modifier — anchored popup chrome (fixed + lifted shadow). Toggle
+   visibility however the host prefers; this just supplies the popover look. */
+.oo-counter-picker--floating {
+  position: fixed;
+  z-index: 90;
+  box-shadow: var(--shadow-pop);
+}
+
+/* ── left rail: search + counter list ──────────────────────── */
+.oo-counter-picker__list {
+  display: flex;
+  flex-direction: column;
+  width: 290px;
+  flex: 0 0 290px;
+  min-height: 0;
+  padding: var(--space-2);
+  border-right: 1px solid var(--border);
+}
+
+/* sticky search field at the top of the rail */
+.oo-counter-picker__search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 0 0 auto;
+  margin-bottom: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.oo-counter-picker__search > svg {
+  flex: 0 0 auto;
+  width: 13px;
+  height: 13px;
+  color: var(--muted);
+  transition: color var(--transition);
+}
+
+.oo-counter-picker__search input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  outline: none;
+}
+
+.oo-counter-picker__search input::placeholder {
+  color: var(--muted);
+}
+
+.oo-counter-picker__search:hover {
+  border-color: var(--border2);
+}
+
+.oo-counter-picker__search:focus-within {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-glow);
+}
+
+.oo-counter-picker__search:focus-within > svg {
+  color: var(--teal);
+}
+
+/* scrollable list region (rows live here, below the sticky search) */
+.oo-counter-picker__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* optional group label between row clusters */
+.oo-counter-picker__group {
+  padding: var(--space-2) var(--space-3) var(--space-1);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* counter row — a real button so it is keyboard-focusable and pressable */
+.oo-counter-picker__opt {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* label can ellipsize while the trailing glyph stays pinned right */
+.oo-counter-picker__opt-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* trailing source glyph */
+.oo-counter-picker__opt-glyph {
+  flex: 0 0 auto;
+  display: inline-flex;
+  color: var(--dim);
+  transition: color var(--transition);
+}
+
+.oo-counter-picker__opt-glyph svg {
+  width: 12px;
+  height: 12px;
+}
+
+.oo-counter-picker__opt:hover {
+  background: var(--teal2);
+  color: var(--teal);
+}
+
+.oo-counter-picker__opt:hover .oo-counter-picker__opt-glyph {
+  color: var(--teal);
+}
+
+.oo-counter-picker__opt:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* selected row (single-select) — driven by aria-pressed / .is-on */
+.oo-counter-picker__opt.is-on,
+.oo-counter-picker__opt[aria-pressed="true"] {
+  background: var(--teal2);
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.oo-counter-picker__opt.is-on .oo-counter-picker__opt-glyph,
+.oo-counter-picker__opt[aria-pressed="true"] .oo-counter-picker__opt-glyph {
+  color: var(--teal);
+}
+
+/* disabled row */
+.oo-counter-picker__opt:disabled,
+.oo-counter-picker__opt.is-disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── right pane: metric-detail card ────────────────────────── */
+.oo-counter-picker__detail {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: var(--space-4) calc(var(--space-4) + var(--space-1));
+  overflow-y: auto;
+}
+
+.oo-counter-picker__detail h4 {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  word-break: break-all;
+}
+
+/* section label (Description / Interpretation / RCA) */
+.oo-counter-picker__dl {
+  margin: var(--space-3) 0 var(--space-1);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.oo-counter-picker__detail p {
+  margin: 0 0 var(--space-1);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.oo-counter-picker__detail p b {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* empty / placeholder detail pane (nothing selected) */
+.oo-counter-picker__empty {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  text-align: center;
+  color: var(--muted);
+}
+
+.oo-counter-picker__empty svg {
+  width: 44px;
+  height: 44px;
+  color: var(--dim);
+}

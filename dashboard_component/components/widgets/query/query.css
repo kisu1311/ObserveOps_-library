@@ -1,0 +1,110 @@
+/* query · widgets · variants: teal, blue, purple, orange, green, interactive · states: up, down, hover, focus, disabled · deps: tokens.css, base.css, utils/rng.js, utils/series.js, utils/smooth-path.js, utils/esc.js, widgets/auto-mount.js · used-in: dashboard-canvas, create-widget-modal, add-widget-panel */
+
+/* Single-value "Query Value" widget: one oversized numeric KPI, a muted metric
+   caption, a signed percent delta (green up / red down) and a sparkline of the
+   recent trend. Rendered by OOW.query (query.js) into a declarative
+   [data-widget="query"] mount and deterministic from data-seed.
+   Accent modifiers recolour ONLY the sparkline; the delta colour is semantic
+   (driven by sign via .is-up / .is-down). It is a display widget, so it is
+   non-interactive by default — add .oo-query--interactive to turn the whole
+   tile into a focusable drill-down target with hover lift + focus ring. */
+
+.oo-query {
+  --oo-query-accent: var(--teal);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  text-align: center;
+  border-radius: var(--radius-lg);
+  transition: background var(--transition), box-shadow var(--transition),
+    transform var(--transition);
+}
+
+/* hero numeral */
+.oo-query__value {
+  font-family: var(--font-mono);
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* metric caption */
+.oo-query__label {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* signed percent delta */
+.oo-query__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 12px;
+  font-weight: 600;
+}
+.oo-query__delta.is-up {
+  color: var(--green);
+}
+.oo-query__delta.is-down {
+  color: var(--red);
+}
+.oo-query__arrow {
+  font-size: 10px;
+  line-height: 1;
+}
+
+/* trend sparkline — stroke follows the accent modifier via currentColor */
+.oo-query__spark {
+  width: 80%;
+  height: 50px;
+  color: var(--oo-query-accent);
+  overflow: visible;
+}
+
+/* ── accent modifiers (recolour the sparkline only) ───────────────────── */
+.oo-query--teal {
+  --oo-query-accent: var(--teal);
+}
+.oo-query--blue {
+  --oo-query-accent: var(--blue);
+}
+.oo-query--purple {
+  --oo-query-accent: var(--purple);
+}
+.oo-query--orange {
+  --oo-query-accent: var(--orange);
+}
+.oo-query--green {
+  --oo-query-accent: var(--green);
+}
+
+/* ── interactive drill-down variant ───────────────────────────────────── */
+.oo-query--interactive {
+  cursor: pointer;
+}
+.oo-query--interactive:hover {
+  background: var(--card2);
+  box-shadow: var(--shadow-pop);
+  transform: translateY(-1px);
+}
+.oo-query--interactive:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* ── disabled / no-data treatment ─────────────────────────────────────── */
+.oo-query.is-disabled,
+.oo-query[aria-disabled="true"] {
+  opacity: 0.45;
+  pointer-events: none;
+  filter: grayscale(0.4);
+}

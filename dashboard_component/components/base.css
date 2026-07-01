@@ -1,0 +1,38 @@
+/* ════════════════════════════════════════════════════════════════════════
+   ObserveOps Component Library · BASE / RESET
+   Minimal shared base every component assumes. Include AFTER tokens.css.
+   Provides: box-sizing reset, the Inter + JetBrains Mono webfonts, element
+   resets (button/input strip native chrome), themed scrollbars, .mono helper,
+   and an accessible keyboard-focus ring for any .oo- interactive element.
+       <link rel="stylesheet" href="…/components/tokens.css">
+       <link rel="stylesheet" href="…/components/base.css">
+   Faithful to dashboard-module.html; the :focus-visible ring is an a11y refinement.
+   ════════════════════════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; font-size: inherit; color: inherit; outline: none; }
+input, select, textarea { border: none; background: none; font-family: inherit; font-size: inherit; color: inherit; outline: none; }
+
+svg { display: block; overflow: visible; }
+.mono { font-family: var(--font-mono); }
+
+/* themed scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* a11y refinement: visible focus ring for keyboard users on any oo- control */
+[class^="oo-"]:focus-visible,
+[class*=" oo-"]:focus-visible { outline: none; box-shadow: var(--ring); }

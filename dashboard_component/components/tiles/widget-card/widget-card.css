@@ -1,0 +1,194 @@
+/* widget-card · tiles · variants: default, wide, ai-tool · states: default, hover, focus, disabled, dragging, drop-target · deps: tokens.css · used-in: dashboard-canvas, widget-grid, fullscreen-widget */
+
+/* The dashboard widget container shell: a header (drag grip, title, tag,
+   toolbar of refresh / AI / more / remove) over a flexible body slot, with a
+   reveal-on-hover resize handle in the bottom-right corner. The body is a slot
+   the host fills with a chart/table/KPI; here it carries a labelled placeholder.
+   All colors/spacing/radius come from tokens — nothing is hardcoded. */
+
+.oo-widget-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* spans the full grid row when used inside the dashboard canvas grid */
+.oo-widget-card--wide {
+  grid-column: 1 / -1;
+}
+
+/* ── header ───────────────────────────────────────────── */
+.oo-widget-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px 13px;
+  border-bottom: 1px solid var(--border);
+  cursor: grab;
+}
+
+/* drag affordance — decorative; brightens with the header on hover */
+.oo-widget-card__grip {
+  display: flex;
+  align-items: center;
+  margin-right: -2px;
+  color: var(--dim);
+  cursor: grab;
+  transition: color var(--transition);
+}
+
+.oo-widget-card__grip svg {
+  width: 13px;
+  height: 13px;
+}
+
+.oo-widget-card__head:hover .oo-widget-card__grip {
+  color: var(--muted);
+}
+
+.oo-widget-card__title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oo-widget-card__tag {
+  flex: none;
+  padding: 2px 6px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  color: var(--teal);
+  background: var(--teal2);
+  border: 1px solid var(--teal-glow);
+  border-radius: var(--radius-sm);
+}
+
+/* ── toolbar of icon actions ──────────────────────────── */
+.oo-widget-card__tools {
+  display: flex;
+  gap: 2px;
+  color: var(--muted);
+}
+
+.oo-widget-card__tool {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.oo-widget-card__tool svg {
+  width: 13px;
+  height: 13px;
+}
+
+.oo-widget-card__tool:hover {
+  background: var(--card2);
+  color: var(--text);
+}
+
+.oo-widget-card__tool:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-widget-card__tool:disabled,
+.oo-widget-card__tool.is-disabled {
+  color: var(--dim);
+  background: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* AI sparkle action picks up the purple accent on hover */
+.oo-widget-card__tool--ai:hover {
+  color: var(--purple2);
+  background: var(--purple-bg);
+}
+
+/* ── body slot ────────────────────────────────────────── */
+.oo-widget-card__body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  overflow: hidden;
+}
+
+/* labelled empty-state shown when the body has no content yet */
+.oo-widget-card__placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--border2);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+/* ── resize handle (reveals on card hover) ────────────── */
+.oo-widget-card__resize {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  z-index: 3;
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
+  cursor: nwse-resize;
+  opacity: 0;
+  transition: opacity var(--transition), color var(--transition);
+}
+
+.oo-widget-card__resize svg {
+  width: 14px;
+  height: 14px;
+}
+
+.oo-widget-card:hover .oo-widget-card__resize {
+  opacity: .5;
+}
+
+.oo-widget-card__resize:hover {
+  opacity: 1;
+  color: var(--teal);
+}
+
+/* ── drag-reorder runtime states ──────────────────────── */
+.oo-widget-card--dragging {
+  opacity: .38;
+  outline: 2px dashed var(--teal);
+  outline-offset: -1px;
+}
+
+.oo-widget-card--drop-target {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}

@@ -1,0 +1,17 @@
+<!-- alerts · active-alerts table widget. Declarative mounts only —
+     OOW.alerts (alerts.js) renders each one from its data-* attributes
+     (deterministic seed); auto-mount.js wires them up. No inline scripts.
+     Each mount becomes a scrollable, focusable region: a sticky-header table
+     of Severity badge / Alert / Source IP / mono Time-ago rows. -->
+
+<!-- variant: default (seed 43 — the canonical "Active Alerts" dashboard widget) -->
+<div class="oo-alerts" data-widget="alerts" data-seed="43" aria-label="Active alerts"
+     style="width:360px;height:240px"></div>
+
+<!-- variant: alternate dataset (different seed — different severity mix) -->
+<div class="oo-alerts" data-widget="alerts" data-seed="7" aria-label="Active alerts — edge fabric"
+     style="width:360px;height:240px"></div>
+
+<!-- state: disabled / no-data / loading (dimmed, interaction frozen) -->
+<div class="oo-alerts" data-widget="alerts" data-seed="12" aria-disabled="true"
+     aria-label="Active alerts (loading)" style="width:360px;height:240px"></div>

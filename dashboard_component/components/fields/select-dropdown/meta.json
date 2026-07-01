@@ -1,0 +1,13 @@
+{
+  "name": "select-dropdown",
+  "category": "fields",
+  "title": "Select Dropdown",
+  "description": "Select trigger showing the current value with a chevron; clicking it reveals an options listbox. Choosing an option writes it back to the trigger and closes the menu. Ships value, placeholder, open and disabled states.",
+  "rootClass": "oo-select",
+  "variants": ["default", "placeholder", "open", "block"],
+  "states": ["default", "hover", "focus", "open", "selected", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal", "series-config-panel", "rollup-config"],
+  "tags": ["select", "dropdown", "field", "menu", "listbox", "picker", "combobox"],
+  "demoHeight": 240
+}

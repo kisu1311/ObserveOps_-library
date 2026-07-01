@@ -1,0 +1,34 @@
+<!-- variant: default — sparkle (SPARK) glyph + "Generate" label -->
+<button type="button" class="oo-ai-gen-btn">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z" />
+    <path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z" />
+  </svg>
+  <span>Generate</span>
+</button>
+
+<!-- variant: icon-only — square trigger, accessible name on the button -->
+<button type="button" class="oo-ai-gen-btn icon-only" aria-label="Generate widget with AI">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z" />
+    <path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z" />
+  </svg>
+</button>
+
+<!-- state: busy — generating; sparkle pulses, non-interactive -->
+<button type="button" class="oo-ai-gen-btn" aria-busy="true">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z" />
+    <path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z" />
+  </svg>
+  <span>Generating&hellip;</span>
+</button>
+
+<!-- state: disabled — no prompt entered yet -->
+<button type="button" class="oo-ai-gen-btn" disabled aria-disabled="true">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z" />
+    <path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z" />
+  </svg>
+  <span>Generate</span>
+</button>

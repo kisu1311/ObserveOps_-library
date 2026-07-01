@@ -1,0 +1,73 @@
+/* style-chooser · buttons · variants: area, line, bar, hbar · states: default, selected, hover, focus, disabled · deps: tokens.css, base.css · used-in: create-widget-modal */
+
+/* 42×34 chart-style preview buttons (Area / Line / Bar …) rendered as a
+   single-select group. The container is the radio-group; each button holds a
+   small inline SVG glyph that inherits the button colour via currentColor.
+   Selected button → teal edge + tint, reflected by aria-pressed="true". */
+
+.oo-style-chooser {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.oo-style-chooser__btn {
+  flex-shrink: 0;
+  width: 42px;
+  height: 34px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition),
+    background var(--transition);
+}
+
+.oo-style-chooser__btn svg {
+  width: 22px;
+  height: 16px;
+  pointer-events: none;
+}
+
+/* hover — preview the affordance with text colour + teal edge */
+.oo-style-chooser__btn:hover {
+  color: var(--text);
+  border-color: var(--teal);
+}
+
+/* keyboard focus — base.css supplies the ring; reinforce the teal edge */
+.oo-style-chooser__btn:focus-visible {
+  outline: none;
+  color: var(--teal);
+  border-color: var(--teal);
+  box-shadow: var(--ring);
+}
+
+/* selected — driven by aria-pressed (single source of truth); .is-on mirrors it */
+.oo-style-chooser__btn[aria-pressed="true"],
+.oo-style-chooser__btn.is-on {
+  color: var(--teal);
+  border-color: var(--teal);
+  background: var(--teal2);
+}
+
+/* disabled */
+.oo-style-chooser__btn:disabled,
+.oo-style-chooser__btn.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  color: var(--dim);
+  border-color: var(--border);
+  background: var(--card);
+}
+
+.oo-style-chooser__btn:disabled:hover,
+.oo-style-chooser__btn.is-disabled:hover {
+  color: var(--dim);
+  border-color: var(--border);
+}

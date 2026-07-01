@@ -1,0 +1,106 @@
+/* empty-state · tiles · variants: default, positive, with-action, compact · states: default, action:hover, action:focus, action:disabled · deps: tokens.css, base.css · used-in: ai-insights-drawer, user-defined-widgets-gallery, empty-panel */
+
+/* Centered empty / placeholder state used in the AI insights drawer and any
+   empty panel: a large faint icon stacked over an "All clear"-style heading and
+   a muted hint line. Refined from .ph-empty / .hint into a namespaced block with
+   an optional inline CTA button (e.g. "Create a widget") that carries real
+   hover / focus-visible / disabled states, plus positive-tone and compact-size
+   modifiers. Every colour and metric comes from tokens.css. */
+
+/* ── container ──────────────────────────────────────────────── */
+.oo-empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 180px;
+  padding: var(--space-4);
+  color: var(--muted);
+  text-align: center;
+  font-family: var(--font-sans);
+}
+
+/* compact density — tighter for small drawers / cards */
+.oo-empty-state.is-compact {
+  gap: var(--space-2);
+  min-height: 120px;
+}
+
+/* ── icon ───────────────────────────────────────────────────── */
+.oo-empty-state__icon {
+  width: 46px;
+  height: 46px;
+  color: var(--dim);
+}
+.oo-empty-state__icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.oo-empty-state.is-compact .oo-empty-state__icon {
+  width: 36px;
+  height: 36px;
+}
+
+/* positive tone — an "all clear" glyph reads in the brand teal */
+.oo-empty-state.is-positive .oo-empty-state__icon {
+  color: var(--teal);
+}
+
+/* ── heading ────────────────────────────────────────────────── */
+.oo-empty-state__title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ── hint line (was .hint) ──────────────────────────────────── */
+.oo-empty-state__hint {
+  margin: 0;
+  max-width: 32ch;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* ── optional inline CTA ────────────────────────────────────── */
+.oo-empty-state__action {
+  margin-top: var(--space-1);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--teal2);
+  border: 1px solid var(--teal);
+  border-radius: var(--radius);
+  color: var(--teal);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+    border-color var(--transition);
+}
+.oo-empty-state__action svg {
+  width: 14px;
+  height: 14px;
+}
+.oo-empty-state__action:hover {
+  background: var(--teal);
+  color: var(--on-accent);
+}
+.oo-empty-state__action:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-empty-state__action:disabled,
+.oo-empty-state__action.is-disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--dim);
+}

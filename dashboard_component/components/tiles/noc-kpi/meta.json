@@ -1,0 +1,13 @@
+{
+  "name": "noc-kpi",
+  "category": "tiles",
+  "title": "NOC KPI Counter",
+  "description": "Small NOC wallboard header counter: a big status-colored value over a quiet uppercase label (Monitors / Critical / Warning / Up / Down). Ships as a row (.oo-noc-kpi-row); tone modifiers recolor only the value, and tiles can be promoted to single-select status-filter buttons with hover, selected and disabled states.",
+  "rootClass": "oo-noc-kpi",
+  "variants": ["neutral", "critical", "warning", "up", "down", "row", "selectable"],
+  "states": ["default", "hover", "focus", "selected", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["noc-wallboard", "noc-view-header"],
+  "tags": ["kpi", "counter", "noc", "wallboard", "stat", "metric", "tile"],
+  "demoHeight": 200
+}

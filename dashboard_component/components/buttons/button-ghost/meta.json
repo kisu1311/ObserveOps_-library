@@ -1,0 +1,13 @@
+{
+  "name": "button-ghost",
+  "category": "buttons",
+  "title": "Ghost Button",
+  "description": "Secondary transparent, bordered button for low-emphasis actions (Cancel, Reset). Border brightens on hover.",
+  "rootClass": "oo-btn-ghost",
+  "variants": ["ghost", "with-icon", "block"],
+  "states": ["default", "hover", "active", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal", "modal-footer"],
+  "tags": ["button", "secondary", "ghost", "cancel", "reset"],
+  "demoHeight": 80
+}

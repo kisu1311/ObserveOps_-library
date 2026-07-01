@@ -1,0 +1,13 @@
+{
+  "name": "aiinsights",
+  "category": "widgets",
+  "title": "AI Insights Widget",
+  "description": "The dashboard's AI Insights feed renderer. A declarative mount (data-widget=\"aiinsights\") is filled by the OOW.aiinsights renderer with a role=\"list\" column of compact insight cards. Each card carries a coloured severity rail on its left edge, an uppercase \"kind\" label (anomaly / forecast / root cause / noise) tinted by its own category colour, a right-aligned mono confidence read-out, a bold title and a muted one-line description. The renderer emits structure only; the severity rail (--ins-sev) and kind tint (--ins-kc) are injected inline as var(--token) references, so aiinsights.css owns all presentation and nothing hardcodes palette hex. Confidence percentages are the only seed-driven data, so output is deterministic and renders identically every load. Rows lift on hover, expose a keyboard focus ring when made interactive for drill-down (rendered as button/link), and an aria-disabled feed dims the whole set for no-data / loading. Depends on the shared rng / esc utils with small local fallbacks.",
+  "rootClass": "oo-aiinsights",
+  "variants": ["feed", "alt-seed", "static-list", "interactive-row"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/esc.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-grid", "create-widget-modal", "widget-fullscreen", "ai-generate-widget"],
+  "tags": ["aiinsights", "widget", "renderer", "ai", "ml", "insights", "feed", "list", "anomaly", "rca", "confidence", "severity"],
+  "demoHeight": 220
+}

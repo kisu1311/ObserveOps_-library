@@ -1,0 +1,13 @@
+{
+  "name": "ai-copilot-drawer",
+  "category": "planes",
+  "title": "AI Copilot Drawer",
+  "description": "Right-edge AI Copilot drawer for the Dashboard module. A gradient-mark header sits over an Insights / Ask AI tab strip; the Insights tab shows a pulsing live-analysis note and a scrollable column of composed insight-card tiles, while the Ask AI tab shows a scrollable chat-message thread over a footer of suggestion-chip prompts and a chat-input composer. This component owns only the drawer chrome, tab regions and composition slots; the tiles, bubbles, chips and composer keep their own components (deps). Tabs are real buttons driven by aria-selected and [hidden] tabpanels; the close button and tabs carry hover, focus-visible and disabled states, and a `--drawer` modifier makes the chrome a fixed slide-in.",
+  "rootClass": "oo-ai-copilot-drawer",
+  "variants": ["insights", "ask", "drawer"],
+  "states": ["default", "open", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "insight-card.css", "chat-message.css", "chat-input.css", "suggestion-chip.css"],
+  "usedIn": ["dashboard-module", "ai-copilot-flow", "ai-insights-panel"],
+  "tags": ["plane", "drawer", "panel", "ai", "copilot", "insights", "chat", "tabs", "slide-in"],
+  "demoHeight": 560
+}

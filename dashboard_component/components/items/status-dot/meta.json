@@ -1,0 +1,13 @@
+{
+  "name": "status-dot",
+  "category": "items",
+  "title": "Status Dot",
+  "description": "8×8 colored circle indicating health/status, inline before an optional label. Variants ok (green), crit (red), warn (yellow), info (blue) and muted; optional glow ring or live pulse, plus a dimmed disabled state.",
+  "rootClass": "oo-status-dot",
+  "variants": ["ok", "crit", "warn", "info", "muted", "with-label", "dot-only", "glow", "pulse"],
+  "states": ["default", "glow", "pulse", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["monitor-table-widget", "source-picker-modal", "create-widget-flow"],
+  "tags": ["status", "indicator", "dot", "health", "severity", "badge"],
+  "demoHeight": 120
+}

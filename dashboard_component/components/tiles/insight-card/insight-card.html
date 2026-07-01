@@ -1,0 +1,71 @@
+<!-- variant: crit -->
+<article class="oo-insight-card oo-insight-card--crit" aria-label="Critical AI insight">
+  <div class="oo-insight-card__top">
+    <span class="oo-insight-card__kind">Anomaly</span>
+    <span class="oo-insight-card__conf">Confidence <b>94%</b></span>
+  </div>
+  <div class="oo-insight-card__title">Disk usage anomaly on DATASTORE-01</div>
+  <div class="oo-insight-card__desc">Current-partition usage is <b>80.9%</b> — 3.1&sigma; above the 14-day learned baseline. Sustained climb began ~46m ago.</div>
+  <svg class="oo-insight-card__spark" viewBox="0 0 320 30" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 23 L29 21 L58 24 L87 19 L116 21 L145 16 L174 18 L203 12 L232 14 L261 7 L290 4 L320 2 L320 30 L0 30 Z" fill="currentColor" opacity=".13"/>
+    <path d="M0 23 L29 21 L58 24 L87 19 L116 21 L145 16 L174 18 L203 12 L232 14 L261 7 L290 4 L320 2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  </svg>
+  <div class="oo-insight-card__acts">
+    <button type="button" class="oo-insight-btn primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      Add as widget
+    </button>
+    <button type="button" class="oo-insight-btn">Investigate</button>
+    <button type="button" class="oo-insight-btn ghost" data-oo-dismiss aria-label="Dismiss insight">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+</article>
+
+<!-- variant: warn -->
+<article class="oo-insight-card oo-insight-card--warn" aria-label="Warning AI insight">
+  <div class="oo-insight-card__top">
+    <span class="oo-insight-card__kind">Forecast</span>
+    <span class="oo-insight-card__conf">Confidence <b>82%</b></span>
+  </div>
+  <div class="oo-insight-card__title">sql-primary will breach session limit</div>
+  <div class="oo-insight-card__desc">Active sessions are projected to cross <b>350</b> in ~<b>3h 10m</b> at the current rate. Consider scaling the connection pool.</div>
+  <svg class="oo-insight-card__spark" viewBox="0 0 320 30" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 25 L29 22 L58 23 L87 20 L116 21 L145 17 L174 18 L203 14 L232 15 L261 11 L290 9 L320 6 L320 30 L0 30 Z" fill="currentColor" opacity=".13"/>
+    <path d="M0 25 L29 22 L58 23 L87 20 L116 21 L145 17 L174 18 L203 14 L232 15 L261 11 L290 9 L320 6" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  </svg>
+  <div class="oo-insight-card__acts">
+    <button type="button" class="oo-insight-btn primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      Add as widget
+    </button>
+    <button type="button" class="oo-insight-btn">Investigate</button>
+    <button type="button" class="oo-insight-btn ghost" data-oo-dismiss aria-label="Dismiss insight">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+</article>
+
+<!-- variant: info -->
+<article class="oo-insight-card oo-insight-card--info" aria-label="Informational AI insight">
+  <div class="oo-insight-card__top">
+    <span class="oo-insight-card__kind">Correlation</span>
+    <span class="oo-insight-card__conf">Confidence <b>90%</b></span>
+  </div>
+  <div class="oo-insight-card__title">core-router-01 &amp; mq-broker move together</div>
+  <div class="oo-insight-card__desc">CPU on <b>core-router-01</b> and queue depth on <b>mq-broker</b> show <b>0.86</b> correlation over 24h — likely a shared traffic driver.</div>
+  <svg class="oo-insight-card__spark" viewBox="0 0 320 30" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 15 L29 17 L58 12 L87 18 L116 13 L145 19 L174 12 L203 16 L232 10 L261 15 L290 11 L320 16 L320 30 L0 30 Z" fill="currentColor" opacity=".13"/>
+    <path d="M0 15 L29 17 L58 12 L87 18 L116 13 L145 19 L174 12 L203 16 L232 10 L261 15 L290 11 L320 16" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  </svg>
+  <div class="oo-insight-card__acts">
+    <button type="button" class="oo-insight-btn primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      Add as widget
+    </button>
+    <button type="button" class="oo-insight-btn">Investigate</button>
+    <button type="button" class="oo-insight-btn ghost" data-oo-dismiss aria-label="Dismiss insight">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+</article>

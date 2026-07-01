@@ -1,0 +1,204 @@
+/* metric-detail-card · tiles · variants: default, higher-better, lower-better, compact · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: counter-picker, create-widget-flow, data-source-config */
+
+/* The metric / counter detail card — the right-hand pane of the counter picker.
+   Shows a monospaced metric name with a "higher / lower is better" goal chip, a
+   description block, an interpretation list (what high vs low values mean, tinted
+   good / bad), and a small RCA / usage note. Originally the borderless `.cp-detail`
+   pane living inside `.pop.wide`; here it is decoupled into a clean, self-contained
+   card surface (border, radius, shadow) so it can be reused anywhere a metric needs
+   to be explained. Presentational by default — the optional focusable form gets the
+   shared base focus ring for keyboard navigation inside a picker list. */
+
+.oo-metric-detail-card {
+  /* per-card semantic accents — used by the interpretation rows */
+  --mdc-good: var(--green);
+  --mdc-bad: var(--orange);
+
+  display: flex;
+  flex-direction: column;
+  max-width: 360px;
+  padding: var(--space-4);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pop);
+  color: var(--text);
+  font-family: var(--font-sans);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+/* ── header: metric name + goal chip ─────────────────────── */
+.oo-metric-detail-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
+.oo-metric-detail-card__name {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+  word-break: break-word;
+}
+
+/* the "higher / lower is better" interpretation chip */
+.oo-metric-detail-card__goal {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding: 2px 9px 2px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--teal);
+  background: var(--teal2);
+  border: 1px solid color-mix(in srgb, var(--teal) 30%, transparent);
+  border-radius: var(--radius-pill);
+}
+
+.oo-metric-detail-card__goal svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ── section labels (Description / Interpretation / RCA) ──── */
+.oo-metric-detail-card__label {
+  margin: var(--space-3) 0 var(--space-1);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.oo-metric-detail-card__label:first-child {
+  margin-top: 0;
+}
+
+/* ── body copy ───────────────────────────────────────────── */
+.oo-metric-detail-card__desc {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.oo-metric-detail-card__desc strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ── interpretation list (high vs low values) ────────────── */
+.oo-metric-detail-card__interp {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.oo-metric-detail-card__interp-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.oo-metric-detail-card__arrow {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: var(--radius-sm);
+  background: var(--card2);
+  color: var(--muted);
+}
+
+.oo-metric-detail-card__arrow svg {
+  width: 12px;
+  height: 12px;
+}
+
+.oo-metric-detail-card__interp-row--good .oo-metric-detail-card__arrow {
+  color: var(--mdc-good);
+  background: var(--green-bg);
+}
+
+.oo-metric-detail-card__interp-row--bad .oo-metric-detail-card__arrow {
+  color: var(--mdc-bad);
+  background: var(--orange-bg);
+}
+
+.oo-metric-detail-card__interp-row p {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.oo-metric-detail-card__interp-row strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ── RCA / usage note ────────────────────────────────────── */
+.oo-metric-detail-card__note {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--muted);
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.oo-metric-detail-card__note svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  color: var(--teal);
+}
+
+.oo-metric-detail-card__note strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ── compact variant — tighter pane, drops the note ──────── */
+.oo-metric-detail-card--compact {
+  max-width: 300px;
+  padding: var(--space-3);
+  box-shadow: none;
+}
+
+/* ── states ──────────────────────────────────────────────── */
+.oo-metric-detail-card:hover {
+  border-color: var(--border2);
+}
+
+.oo-metric-detail-card:focus-visible {
+  outline: none;
+  box-shadow: var(--ring), var(--shadow-pop);
+}
+
+.oo-metric-detail-card.is-disabled,
+.oo-metric-detail-card[aria-disabled="true"] {
+  opacity: .5;
+  filter: saturate(.7);
+  pointer-events: none;
+}

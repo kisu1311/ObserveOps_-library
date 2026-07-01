@@ -1,0 +1,13 @@
+{
+  "name": "icon-button",
+  "category": "buttons",
+  "title": "Icon Button",
+  "description": "Compact 30x30 topbar icon button. Ghost by default, with an optional notification badge and an AI sparkle variant for the Copilot launcher.",
+  "rootClass": "oo-icon-button",
+  "variants": ["ghost", "badged", "ai"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css"],
+  "usedIn": ["dashboard-topbar", "ai-copilot-launcher", "alerts-tray"],
+  "tags": ["button", "icon", "topbar", "badge", "ai"],
+  "demoHeight": 80
+}

@@ -1,0 +1,135 @@
+/* popup-menu · planes · variants: static, floating, end, with-search, with-groups · states: default, open, hover, focus, disabled · deps: tokens.css, base.css, menu-item.css · used-in: widget-more-menu, counter-picker, source-picker, ai-insights */
+
+/* Generic floating dropdown / context-menu *surface*: a rounded, shadowed panel
+   that floats over the page and holds a list of options. Refined from the
+   monolith's `.pop` (the `#menuPop` / `#counterPop` / `#sourcePop` popovers).
+   This is the *plane* only — the option rows themselves are the composed
+   `menu-item` atom (`.oo-menu__item` / `.oo-menu__sep`), so this file deals with
+   the container: surface chrome, optional sticky search header, group labels,
+   and the floating/anchored open-close behaviour. Base renders in flow (so the
+   gallery always shows an open menu); add `--floating` + `.is-open` for a real
+   anchored dropdown. A small `__trigger` ("···") + `-host` wrapper power the
+   interactive demo (see popup-menu.js). */
+
+/* ── surface ─────────────────────────────────────────────────── */
+.oo-popup-menu {
+  min-width: 180px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: var(--space-1);
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pop);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+/* ── sticky search header (counter / source pickers) ─────────── */
+.oo-popup-menu__search {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.oo-popup-menu__search svg {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  color: var(--muted);
+}
+.oo-popup-menu__search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+}
+.oo-popup-menu__search input::placeholder { color: var(--muted); }
+.oo-popup-menu__search:focus-within {
+  border-color: var(--teal);
+}
+
+/* ── group / section label ───────────────────────────────────── */
+.oo-popup-menu__group {
+  padding: var(--space-2) var(--space-3) var(--space-1);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+}
+
+/* ── floating modifier (anchored dropdown) ───────────────────── */
+.oo-popup-menu--floating {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  z-index: 90;
+  display: none;
+}
+.oo-popup-menu--floating.is-open { display: block; }
+/* right-align the floating panel to its anchor's trailing edge */
+.oo-popup-menu--end {
+  left: auto;
+  right: 0;
+}
+
+/* ── positioning host (wraps trigger + floating menu) ────────── */
+.oo-popup-menu-host {
+  position: relative;
+  display: inline-block;
+}
+
+/* ── trigger ("···" / more) button ───────────────────────────── */
+.oo-popup-menu__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition),
+              background var(--transition);
+}
+.oo-popup-menu__trigger svg {
+  width: 16px;
+  height: 16px;
+}
+.oo-popup-menu__trigger:hover {
+  background: var(--teal2);
+  border-color: var(--teal);
+  color: var(--teal);
+}
+.oo-popup-menu__trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  color: var(--teal);
+}
+.oo-popup-menu__trigger[aria-expanded="true"] {
+  background: var(--teal2);
+  border-color: var(--teal);
+  color: var(--teal);
+}
+.oo-popup-menu__trigger:disabled,
+.oo-popup-menu__trigger[aria-disabled="true"] {
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--dim);
+  cursor: not-allowed;
+}

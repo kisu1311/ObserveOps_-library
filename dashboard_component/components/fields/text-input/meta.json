@@ -1,0 +1,13 @@
+{
+  "name": "text-input",
+  "category": "fields",
+  "title": "Text Input Field",
+  "description": "Labelled single-line text field with a muted caption label and a borderless input whose hairline bottom border brightens to teal on focus. Used for Widget Name / Description in the Create Widget flow.",
+  "rootClass": "oo-text-input",
+  "variants": ["default", "with-value", "focused", "required", "disabled"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal", "widget-config-panel"],
+  "tags": ["input", "text", "field", "form", "label", "underline"],
+  "demoHeight": 150
+}

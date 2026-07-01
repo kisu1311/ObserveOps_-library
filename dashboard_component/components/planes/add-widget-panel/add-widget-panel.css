@@ -1,0 +1,162 @@
+/* add-widget-panel · planes · variants: docked, drawer, predefined · states: default, open, hover, focus, disabled · deps: tokens.css, base.css, add-widget-tab.css, search-input.css, template-card.css · used-in: dashboard-module, add-widget-flow */
+
+/* Slide-in right "Add New Widget" panel. It frames three composed atoms — the
+   underline tab group (.oo-aw-tabs), the search field (.oo-search-input) and a
+   scrollable grid of template cards (.oo-template-card) — under a titled header
+   with a dismiss control. Refined from the monolith .aw / .aw-head / .aw-tabs /
+   .aw-body / .aw-search into a namespaced block: every colour, radius and gap
+   is a token, the close button is a real <button> with hover/focus/disabled
+   states, and the slide-in chrome is opt-in via the `--drawer` modifier so the
+   panel also renders as a self-contained docked card. */
+
+/* ── panel shell ───────────────────────────────────────────── */
+.oo-add-widget-panel {
+  display: flex;
+  flex-direction: column;
+  width: 560px;
+  max-width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  font-family: var(--font-sans);
+}
+
+/* drawer modifier — fixed full-height slide-in from the right edge. Toggle
+   `.is-open` (mirrors the legacy `.open`) to animate it into view. */
+.oo-add-widget-panel--drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  border-radius: 0;
+  box-shadow: var(--shadow-pop);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(.4, 0, .2, 1);
+}
+.oo-add-widget-panel--drawer.is-open,
+.oo-add-widget-panel--drawer.open {
+  transform: translateX(0);
+}
+
+/* ── header ────────────────────────────────────────────────── */
+.oo-add-widget-panel__head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 16px 20px 12px;
+}
+.oo-add-widget-panel__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* dismiss control */
+.oo-add-widget-panel__x {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+.oo-add-widget-panel__x svg {
+  width: 14px;
+  height: 14px;
+}
+.oo-add-widget-panel__x:hover {
+  background: var(--card);
+  color: var(--text);
+}
+.oo-add-widget-panel__x:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-add-widget-panel__x:disabled,
+.oo-add-widget-panel__x.is-disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  background: transparent;
+  color: var(--muted);
+}
+
+/* ── search slot (wraps the composed .oo-search-input) ─────── */
+.oo-add-widget-panel__search {
+  flex-shrink: 0;
+  margin: var(--space-4) 20px;
+}
+
+/* ── scrollable body ───────────────────────────────────────── */
+.oo-add-widget-panel__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 20px 24px;
+}
+
+/* category label between grids */
+.oo-add-widget-panel__cat {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .2px;
+  margin: 16px 0 11px;
+}
+.oo-add-widget-panel__cat:first-child {
+  margin-top: 0;
+}
+
+/* template-card grid: 4 columns for the type tiles… */
+.oo-add-widget-panel__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+/* …3 columns for the wider predefined / user-defined library cards */
+.oo-add-widget-panel__grid--lib {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* tab-panel sections toggled by the composed tab group */
+.oo-add-widget-panel__tabpanel[hidden] {
+  display: none;
+}
+
+/* empty state (e.g. no user-defined widgets yet) */
+.oo-add-widget-panel__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 320px;
+  text-align: center;
+  color: var(--muted);
+}
+.oo-add-widget-panel__empty svg {
+  width: 34px;
+  height: 34px;
+  color: var(--dim);
+}
+.oo-add-widget-panel__empty strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* disabled whole-panel treatment */
+.oo-add-widget-panel.is-disabled {
+  opacity: .55;
+  pointer-events: none;
+}

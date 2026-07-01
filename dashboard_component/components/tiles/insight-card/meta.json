@@ -1,0 +1,13 @@
+{
+  "name": "insight-card",
+  "category": "tiles",
+  "title": "AI Insight Card",
+  "description": "AI insight tile surfaced in the Copilot drawer's AI Insights tab: a severity-keyed left rail, an uppercase kind tag with a right-aligned confidence%, a title, a description, a sample sparkline (inline SVG that inherits the severity colour), and an action row composing the insight-btn classes (Add as widget / Investigate / Dismiss). The Dismiss button fades and removes its own card.",
+  "rootClass": "oo-insight-card",
+  "variants": ["default", "crit", "warn", "ok", "info"],
+  "states": ["default", "hover", "focus", "disabled", "dismissing"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["ai-insights-panel", "ai-copilot-drawer"],
+  "tags": ["card", "tile", "ai", "insight", "severity", "sparkline", "confidence"],
+  "demoHeight": 240
+}

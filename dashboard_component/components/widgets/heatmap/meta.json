@@ -1,0 +1,13 @@
+{
+  "name": "heatmap",
+  "category": "widgets",
+  "title": "Severity Heat Map",
+  "description": "A hexagonal heat-map widget rendered by OOW.heatmap: a honeycomb grid of pointy-top hexagons coloured on the 5-step severity scale (green to red), seeded so it draws identically every load. Useful for showing alert / availability density across many monitors at a glance. The renderer emits an inline SVG into a declarative mount; CSS supplies the inter-cell gap stroke, hover lift and disabled state from design tokens, and an optional standalone severity legend documents the colour scale. Grid size is tunable via data-cols / data-rows.",
+  "rootClass": "oo-heatmap",
+  "variants": ["default", "dense", "compact", "legend"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/colors.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-grid", "create-widget-modal", "widget-fullscreen"],
+  "tags": ["widget", "heatmap", "hexagon", "severity", "alert", "availability", "data-viz"],
+  "demoHeight": 240
+}

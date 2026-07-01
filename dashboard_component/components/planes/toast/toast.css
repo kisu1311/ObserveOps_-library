@@ -1,0 +1,200 @@
+/* toast · planes · variants: success, info, error, warning · states: default, show, hiding, close:hover, close:focus, close:disabled · deps: tokens.css, base.css · used-in: dashboard-canvas, add-widget-panel, create-widget-modal, ai-insights-drawer */
+
+/* Bottom-center transient toast. Refined from the live single `.toast` node
+   (one teal-bordered pill the global toast() function rewrote + flashed via a
+   `.show` class) into a reusable, semantic notification. The accent colour is
+   driven by one local custom property (--oo-toast-accent) so a tone modifier
+   only flips two vars; the icon sits in a tinted chip and the message carries
+   an optional dismiss (✕). A separate .oo-toast-host fixes a stack of toasts to
+   the bottom-centre of the viewport (or, with --contained, a positioned
+   ancestor / the gallery stage). Resting toasts are fully visible so they read
+   statically; spawned ones run the enter animation via .is-show and fade out
+   with .is-hiding, mirroring the live 2.4s auto-dismiss. */
+
+/* ── the pill ───────────────────────────────────────────────── */
+.oo-toast {
+  --oo-toast-accent: var(--teal);
+  --oo-toast-tint: var(--teal2);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 360px;
+  padding: var(--space-3) var(--space-4);
+
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text);
+
+  background: var(--panel);
+  border: 1px solid var(--oo-toast-accent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pop);
+}
+
+/* ── tone modifiers (only flip the accent + tint) ───────────── */
+.oo-toast--success {
+  --oo-toast-accent: var(--green);
+  --oo-toast-tint: var(--green-bg);
+}
+.oo-toast--info {
+  --oo-toast-accent: var(--blue);
+  --oo-toast-tint: var(--blue-bg);
+}
+.oo-toast--error {
+  --oo-toast-accent: var(--red);
+  --oo-toast-tint: var(--red-bg);
+}
+.oo-toast--warning {
+  --oo-toast-accent: var(--orange);
+  --oo-toast-tint: var(--orange-bg);
+}
+
+/* ── icon chip ──────────────────────────────────────────────── */
+.oo-toast__icon {
+  flex-shrink: 0;
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-pill);
+  background: var(--oo-toast-tint);
+  color: var(--oo-toast-accent);
+}
+.oo-toast__icon svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+/* ── message ────────────────────────────────────────────────── */
+.oo-toast__msg {
+  flex: 1;
+  min-width: 0;
+}
+.oo-toast__msg strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ── dismiss (✕) control ────────────────────────────────────── */
+.oo-toast__close {
+  flex-shrink: 0;
+  margin-left: var(--space-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+.oo-toast__close svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+.oo-toast__close:hover {
+  color: var(--text);
+  background: var(--card);
+}
+.oo-toast__close:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-toast__close:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  color: var(--muted);
+  background: transparent;
+}
+
+/* ── transient enter / leave ────────────────────────────────── */
+@keyframes oo-toast-in {
+  from { opacity: 0; transform: translateY(12px) scale(.98); }
+  to   { opacity: 1; transform: none; }
+}
+.oo-toast.is-show {
+  animation: oo-toast-in .25s ease both;
+}
+.oo-toast.is-hiding {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .oo-toast.is-show { animation: none; }
+  .oo-toast.is-hiding { transition: opacity .2s ease; transform: none; }
+}
+
+/* ── fixed bottom-centre host (real placement) ──────────────── */
+.oo-toast-host {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  z-index: 120;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+
+  pointer-events: none;
+}
+.oo-toast-host .oo-toast {
+  pointer-events: auto;
+}
+/* confine to a positioned ancestor (gallery stage / embedded region) */
+.oo-toast-host--contained {
+  position: absolute;
+}
+
+/* ── demo stage + trigger (gallery affordance) ──────────────── */
+.oo-toast-stage {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 360px;
+  height: 160px;
+  padding: var(--space-3);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card2);
+}
+.oo-toast__trigger {
+  position: relative;
+  z-index: 1;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--teal);
+  background: var(--teal);
+  color: var(--on-accent);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.oo-toast__trigger:hover {
+  background: color-mix(in srgb, var(--teal) 85%, var(--bg));
+}
+.oo-toast__trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-toast__trigger:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  background: var(--teal);
+}

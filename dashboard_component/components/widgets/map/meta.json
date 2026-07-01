@@ -1,0 +1,13 @@
+{
+  "name": "map",
+  "category": "widgets",
+  "title": "Geo Distribution Map",
+  "description": "A stylised geographic distribution map rendered by OOW.map: a tokenised plate over a faint coordinate grid scattered with ~11 severity-coloured data points (green to red), each wrapped in a soft, slowly pulsing halo and seeded so it draws identically every load. Used to show where monitored locations / datacenters sit on the health spectrum at a glance. The renderer emits an inline SVG into a declarative mount; CSS supplies the plate, grid stroke, halo pulse, hover lift, focus ring and disabled state from design tokens — only the point fills are palette hexes (generated SVG data). Point count is tunable via data-points.",
+  "rootClass": "oo-map",
+  "variants": ["default", "dense", "compact"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/colors.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-grid", "create-widget-modal", "widget-catalog", "widget-fullscreen"],
+  "tags": ["widget", "map", "geo", "datacenter", "location", "severity", "data-viz"],
+  "demoHeight": 240
+}

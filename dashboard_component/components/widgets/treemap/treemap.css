@@ -1,0 +1,84 @@
+/* treemap · widgets · variants: default, compact, no-values · states: default, hover, focus, disabled · deps: tokens.css, utils/rng.js, utils/series.js, widgets/auto-mount.js · used-in: dashboard-canvas, add-widget-panel, create-widget-modal */
+
+/* Space-filling treemap: six token-colored cells sized in proportion to a metric,
+   each carrying a category label and a value. The renderer (treemap.js) injects an
+   <svg> of <g.oo-treemap__cell> nodes from a deterministic seed; this file only
+   themes them. Cell fills resolve from severity/accent tokens (set inline as
+   style="fill:var(--…)"), so nothing here hardcodes a palette hex. Hovering the
+   chart dims the other cells to spotlight one. */
+
+.oo-treemap {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-1);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+/* host may make the mount focusable (tabindex) — lean on the shared ring */
+.oo-treemap:focus-visible {
+  outline: none;
+  border-radius: var(--radius);
+  box-shadow: var(--ring);
+}
+
+.oo-treemap__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ── cells ─────────────────────────────────────────────── */
+.oo-treemap__cell {
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.oo-treemap__rect {
+  rx: var(--radius-sm);
+  stroke: var(--card);
+  stroke-width: 1.5;
+  opacity: .85;
+  transition: opacity var(--transition);
+}
+
+.oo-treemap__cell:hover .oo-treemap__rect {
+  opacity: 1;
+}
+
+/* spotlight: dim siblings when one cell is hovered */
+.oo-treemap__svg:hover .oo-treemap__cell {
+  opacity: .42;
+}
+
+.oo-treemap__svg:hover .oo-treemap__cell:hover {
+  opacity: 1;
+}
+
+/* ── labels ────────────────────────────────────────────── */
+.oo-treemap__label,
+.oo-treemap__value {
+  pointer-events: none;
+  fill: var(--on-accent);
+}
+
+.oo-treemap__label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.oo-treemap__value {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  opacity: .8;
+}
+
+/* ── disabled / no-data ────────────────────────────────── */
+.oo-treemap.is-disabled {
+  opacity: .45;
+  filter: grayscale(.4);
+  pointer-events: none;
+}

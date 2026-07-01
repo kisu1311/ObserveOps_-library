@@ -1,0 +1,90 @@
+/* ticker-item · items · variants: critical, warn, link · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: noc-view, noc-ticker */
+
+/* One scrolling alert inside the NOC "Critical" ticker strip: a bold source/host
+   name followed by its alert message. A leading severity dot and the source name
+   read red by default (critical) and orange in the --warn variant, so an operator
+   can scan severity at a glance while the strip animates. Presentational by
+   default; the optional interactive form (rendered as <a>/<button>) adds
+   hover/focus affordances for drilling into the underlying alert. The marquee
+   animation lives on the parent track, not on the item. */
+
+.oo-ticker-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-1);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--text);
+  white-space: nowrap;
+  transition: color var(--transition), opacity var(--transition),
+    filter var(--transition);
+}
+
+/* ── source / host name — bold, severity-coloured, with a leading dot ── */
+.oo-ticker-item__src {
+  font-weight: 700;
+  color: var(--red);
+}
+.oo-ticker-item__src::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: var(--space-1);
+  vertical-align: middle;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+}
+
+/* ── message body ────────────────────────────────────────── */
+.oo-ticker-item__msg {
+  color: var(--text);
+}
+
+/* ── warning variant (orange) ────────────────────────────── */
+.oo-ticker-item--warn .oo-ticker-item__src {
+  color: var(--orange);
+}
+
+/* ── interactive form (only when the item links to the alert) ── */
+a.oo-ticker-item,
+button.oo-ticker-item {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: none;
+}
+a.oo-ticker-item:hover,
+button.oo-ticker-item:hover {
+  filter: brightness(1.16);
+}
+a.oo-ticker-item:hover .oo-ticker-item__msg,
+button.oo-ticker-item:hover .oo-ticker-item__msg {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* keyboard focus — base.css supplies the ring; reinforce explicitly */
+.oo-ticker-item:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: var(--radius-sm);
+}
+
+/* ── disabled / acknowledged treatment ───────────────────── */
+.oo-ticker-item:disabled,
+.oo-ticker-item.is-disabled {
+  color: var(--dim);
+  opacity: .55;
+  filter: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.oo-ticker-item.is-disabled .oo-ticker-item__src,
+.oo-ticker-item:disabled .oo-ticker-item__src {
+  color: var(--dim);
+}

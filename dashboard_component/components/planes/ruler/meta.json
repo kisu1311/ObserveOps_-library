@@ -1,0 +1,13 @@
+{
+  "name": "ruler",
+  "category": "planes",
+  "title": "Timeline Ruler",
+  "description": "The slim canvas timeline header above the dashboard widget grid: a row of evenly-spaced mono time-tick labels on a dashed baseline, plus a draggable range indicator (the brush) that scrubs the visible time window. Drag the brush or focus it and use arrow / Home / End keys.",
+  "rootClass": "oo-ruler",
+  "variants": ["default", "now-marked"],
+  "states": ["default", "hover", "focus", "grabbing", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-module", "dashboard-canvas"],
+  "tags": ["ruler", "timeline", "ticks", "range", "brush", "scrubber", "plane", "header"],
+  "demoHeight": 120
+}

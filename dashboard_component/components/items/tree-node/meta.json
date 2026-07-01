@@ -1,0 +1,13 @@
+{
+  "name": "tree-node",
+  "category": "items",
+  "title": "Dashboard Tree Node",
+  "description": "Collapsible dashboard-tree category row: a caret that rotates 90deg when open, a flexible label, and a trailing count badge. Clicking the row toggles it open to reveal a children container of dashboard leaves.",
+  "rootClass": "oo-tree-node",
+  "variants": ["collapsed", "expanded", "with-children"],
+  "states": ["default", "hover", "open", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-list-panel", "dashboard-tree"],
+  "tags": ["tree", "collapsible", "accordion", "category", "sidebar", "navigation"],
+  "demoHeight": 220
+}

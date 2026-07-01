@@ -1,0 +1,13 @@
+{
+  "name": "dashboard-tab",
+  "category": "buttons",
+  "title": "Dashboard Tab Switch",
+  "description": "Segmented tab control in the dashboard list-panel header that switches the main view (Dashboard / NOC View). The selected segment fills teal; single-select via click or arrow keys.",
+  "rootClass": "oo-dashboard-tab",
+  "variants": ["two-up", "with-icons"],
+  "states": ["default", "hover", "active", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-panel-header", "noc-view"],
+  "tags": ["tab", "segmented", "toggle", "switch", "noc"],
+  "demoHeight": 80
+}

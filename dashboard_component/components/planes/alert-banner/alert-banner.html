@@ -1,0 +1,65 @@
+<!-- variant: warning (default tone) -->
+<div class="oo-alert-banner" role="alert">
+  <span class="oo-alert-banner__chip">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M10.3 3.8 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.8a2 2 0 0 0-3.4 0Z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg>
+    Warning
+  </span>
+  <span class="oo-alert-banner__text">Motadata <strong>DATASTORE</strong> server <strong>172.16.14.71</strong> is experiencing high Disk Usage in Current Partition with value <strong>80.9</strong> above the 80 threshold</span>
+  <button type="button" class="oo-alert-banner__x" aria-label="Dismiss alert">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</div>
+
+<!-- variant: critical -->
+<div class="oo-alert-banner is-critical" role="alert">
+  <span class="oo-alert-banner__chip">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+    Critical
+  </span>
+  <span class="oo-alert-banner__text"><strong>3</strong> services on <strong>app-prod-02</strong> are down — error rate spiked to <strong>14.2%</strong> over the last 5 minutes</span>
+  <button type="button" class="oo-alert-banner__x" aria-label="Dismiss alert">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</div>
+
+<!-- variant: info -->
+<div class="oo-alert-banner is-info" role="status">
+  <span class="oo-alert-banner__chip">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+    </svg>
+    Info
+  </span>
+  <span class="oo-alert-banner__text">Scheduled maintenance window opens at <strong>02:00 UTC</strong> — <strong>2</strong> collectors will restart automatically</span>
+  <button type="button" class="oo-alert-banner__x" aria-label="Dismiss alert">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</div>
+
+<!-- state: disabled dismiss (non-dismissable / persistent banner) -->
+<div class="oo-alert-banner" role="alert">
+  <span class="oo-alert-banner__chip">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M10.3 3.8 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.8a2 2 0 0 0-3.4 0Z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg>
+    Warning
+  </span>
+  <span class="oo-alert-banner__text">License expires in <strong>6 days</strong> — renew to avoid interrupted data collection</span>
+  <button type="button" class="oo-alert-banner__x" aria-label="Dismiss alert" disabled>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</div>

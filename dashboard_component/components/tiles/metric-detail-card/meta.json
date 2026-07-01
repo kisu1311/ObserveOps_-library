@@ -1,0 +1,13 @@
+{
+  "name": "metric-detail-card",
+  "category": "tiles",
+  "title": "Metric Detail Card",
+  "description": "The metric / counter detail card — the right pane of the counter picker. Shows a monospaced metric name with a higher / lower-is-better goal chip, a description block, an interpretation list (what high vs low values mean, tinted good/bad), and a small RCA / usage note.",
+  "rootClass": "oo-metric-detail-card",
+  "variants": ["lower-better", "higher-better", "compact"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["counter-picker", "create-widget-flow", "data-source-config", "widget-config-panel"],
+  "tags": ["card", "tile", "metric", "counter", "detail", "interpretation", "rca", "tooltip"],
+  "demoHeight": 360
+}

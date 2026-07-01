@@ -1,0 +1,13 @@
+{
+  "name": "counter-picker",
+  "category": "planes",
+  "title": "Counter / Metric Picker",
+  "description": "Two-column metric-counter picker popup. A left rail composes a sticky search field over a scrollable list of selectable counter rows; the right pane is a metric-detail card showing the chosen counter's name, description, high/low interpretation and RCA guidance. Refined from the monolith .pop.wide / .cp-list / .cp-detail: rows are real <button>s with hover, focus-visible, selected (aria-pressed) and disabled states, and the floating-popover chrome is opt-in via the --floating modifier so it also renders as a self-contained card. Clicking a row single-selects it; typing filters the list. Shows an empty placeholder when nothing is selected.",
+  "rootClass": "oo-counter-picker",
+  "variants": ["default", "empty", "floating"],
+  "states": ["default", "hover", "focus", "selected", "filtered", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal", "data-source-config", "add-widget-flow"],
+  "tags": ["picker", "popup", "popover", "counter", "metric", "search", "two-column", "select", "plane", "compose"],
+  "demoHeight": 380
+}

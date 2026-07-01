@@ -1,0 +1,13 @@
+{
+  "name": "topbar",
+  "category": "planes",
+  "title": "Global Topbar",
+  "description": "Global application topbar: brand logo, flexible spacer and a right-aligned icon-button cluster (search, acknowledge, monitors, alerts, AI Copilot) plus a build pill and account avatar. Persistent chrome across every dashboard view.",
+  "rootClass": "oo-topbar",
+  "variants": ["default", "badged-icon", "ai-icon"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css"],
+  "usedIn": ["global-chrome", "dashboard-shell", "ai-copilot-launcher", "alerts-tray"],
+  "tags": ["topbar", "navbar", "chrome", "logo", "icon-cluster", "avatar", "plane"],
+  "demoHeight": 96
+}

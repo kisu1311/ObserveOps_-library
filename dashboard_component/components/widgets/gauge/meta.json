@@ -1,0 +1,13 @@
+{
+  "name": "gauge",
+  "category": "widgets",
+  "title": "Gauge Dial",
+  "description": "A 180° semicircular progress gauge widget. A muted track arc, a coloured value arc whose sweep maps a 0–100 value, and centred text — a large mono value with a small muted caption. The arc colour is token-driven via --oo-gauge-fill: teal by default, an explicit severity token, or an 'auto' threshold mode (green / orange / red as the value rises). Rendered by OOW.gauge from a declarative [data-widget=\"gauge\"] mount; deterministic from data-seed. Refined with a draw-in animation, hover glow, keyboard focus ring, loading and disabled treatments.",
+  "rootClass": "oo-gauge",
+  "variants": ["default", "auto-threshold", "severity-color"],
+  "states": ["default", "hover", "focus", "loading", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/series.js", "utils/esc.js", "widgets/auto-mount.js"],
+  "usedIn": ["create-widget-modal", "add-widget-panel", "dashboard-grid", "noc-wallboard"],
+  "tags": ["widget", "gauge", "dial", "progress", "percent", "utilization", "kpi", "radial"],
+  "demoHeight": 200
+}

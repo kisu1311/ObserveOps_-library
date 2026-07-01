@@ -1,0 +1,13 @@
+{
+  "name": "sidebar-icon",
+  "category": "buttons",
+  "title": "Sidebar Icon Button",
+  "description": "Left nav-rail 32×32 icon button. The active item fills with a teal glow and grows a left accent bar that bleeds into the rail gutter. Single-select within a rail; supports hover, focus and disabled.",
+  "rootClass": "oo-sidebar-icon",
+  "variants": ["rail", "standalone", "with-spacer"],
+  "states": ["default", "hover", "focus", "active", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-shell", "app-nav-rail"],
+  "tags": ["nav", "icon-button", "sidebar", "rail", "single-select"],
+  "demoHeight": 260
+}

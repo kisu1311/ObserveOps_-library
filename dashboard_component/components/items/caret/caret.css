@@ -1,0 +1,67 @@
+/* caret · items · variants: glyph, toggle-button · states: closed, open, hover, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-picker-tree, dashboard-module */
+
+/* Disclosure caret — a small chevron that points right when closed and rotates
+   90° (points down) when open. Self-contained: the open state can be driven by
+   the caret's OWN modifier (.is-open / aria-expanded) OR by an expanded ancestor
+   ([aria-expanded="true"] / .is-open), so it drops into a tree row, accordion
+   header or standalone disclosure button without any extra wiring. */
+.oo-caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform var(--transition), color var(--transition);
+}
+
+.oo-caret svg {
+  display: block;
+  width: 9px;
+  height: 9px;
+}
+
+/* open → rotate 90° (chevron points down). Several triggers so the glyph can be
+   controlled by itself or by an expanded ancestor (e.g. a `.tnode.is-open` row). */
+.oo-caret.is-open,
+.oo-caret[aria-expanded="true"],
+[aria-expanded="true"] .oo-caret,
+.is-open .oo-caret {
+  transform: rotate(90deg);
+}
+
+/* ── interactive: used as a standalone disclosure <button> (or link) ─────── */
+button.oo-caret,
+a.oo-caret {
+  padding: 2px;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+button.oo-caret:hover,
+a.oo-caret:hover {
+  color: var(--text);
+}
+
+/* keyboard focus: base.css ring, reinforced */
+button.oo-caret:focus-visible,
+a.oo-caret:focus-visible {
+  outline: none;
+  color: var(--text);
+  box-shadow: var(--ring);
+}
+
+/* disabled (only meaningful on the interactive variant) */
+button.oo-caret:disabled,
+.oo-caret.is-disabled {
+  color: var(--dim);
+  cursor: not-allowed;
+}
+
+button.oo-caret:disabled:hover,
+.oo-caret.is-disabled:hover {
+  color: var(--dim);
+}

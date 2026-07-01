@@ -1,0 +1,85 @@
+/* numeric · widgets · variants: default, tone-cells, compact · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-grid, add-widget-panel, create-widget-modal */
+
+/* Numeric Grid widget: a 3×2 matrix of KPI boxes, each a quiet label over a
+   large tone-colored mono value with a trailing unit. The renderer (OOW.numeric)
+   fills a [data-widget="numeric"] mount and adds .oo-numeric to it, so the grid
+   styles live on the mount itself. Tone modifiers recolor only the value. */
+
+.oo-numeric {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  height: 100%;
+  align-content: center;
+}
+
+/* ── KPI box ─────────────────────────────────────────────────────────── */
+.oo-numeric-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+  padding: var(--space-3);
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition), background var(--transition),
+    transform var(--transition);
+}
+
+.oo-numeric-cell:hover {
+  border-color: var(--border2, var(--teal));
+  background: var(--card);
+}
+
+/* focusable only when promoted with tabindex (e.g. drill-down) */
+.oo-numeric-cell:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-color: var(--teal);
+}
+
+.oo-numeric-label {
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oo-numeric-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+  letter-spacing: -.02em;
+}
+
+.oo-numeric-unit {
+  margin-left: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* ── tone modifiers (recolor the value only) ─────────────────────────── */
+.oo-numeric-cell--teal   .oo-numeric-value { color: var(--teal); }
+.oo-numeric-cell--blue   .oo-numeric-value { color: var(--blue); }
+.oo-numeric-cell--orange .oo-numeric-value { color: var(--orange); }
+.oo-numeric-cell--green  .oo-numeric-value { color: var(--green); }
+.oo-numeric-cell--purple .oo-numeric-value { color: var(--purple); }
+.oo-numeric-cell--red    .oo-numeric-value { color: var(--red); }
+
+/* ── compact variant (denser padding for small tiles) ────────────────── */
+.oo-numeric--compact { gap: var(--space-2); }
+.oo-numeric--compact .oo-numeric-cell { padding: var(--space-2); }
+.oo-numeric--compact .oo-numeric-value { font-size: 18px; }
+
+/* ── disabled / loading treatment ────────────────────────────────────── */
+.oo-numeric.is-disabled {
+  opacity: .5;
+  pointer-events: none;
+  filter: grayscale(.4);
+}

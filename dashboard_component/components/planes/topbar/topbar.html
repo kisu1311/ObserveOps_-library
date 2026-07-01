@@ -1,0 +1,59 @@
+<!-- variant: default — full global topbar -->
+<div class="oo-topbar">
+  <!-- brand logo -->
+  <a class="oo-topbar__logo" href="#" aria-label="motadata home">
+    <span class="oo-topbar__mark" aria-hidden="true"></span>
+    <span class="oo-topbar__word">mota<b>data</b></span>
+  </a>
+
+  <span class="oo-topbar__spacer"></span>
+
+  <!-- right-aligned action cluster -->
+  <div class="oo-topbar__right">
+    <!-- variant: ghost icon -->
+    <button type="button" class="oo-topbar__ico" aria-label="Search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
+    </button>
+
+    <button type="button" class="oo-topbar__ico" aria-label="Acknowledge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+    </button>
+
+    <button type="button" class="oo-topbar__ico" aria-label="Monitors">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" /></svg>
+    </button>
+
+    <!-- variant: badged icon -->
+    <button type="button" class="oo-topbar__ico" aria-label="Alerts, 99 plus unread">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.7 21a2 2 0 0 1-3.4 0" /></svg>
+      <span class="oo-topbar__badge" aria-hidden="true">99+</span>
+    </button>
+
+    <!-- variant: ai icon -->
+    <button type="button" class="oo-topbar__ico oo-topbar__ico--ai" aria-label="AI Copilot" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z" /><path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z" /></svg>
+    </button>
+
+    <!-- build pill -->
+    <span class="oo-topbar__build">BUILD : 8.2.5</span>
+
+    <!-- account avatar -->
+    <button type="button" class="oo-topbar__avatar" aria-label="Account: Ronak Patel" aria-haspopup="menu">RP</button>
+  </div>
+</div>
+
+<!-- state: disabled icon (no permission) -->
+<div class="oo-topbar">
+  <a class="oo-topbar__logo" href="#" aria-label="motadata home">
+    <span class="oo-topbar__mark" aria-hidden="true"></span>
+    <span class="oo-topbar__word">mota<b>data</b></span>
+  </a>
+  <span class="oo-topbar__spacer"></span>
+  <div class="oo-topbar__right">
+    <button type="button" class="oo-topbar__ico" aria-label="Monitors" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" /></svg>
+    </button>
+    <span class="oo-topbar__build">BUILD : 8.2.5</span>
+    <button type="button" class="oo-topbar__avatar" aria-label="Account: Ronak Patel">RP</button>
+  </div>
+</div>

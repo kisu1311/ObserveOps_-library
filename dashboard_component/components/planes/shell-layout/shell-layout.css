@@ -1,0 +1,197 @@
+/* shell-layout · planes · variants: default, panel-open, no-banner · states: default, panel-open, disabled · deps: tokens.css, base.css · used-in: dashboard-module, noc-view · frames: alert-banner, topbar, subbar, sidebar, dashboard-panel, canvas */
+
+/* The root application shell — the outermost plane that frames every other one.
+   It is a flex column at full viewport height (banner > topbar > subbar > body),
+   whose body is a horizontal row (.body-row) of the icon sidebar + an optional
+   slide-in dashboard panel + the main content / canvas. This partial is
+   layout-only: each region is a labelled dashed SLOT placeholder that names the
+   plane meant to live there, so the shell can be previewed and composed in
+   isolation. Surfaces (--nav / --bg) are tinted per region to hint at the real
+   chrome. The one behaviour it owns is the dashboard-panel toggle, mirroring the
+   live `togglePanel()` / `.shell.panelopen` interaction. */
+
+.oo-shell-layout {
+  display: flex;
+  flex-direction: column;
+  /* faithful to the live shell (height:100vh); max-height lets it sit inside a
+     constrained gallery stage without overflowing the viewport */
+  height: 100vh;
+  max-height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* ── shared slot-placeholder visuals ─────────────────────── */
+.oo-shell-layout__banner,
+.oo-shell-layout__topbar,
+.oo-shell-layout__subbar,
+.oo-shell-layout__sidebar,
+.oo-shell-layout__panel,
+.oo-shell-layout__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oo-shell-layout__label {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-2);
+  border: 1px dashed var(--border2);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .3px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── banner slot (alert-banner) ──────────────────────────── */
+.oo-shell-layout__banner {
+  flex-shrink: 0;
+  min-height: 34px;
+  background: var(--nav);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── topbar slot ─────────────────────────────────────────── */
+.oo-shell-layout__topbar {
+  flex-shrink: 0;
+  height: 48px;
+  background: var(--nav);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── subbar slot (also hosts the panel toggle) ───────────── */
+.oo-shell-layout__subbar {
+  flex-shrink: 0;
+  height: 46px;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  padding: 0 var(--space-3);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── body row (source class .body-row) ───────────────────── */
+.oo-shell-layout__body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── sidebar slot (icon nav-rail) ────────────────────────── */
+.oo-shell-layout__sidebar {
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 46px;
+  padding: var(--space-2) 0;
+  background: var(--nav);
+  border-right: 1px solid var(--border);
+}
+/* small squares standing in for the rail's icon buttons */
+.oo-shell-layout__dot {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border2);
+  background: var(--card2);
+}
+.oo-shell-layout__dot--active {
+  border-style: solid;
+  border-color: var(--teal);
+  background: var(--teal-glow);
+}
+
+/* ── dashboard-panel slot (collapsible, docked) ──────────── */
+.oo-shell-layout__panel {
+  flex-shrink: 0;
+  width: 0;
+  overflow: hidden;
+  background: var(--nav);
+  border-right: 0 solid var(--border);
+  transition: width var(--transition), border-right-width var(--transition);
+}
+.oo-shell-layout--panel-open .oo-shell-layout__panel {
+  width: 200px;
+  border-right-width: 1px;
+}
+
+/* ── content slot (canvas) ───────────────────────────────── */
+.oo-shell-layout__content {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-3);
+  background: var(--bg);
+}
+.oo-shell-layout__canvas {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--border2);
+  border-radius: var(--radius);
+  background: var(--card2);
+}
+
+/* ── panel toggle (mirrors the live .sb-arrow behaviour) ─── */
+.oo-shell-layout__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border2);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition),
+    background var(--transition);
+}
+.oo-shell-layout__toggle svg {
+  width: 14px;
+  height: 14px;
+  transition: transform .2s ease;
+}
+.oo-shell-layout__toggle:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+.oo-shell-layout__toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-shell-layout__toggle:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+/* chevron points "open" once the panel is docked */
+.oo-shell-layout--panel-open .oo-shell-layout__toggle svg {
+  transform: rotate(180deg);
+}
+
+/* ── disabled / locked shell (e.g. loading or read-only) ─── */
+.oo-shell-layout.is-disabled {
+  opacity: .55;
+  filter: grayscale(.3);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oo-shell-layout__panel,
+  .oo-shell-layout__toggle svg {
+    transition: none;
+  }
+}

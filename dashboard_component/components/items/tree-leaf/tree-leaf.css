@@ -1,0 +1,106 @@
+/* tree-leaf · items · variants: default, active, favourited · states: default, hover, focus, selected, disabled · deps: tokens.css, base.css · used-in: dashboard-picker-panel, dashboard-tree-nav */
+
+/* Tree child row inside the dashboard picker's tree-nav: a leading lock glyph,
+   an ellipsised label, and a trailing star favourite toggle. The active /
+   selected leaf carries a teal-glow highlight; the star turns gold when
+   favourited. Refined from .tleaf / .lk / .ll / .ls: namespaced to
+   .oo-tree-leaf, tokenised spacing / radius / transition, with hover, keyboard
+   focus, selected and disabled treatments, and the star promoted to a real
+   <button> with an accessible pressed state. */
+
+/* optional wrapper that groups sibling leaves (single-select scopes to it) */
+.oo-tree-leaf-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-left: var(--space-4);   /* indents children under their parent node */
+}
+
+.oo-tree-leaf {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px var(--space-2);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.oo-tree-leaf:hover {
+  background: var(--card);
+  color: var(--text);
+}
+
+/* active / selected leaf — teal glow */
+.oo-tree-leaf.is-active,
+.oo-tree-leaf[aria-selected="true"] {
+  background: var(--teal-glow);
+  color: var(--text);
+}
+
+/* keyboard focus ring (base.css also rings any oo- control) */
+.oo-tree-leaf:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* leading lock glyph */
+.oo-tree-leaf__lock {
+  flex-shrink: 0;
+  width: 11px;
+  height: 11px;
+  color: var(--dim);
+}
+
+/* label — single line, ellipsised */
+.oo-tree-leaf__label {
+  flex: 1;
+  min-width: 0;
+  font-size: 11.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* trailing star favourite toggle */
+.oo-tree-leaf__star {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), transform var(--transition);
+}
+
+.oo-tree-leaf__star svg {
+  width: 12px;
+  height: 12px;
+}
+
+.oo-tree-leaf__star:hover {
+  color: var(--text);
+  transform: scale(1.12);
+}
+
+.oo-tree-leaf__star:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* favourited — gold star */
+.oo-tree-leaf__star.is-fav,
+.oo-tree-leaf__star[aria-pressed="true"] {
+  color: var(--yellow);
+}
+
+/* disabled leaf — non-interactive, faded */
+.oo-tree-leaf.is-disabled,
+.oo-tree-leaf[aria-disabled="true"] {
+  opacity: .45;
+  cursor: not-allowed;
+  pointer-events: none;
+}

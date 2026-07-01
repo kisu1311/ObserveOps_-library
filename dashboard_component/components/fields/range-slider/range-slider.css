@@ -1,0 +1,144 @@
+/* range-slider · fields · variants: default, with-icon · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: create-widget-modal */
+
+/* Custom range control used in the Create-Widget "Style" pane (Rotation, Line
+   Width, …): a native <input type=range> with cross-browser thumb/track styling
+   plus a small mono value-box. The teal fill (left of the thumb) is driven by a
+   --oo-range-fill custom property kept in sync by range-slider.js; an inline
+   fallback keeps it correct before JS runs. Refined from .slider: tokenised
+   colors/radii/transition, on-accent thumb fill, focus ring on the thumb,
+   hover affordance and a disabled treatment. */
+
+.oo-range-slider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-sans);
+}
+
+/* optional leading glyph (e.g. rotation icon) */
+.oo-range-slider__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  flex: none;
+}
+.oo-range-slider__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── native input: the track is the element background ───────────────── */
+.oo-range-slider__input {
+  flex: 1;
+  min-width: 0;
+  height: 4px;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    to right,
+    var(--teal) var(--oo-range-fill, 0%),
+    var(--border2) var(--oo-range-fill, 0%)
+  );
+  cursor: pointer;
+  outline: none;
+}
+
+/* WebKit / Blink thumb */
+.oo-range-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--on-accent);
+  border: 2px solid var(--teal);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+/* Firefox track + progress + thumb */
+.oo-range-slider__input::-moz-range-track {
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--border2);
+}
+.oo-range-slider__input::-moz-range-progress {
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--teal);
+}
+.oo-range-slider__input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--on-accent);
+  border: 2px solid var(--teal);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+/* hover: grow the thumb slightly */
+.oo-range-slider__input:hover::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+.oo-range-slider__input:hover::-moz-range-thumb {
+  transform: scale(1.12);
+}
+
+/* keyboard focus: ring on the thumb only — suppress base.css's host ring
+   ([class^="oo-"]:focus-visible) so the thin track doesn't get a boxed ring */
+.oo-range-slider__input:focus-visible {
+  box-shadow: none;
+}
+.oo-range-slider__input:focus-visible::-webkit-slider-thumb {
+  box-shadow: var(--ring);
+}
+.oo-range-slider__input:focus-visible::-moz-range-thumb {
+  box-shadow: var(--ring);
+}
+
+/* ── value read-out box ──────────────────────────────────────────────── */
+.oo-range-slider__sv {
+  flex: none;
+  width: 34px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ── disabled (input:disabled or .is-disabled on the host) ───────────── */
+.oo-range-slider.is-disabled,
+.oo-range-slider:has(.oo-range-slider__input:disabled) {
+  opacity: .55;
+}
+.oo-range-slider__input:disabled {
+  cursor: not-allowed;
+  background: var(--border2);
+}
+.oo-range-slider__input:disabled::-webkit-slider-thumb {
+  background: var(--card);
+  border-color: var(--dim);
+  cursor: not-allowed;
+}
+.oo-range-slider__input:disabled::-moz-range-thumb {
+  background: var(--card);
+  border-color: var(--dim);
+  cursor: not-allowed;
+}
+.oo-range-slider.is-disabled .oo-range-slider__sv,
+.oo-range-slider:has(.oo-range-slider__input:disabled) .oo-range-slider__sv {
+  color: var(--muted);
+}

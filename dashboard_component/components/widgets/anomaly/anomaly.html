@@ -1,0 +1,19 @@
+<!-- variant: blue (default — confidence band + flagged anomaly points) -->
+<div class="oo-anomaly" data-widget="anomaly" data-seed="51"
+     role="img" aria-label="Response-time anomaly detection: series tracks its confidence band except for two flagged spikes"
+     style="width:340px;height:180px"></div>
+
+<!-- variant: purple (AI/ML accent colour) -->
+<div class="oo-anomaly" data-widget="anomaly" data-seed="7" data-color="purple"
+     role="img" aria-label="Disk-usage anomaly on DATASTORE-01, 3.1 sigma above baseline"
+     style="width:340px;height:180px"></div>
+
+<!-- variant: wide-band (looser tolerance, teal series) -->
+<div class="oo-anomaly" data-widget="anomaly" data-seed="33" data-color="teal" data-band="20"
+     role="img" aria-label="CPU utilization with a wide confidence band, no active anomalies"
+     style="width:340px;height:180px"></div>
+
+<!-- state: disabled (stale — monitor paused, no recent data) -->
+<div class="oo-anomaly is-disabled" data-widget="anomaly" data-seed="51" aria-disabled="true"
+     role="img" aria-label="Anomaly detection, no recent data"
+     style="width:340px;height:180px"></div>

@@ -1,0 +1,13 @@
+{
+  "name": "logo",
+  "category": "planes",
+  "title": "Brand Logo",
+  "description": "Motadata brand lockup — a conic-gradient circular mark (teal disc with a notch + punched-out center hole) beside the \"motadata\" wordmark, with \"data\" in the teal accent. Pure CSS, theme-recolorable; scales from a single --oo-logo-size knob.",
+  "rootClass": "oo-logo",
+  "variants": ["default", "sm", "lg", "stacked", "mark-only"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["topbar", "app-chrome"],
+  "tags": ["logo", "brand", "wordmark", "identity", "conic-gradient"],
+  "demoHeight": 96
+}

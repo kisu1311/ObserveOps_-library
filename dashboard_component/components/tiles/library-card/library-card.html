@@ -1,0 +1,41 @@
+<!-- library-card · 3-up Predefined / User Define gallery cards.
+     Each card is an action button: clicking it adds the saved widget. -->
+<div class="oo-library-card-grid">
+
+  <!-- variant: predefined (Chart) -->
+  <button type="button" class="oo-library-card" aria-label="Add CPU Utilization Trend chart widget">
+    <span class="oo-library-card__ic" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 5-8"/><path d="M3 20h18"/></svg>
+    </span>
+    <span class="oo-library-card__nm">CPU Utilization Trend</span>
+    <span class="oo-library-card__sub">Chart</span>
+  </button>
+
+  <!-- variant: user-define (Numeric) -->
+  <button type="button" class="oo-library-card" aria-label="Add My SLA Summary numeric widget">
+    <span class="oo-library-card__ic" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8v8M5 8h4M15 8h4l-3 4h.5a2 2 0 1 1-2 2"/></svg>
+    </span>
+    <span class="oo-library-card__nm">My SLA Summary</span>
+    <span class="oo-library-card__sub">Numeric</span>
+  </button>
+
+  <!-- state: selected (current pick) -->
+  <button type="button" class="oo-library-card is-selected" aria-current="true" aria-label="Memory Free percent gauge widget, selected">
+    <span class="oo-library-card__ic" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 14 4-4"/></svg>
+    </span>
+    <span class="oo-library-card__nm">Memory Free %</span>
+    <span class="oo-library-card__sub">Gauge</span>
+  </button>
+
+  <!-- state: disabled (already added / unavailable) -->
+  <button type="button" class="oo-library-card" disabled aria-label="Active Alerts widget, already added">
+    <span class="oo-library-card__ic" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6c0 5-2 6-2 6h16s-2-1-2-6a6 6 0 0 0-6-6z"/><path d="M10.5 20a1.8 1.8 0 0 0 3 0"/></svg>
+    </span>
+    <span class="oo-library-card__nm">Active Alerts</span>
+    <span class="oo-library-card__sub">Alerts</span>
+  </button>
+
+</div>

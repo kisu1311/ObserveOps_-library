@@ -1,0 +1,54 @@
+/* stream · widgets · variants: default, alt-seed, three-band · states: default, hover, focus, disabled · deps: tokens.css, base.css, utils/series.js, utils/smooth-path.js, widgets/auto-mount.js · used-in: dashboard-grid, create-widget-modal, add-widget-panel, widget-fullscreen */
+
+/* Stacked streamgraph widget — N seeded series (4 by default) accumulate into
+   translucent flowing bands across 24 intervals. A declarative
+   [data-widget="stream"] mount is filled by the OOW.stream renderer
+   (stream.js) with one <svg>; this stylesheet only themes the injected bands.
+   Per-series category colours arrive as var() token fills from the renderer, so
+   design tokens stay the single source of truth and nothing is hardcoded here.
+   Bands carry oo-stream__band so the interaction layer can peel focus on hover,
+   show a keyboard ring on a focusable mount, and veil a stale / paused widget. */
+
+.oo-stream {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+  transition: box-shadow var(--transition), opacity var(--transition);
+}
+
+.oo-stream__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* one stacked band per series — fill is set inline (var(--teal), var(--blue) …) */
+.oo-stream__band {
+  opacity: .75;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+/* hover-to-peel: dim the whole field, then light only the hovered band
+   (the second rule out-specifies the first so the hovered band wins) */
+.oo-stream:hover .oo-stream__band { opacity: .35; }
+.oo-stream:hover .oo-stream__band:hover { opacity: .95; }
+
+/* keyboard focus on a focusable mount (tabindex / role=img) */
+.oo-stream:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* stale / paused — monitor disabled or no recent data */
+.oo-stream.is-disabled,
+.oo-stream[aria-disabled="true"] {
+  opacity: .45;
+  filter: grayscale(.6) saturate(.4);
+  pointer-events: none;
+}

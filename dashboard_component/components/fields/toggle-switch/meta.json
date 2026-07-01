@@ -1,0 +1,13 @@
+{
+  "name": "toggle-switch",
+  "category": "fields",
+  "title": "Toggle Switch",
+  "description": "34×18 animated slide toggle with an ON/OFF state label. The track fills teal and the white knob slides on, driven entirely off aria-checked. Used across the widget config panels for boolean options like Legend, axis titles, Points and Metric Grid.",
+  "rootClass": "oo-toggle",
+  "variants": ["off", "on"],
+  "states": ["default", "checked", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-config", "widget-style-panel", "dashboard-settings"],
+  "tags": ["toggle", "switch", "field", "form", "boolean", "aria"],
+  "demoHeight": 90
+}

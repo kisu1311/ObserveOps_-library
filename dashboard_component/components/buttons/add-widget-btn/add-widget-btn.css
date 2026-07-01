@@ -1,0 +1,64 @@
+/* add-widget-btn · buttons · variants: default · states: default, hover, focus, active, disabled · deps: tokens.css, base.css · used-in: dashboard-panel-head */
+
+/* Circular "+" trigger that lives in the dashboard list-panel header.
+   Resting state is a quiet card chip; on hover it fills teal and the glyph
+   spins 90° — the rotation is pure CSS, so the component is self-contained
+   (the actual Add-Widget panel is opened by the host page, no JS needed here). */
+.oo-add-widget-btn {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition),
+    color var(--transition), transform var(--transition);
+}
+
+.oo-add-widget-btn svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.oo-add-widget-btn:hover {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--on-accent);                 /* on-accent glyph */
+  transform: rotate(90deg);
+}
+
+/* keyboard focus — base.css supplies the ring; reinforce with a teal edge */
+.oo-add-widget-btn:focus-visible {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: var(--ring);
+}
+
+.oo-add-widget-btn:active {
+  transform: rotate(90deg) scale(0.94);
+}
+
+/* disabled — no fill, no spin */
+.oo-add-widget-btn:disabled,
+.oo-add-widget-btn.is-disabled {
+  cursor: not-allowed;
+  opacity: .45;
+  border-color: var(--border);
+  color: var(--dim);
+  pointer-events: none;
+}
+
+.oo-add-widget-btn:disabled:hover,
+.oo-add-widget-btn.is-disabled:hover {
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--dim);
+  transform: none;
+}

@@ -1,0 +1,13 @@
+{
+  "name": "mini-pill",
+  "category": "buttons",
+  "title": "Mini Pill Toggle Group",
+  "description": "Compact single-select segmented control (e.g. Top / Last) on a card-colored track; the active pill is raised with an inset border. Used for inline sort-order and aggregation choices.",
+  "rootClass": "oo-mini-pill",
+  "variants": ["two-pill", "multi-segment"],
+  "states": ["default", "on", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal", "create-widget-sorting-pane", "dashboard-module"],
+  "tags": ["button", "toggle", "segmented", "pill", "sort", "select"],
+  "demoHeight": 100
+}

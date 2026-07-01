@@ -1,0 +1,13 @@
+{
+  "name": "range-pill",
+  "category": "buttons",
+  "title": "Time Range Pill",
+  "description": "Card-colored chip showing the active time range: a teal .oo-tag badge, an .oo-lbl label, and an optional .oo-clr clear (✕) button. Sits in the dashboard sub-toolbar timeline-range; border brightens to teal on hover/focus.",
+  "rootClass": "oo-range-pill",
+  "variants": ["default", "static"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-toolbar", "timeline-range", "create-widget-config"],
+  "tags": ["pill", "chip", "time-range", "badge", "filter", "clear"],
+  "demoHeight": 80
+}

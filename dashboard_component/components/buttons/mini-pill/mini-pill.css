@@ -1,0 +1,61 @@
+/* mini-pill · buttons · variants: two-pill, multi-segment · states: default, on, hover, focus, disabled · deps: tokens.css, base.css · used-in: create-widget-modal (sorting pane) */
+
+/* Compact single-select segmented control (e.g. Top / Last).
+   Root .oo-mini-pill is the group track; each .oo-mini-pill__btn is a pill.
+   Active pill is driven by its own aria-pressed="true" (self-contained). */
+.oo-mini-pill {
+  display: inline-flex;
+  width: fit-content;
+  gap: 2px;
+  padding: 2px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+}
+
+.oo-mini-pill__btn {
+  padding: 5px 16px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+/* hover on an inactive pill hints selectability */
+.oo-mini-pill__btn:not([aria-pressed="true"]):hover {
+  color: var(--text);
+}
+
+/* keyboard focus: base.css ring */
+.oo-mini-pill__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* active selection */
+.oo-mini-pill__btn[aria-pressed="true"],
+.oo-mini-pill__btn.is-on {
+  background: var(--card2);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--border2);
+}
+
+/* disabled — individual pill or whole group */
+.oo-mini-pill__btn:disabled,
+.oo-mini-pill__btn.is-disabled,
+.oo-mini-pill.is-disabled .oo-mini-pill__btn {
+  cursor: not-allowed;
+  opacity: .45;
+}
+
+.oo-mini-pill__btn:disabled:hover,
+.oo-mini-pill.is-disabled .oo-mini-pill__btn:hover {
+  color: var(--muted);
+}

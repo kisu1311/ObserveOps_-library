@@ -1,0 +1,94 @@
+/* events · widgets · variants: default, alternate-seed · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: dashboard-canvas, create-widget-modal, widget-fullscreen */
+
+/* Vertical event timeline: a scrollable column of ~8 rows, each a coloured left
+   rail + dot marker, an event description and a mono timestamp. The OOW.events
+   renderer emits only structure (a <ul>/<li> list) from a deterministic seed and
+   sets a per-row --ev-c accent token inline; this stylesheet owns all presentation.
+   Rows carry a subtle hover wash and, when made interactive for drill-down
+   (rendered as <button>/<a>), a keyboard focus ring; an aria-disabled timeline
+   dims the whole set and freezes interaction for no-data / loading. */
+
+.oo-events {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;                       /* themed scrollbars come from base.css */
+  padding-left: var(--space-2);
+  font-family: var(--font-sans);
+}
+
+.oo-events__list {
+  list-style: none;
+}
+
+.oo-events__item {
+  --ev-c: var(--teal);                  /* per-row accent — set inline by renderer */
+  position: relative;
+  display: flex;
+  gap: var(--space-3);
+  margin-left: var(--space-2);
+  padding: var(--space-2) var(--space-1);
+  border-left: 2px solid var(--ev-c);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  transition: background var(--transition);
+}
+
+.oo-events__dot {
+  position: absolute;
+  left: -5px;
+  top: 13px;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background: var(--ev-c);
+  box-shadow: 0 0 0 2px var(--card);    /* lift the marker off the rail */
+}
+
+.oo-events__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.oo-events__desc {
+  font-size: 11.5px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oo-events__time {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+/* refinement: hover — rows pick up a faint wash (drill-down affordance) */
+.oo-events__item:hover {
+  background: var(--card2);
+}
+
+/* refinement: interactive rows (button / link) — strip native chrome, full width */
+button.oo-events__item,
+a.oo-events__item {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+/* refinement: keyboard focus (base.css also rings any oo- element; explicit for self-containment) */
+.oo-events__item:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* state: disabled / no-data — dim the whole timeline and freeze interaction */
+.oo-events.is-disabled,
+.oo-events[aria-disabled="true"] {
+  opacity: .5;
+  pointer-events: none;
+}

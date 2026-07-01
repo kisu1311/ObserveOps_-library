@@ -1,0 +1,13 @@
+{
+  "name": "overlay",
+  "category": "planes",
+  "title": "Modal Overlay / Backdrop",
+  "description": "Full-bleed modal scrim that dims and blurs every plane behind a drawer or dialog. The semi-transparent dark-blue tone is derived from --bg via color-mix; a --strong modifier gives the deeper fullscreen scrim, --contained confines it to a positioned ancestor. Opens/closes with a single .is-open toggle (fade scrim + lift-in dialog), mirroring the live openAddWidget()/closeAddWidget() pattern, and dismisses on backdrop-click, ✕, or Escape. Ships a sample centred dialog box (header, body, footer) so the dimming reads, with hover / focus-visible / disabled states on its close and footer controls.",
+  "rootClass": "oo-overlay",
+  "variants": ["scrim", "strong", "with-dialog", "contained"],
+  "states": ["hidden", "open", "dismiss:hover", "dismiss:focus", "dismiss:disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["add-widget-panel", "create-widget-modal", "ai-insights-drawer", "widget-fullscreen"],
+  "tags": ["overlay", "backdrop", "scrim", "modal", "dialog", "blur", "plane", "dim"],
+  "demoHeight": 430
+}

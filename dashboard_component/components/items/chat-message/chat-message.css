@@ -1,0 +1,110 @@
+/* chat-message · items · variants: user, ai, typing · states: default, hover, focus, sending · deps: tokens.css, base.css · used-in: ai-copilot-chat, ai-explore-drawer */
+
+/* AI Copilot chat bubbles. Two voices share one root:
+   • --user : the operator's message — a solid teal bubble, right-aligned, with
+     a flattened bottom-right corner so the "tail" points back at the sender.
+   • --ai   : the Copilot reply — a sparkle avatar plus a card bubble, left-
+     aligned, tail flattened top-left toward the avatar. The bubble holds rich
+     text (<p>, <b>, links) and an optional 3-dot typing indicator while the
+     answer streams in.
+   Display-only items: they carry a quiet hover lift on the AI bubble and a
+   keyboard focus ring for when the log is navigable, plus a --sending opacity
+   for optimistically-posted user messages awaiting acknowledgement. */
+
+.oo-chat-message {
+  max-width: 88%;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* ── user (operator) ─────────────────────────────────────── */
+.oo-chat-message--user {
+  align-self: flex-end;     /* when inside the chat flex-column */
+  width: fit-content;
+  margin-left: auto;        /* right-align as a fallback in flow layout */
+  padding: var(--space-2) var(--space-4);
+  color: var(--on-accent);
+  background: var(--teal);
+  /* speech-bubble geometry: square the bottom-right corner */
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-lg);
+  transition: opacity var(--transition);
+}
+
+/* ── ai (copilot) ────────────────────────────────────────── */
+.oo-chat-message--ai {
+  align-self: flex-start;
+  display: flex;
+  gap: var(--space-2);
+  max-width: 94%;
+}
+
+.oo-chat-message__avatar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--on-accent);
+  background: linear-gradient(135deg, var(--teal), var(--purple));
+  border-radius: var(--radius);
+}
+.oo-chat-message__avatar svg { width: 14px; height: 14px; }
+
+.oo-chat-message__bubble {
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  /* speech-bubble geometry: square the top-left corner toward the avatar */
+  border-radius: var(--radius-sm) var(--radius-lg) var(--radius-lg) var(--radius-lg);
+  transition: border-color var(--transition);
+}
+.oo-chat-message__bubble p { margin: 0 0 var(--space-2); }
+.oo-chat-message__bubble p:last-child { margin: 0; }
+.oo-chat-message__bubble b { color: var(--on-accent); font-weight: 600; }
+.oo-chat-message__bubble a { color: var(--teal); text-decoration: none; }
+.oo-chat-message__bubble a:hover { text-decoration: underline; }
+
+/* quiet hover lift on the AI bubble */
+.oo-chat-message--ai:hover .oo-chat-message__bubble { border-color: var(--border2); }
+
+/* keyboard focus when the log is navigable (tabindex on the message) */
+.oo-chat-message:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: var(--radius);
+}
+.oo-chat-message--ai:focus-visible .oo-chat-message__bubble { border-color: var(--teal); }
+
+/* optimistic 'sending' state — posted, not yet acknowledged */
+.oo-chat-message--sending,
+.oo-chat-message.is-sending { opacity: .55; }
+
+/* ── typing indicator (AI answer streaming) ──────────────── */
+.oo-chat-message__typing {
+  display: flex;
+  gap: var(--space-1);
+  padding: 6px 2px;
+}
+.oo-chat-message__typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--muted);
+  animation: oo-chat-blink 1.2s infinite;
+}
+.oo-chat-message__typing span:nth-child(2) { animation-delay: .2s; }
+.oo-chat-message__typing span:nth-child(3) { animation-delay: .4s; }
+
+@keyframes oo-chat-blink {
+  0%, 60%, 100% { opacity: .25; }
+  30% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oo-chat-message__typing span { animation: none; }
+}

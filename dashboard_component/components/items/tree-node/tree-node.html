@@ -1,0 +1,60 @@
+<!-- variant: collapsed — category row with caret + label + count, children hidden -->
+<div class="oo-tree-node">
+  <button type="button" class="oo-tree-node__row" aria-expanded="false">
+    <span class="oo-tree-node__caret" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 6 6 6-6 6"/></svg>
+    </span>
+    <span class="oo-tree-node__label">Network</span>
+    <span class="oo-tree-node__count">10</span>
+  </button>
+  <div class="oo-tree-node__children" role="group"></div>
+</div>
+
+<!-- variant: expanded (with-children) — node is open, children revealed -->
+<div class="oo-tree-node is-open">
+  <button type="button" class="oo-tree-node__row" aria-expanded="true">
+    <span class="oo-tree-node__caret" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 6 6 6-6 6"/></svg>
+    </span>
+    <span class="oo-tree-node__label">My Favorite</span>
+    <span class="oo-tree-node__count">7</span>
+  </button>
+  <div class="oo-tree-node__children" role="group">
+    <button type="button" class="oo-tree-node__child is-active" aria-current="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      <span>Alert Summary</span>
+    </button>
+    <button type="button" class="oo-tree-node__child">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      <span>Release Demo Dashboard</span>
+    </button>
+    <button type="button" class="oo-tree-node__child">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      <span>firewall wan link</span>
+    </button>
+  </div>
+</div>
+
+<!-- variant: collapsed (no children) — leaf category, caret has nothing to reveal -->
+<div class="oo-tree-node">
+  <button type="button" class="oo-tree-node__row" aria-expanded="false">
+    <span class="oo-tree-node__caret" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 6 6 6-6 6"/></svg>
+    </span>
+    <span class="oo-tree-node__label">Applications</span>
+    <span class="oo-tree-node__count">5</span>
+  </button>
+  <div class="oo-tree-node__children" role="group"></div>
+</div>
+
+<!-- state: disabled — category present but not selectable -->
+<div class="oo-tree-node is-disabled">
+  <button type="button" class="oo-tree-node__row" aria-expanded="false" disabled>
+    <span class="oo-tree-node__caret" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 6 6 6-6 6"/></svg>
+    </span>
+    <span class="oo-tree-node__label">Virtualization</span>
+    <span class="oo-tree-node__count">6</span>
+  </button>
+  <div class="oo-tree-node__children" role="group"></div>
+</div>

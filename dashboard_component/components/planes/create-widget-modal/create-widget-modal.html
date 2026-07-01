@@ -1,0 +1,255 @@
+<!-- variant: create (full plane — Style pane active) -->
+<section class="oo-cwm" role="dialog" aria-modal="true" aria-label="Create Widget">
+
+  <!-- header -->
+  <header class="oo-cwm__head">
+    <h2 class="oo-cwm__title">Create Widget</h2>
+    <div class="oo-cwm__head-right">
+      <span class="oo-cwm__range">
+        <span class="oo-cwm__range-tag">today</span>
+        <span class="oo-cwm__range-lbl">Today</span>
+      </span>
+      <span class="oo-cwm__date">26-06-10 00:00:00<br>26-06-10 11:40:36</span>
+      <button class="oo-cwm__close" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- widget-type tab strip -->
+  <div class="oo-cwm__types" role="tablist" aria-label="Widget type">
+    <button class="oo-cwm__type is-on" role="tab" aria-selected="true">Chart</button>
+    <button class="oo-cwm__type" role="tab" aria-selected="false">Grid</button>
+    <button class="oo-cwm__type" role="tab" aria-selected="false">Top N</button>
+    <button class="oo-cwm__type" role="tab" aria-selected="false">Gauge</button>
+    <button class="oo-cwm__type" role="tab" aria-selected="false">Heat Map</button>
+    <button class="oo-cwm__type" role="tab" aria-selected="false">Anomaly</button>
+    <button class="oo-cwm__type" role="tab" aria-selected="false">AI Insights</button>
+  </div>
+
+  <!-- mid row: preview | config -->
+  <div class="oo-cwm__mid">
+    <!-- live preview pane -->
+    <div class="oo-cwm__preview">
+      <div class="oo-cwm__preview-wrap">
+        <svg class="oo-cwm__preview-svg" viewBox="0 0 320 150" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0,110 40,90 80,100 120,60 160,75 200,50 240,65 280,40 320,55 320,150 0,150 Z" fill="var(--teal2)"/>
+          <path d="M0,110 40,90 80,100 120,60 160,75 200,50 240,65 280,40 320,55" fill="none" stroke="var(--teal)" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- config -->
+    <div class="oo-cwm__cfg">
+      <div class="oo-cwm__names">
+        <label class="oo-cwm__fld">
+          <span class="oo-cwm__fld-label">Widget Name</span>
+          <input class="oo-cwm__inp" type="text" placeholder="Enter widget name">
+        </label>
+        <label class="oo-cwm__fld">
+          <span class="oo-cwm__fld-label">Widget Description</span>
+          <input class="oo-cwm__inp" type="text" placeholder="Enter description">
+        </label>
+      </div>
+
+      <div class="oo-cwm__subtabs" role="tablist" aria-label="Widget settings">
+        <button class="oo-cwm__subtab is-on" role="tab" aria-selected="true" data-target="style">Style</button>
+        <button class="oo-cwm__subtab" role="tab" aria-selected="false" data-target="sorting">Sorting</button>
+        <button class="oo-cwm__subtab" role="tab" aria-selected="false" data-target="markers">Markers</button>
+        <button class="oo-cwm__subtab" role="tab" aria-selected="false" data-target="timeline">Timeline Preference</button>
+      </div>
+
+      <!-- STYLE pane -->
+      <div class="oo-cwm__pane is-on" role="tabpanel" data-pane="style">
+        <div class="oo-cwm__style-row" role="group" aria-label="Chart style">
+          <button class="oo-cwm__style-btn is-on" aria-pressed="true" aria-label="Area">
+            <svg viewBox="0 0 24 18" aria-hidden="true"><path d="M2 14 6 9 10 11 14 5 18 8 22 6 22 16 2 16 Z" fill="currentColor" stroke="currentColor" stroke-width="1.5" opacity=".85"/></svg>
+          </button>
+          <button class="oo-cwm__style-btn" aria-pressed="false" aria-label="Line">
+            <svg viewBox="0 0 24 18" aria-hidden="true"><path d="M2 14 6 9 10 11 14 5 18 8 22 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+          <button class="oo-cwm__style-btn" aria-pressed="false" aria-label="Horizontal bar">
+            <svg viewBox="0 0 24 18" aria-hidden="true"><rect x="3" y="3" width="14" height="3" fill="currentColor"/><rect x="3" y="8" width="9" height="3" fill="currentColor"/><rect x="3" y="13" width="17" height="3" fill="currentColor"/></svg>
+          </button>
+          <button class="oo-cwm__style-btn" aria-pressed="false" aria-label="Column">
+            <svg viewBox="0 0 24 18" aria-hidden="true"><rect x="3" y="8" width="3.5" height="8" fill="currentColor"/><rect x="9" y="4" width="3.5" height="12" fill="currentColor"/><rect x="15" y="10" width="3.5" height="6" fill="currentColor"/></svg>
+          </button>
+        </div>
+
+        <div class="oo-cwm__cfg-grid">
+          <div class="oo-cwm__cfg-item">
+            <span class="oo-cwm__clbl">Rotation</span>
+            <div class="oo-cwm__slider">
+              <span class="oo-cwm__slider-ic" aria-hidden="true">&#10227;</span>
+              <input class="oo-cwm__range-input" type="range" min="0" max="360" value="0" aria-label="Rotation">
+              <span class="oo-cwm__sv">0</span>
+            </div>
+          </div>
+          <div class="oo-cwm__cfg-item">
+            <span class="oo-cwm__clbl">Legend</span>
+            <button class="oo-cwm__toggle" type="button" role="switch" aria-checked="false" aria-label="Legend">
+              <span class="oo-cwm__tk"></span><span class="oo-cwm__tt">OFF</span>
+            </button>
+          </div>
+          <div class="oo-cwm__cfg-item">
+            <span class="oo-cwm__clbl">Line Width</span>
+            <div class="oo-cwm__slider">
+              <input class="oo-cwm__range-input" type="range" min="1" max="8" value="2" aria-label="Line width">
+              <span class="oo-cwm__sv">2</span>
+            </div>
+          </div>
+          <div class="oo-cwm__cfg-item">
+            <span class="oo-cwm__clbl">Points</span>
+            <button class="oo-cwm__toggle is-on" type="button" role="switch" aria-checked="true" aria-label="Points">
+              <span class="oo-cwm__tk"></span><span class="oo-cwm__tt">ON</span>
+            </button>
+          </div>
+          <div class="oo-cwm__cfg-item">
+            <span class="oo-cwm__clbl">Granularity <span class="oo-cwm__req">*</span></span>
+            <div class="oo-cwm__field-row">
+              <input class="oo-cwm__num" type="text" value="5" style="width:60px">
+              <div class="oo-cwm__sel" role="button" tabindex="0" style="flex:1">
+                <span class="oo-cwm__v">Minute</span>
+                <span class="oo-cwm__cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+              </div>
+            </div>
+          </div>
+          <div class="oo-cwm__cfg-item">
+            <span class="oo-cwm__clbl">Metric Grid</span>
+            <button class="oo-cwm__toggle" type="button" role="switch" aria-checked="false" aria-label="Metric grid">
+              <span class="oo-cwm__tk"></span><span class="oo-cwm__tt">OFF</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SORTING pane -->
+      <div class="oo-cwm__pane" role="tabpanel" data-pane="sorting">
+        <div class="oo-cwm__cfg-item" style="margin-bottom:18px">
+          <span class="oo-cwm__clbl">Order</span>
+          <div class="oo-cwm__pills" role="radiogroup" aria-label="Order">
+            <button class="oo-cwm__pill is-on" role="radio" aria-checked="true">Top</button>
+            <button class="oo-cwm__pill" role="radio" aria-checked="false">Last</button>
+          </div>
+        </div>
+        <div class="oo-cwm__cfg-item">
+          <span class="oo-cwm__clbl">Count</span>
+          <input class="oo-cwm__num" type="text" value="10">
+        </div>
+      </div>
+
+      <!-- MARKERS pane -->
+      <div class="oo-cwm__pane" role="tabpanel" data-pane="markers">
+        <div class="oo-cwm__cfg-grid" style="grid-template-columns:1fr 1fr 1fr">
+          <div class="oo-cwm__cfg-item">
+            <span class="oo-cwm__clbl">Type</span>
+            <div class="oo-cwm__sel" role="button" tabindex="0">
+              <span class="oo-cwm__v is-ph">Select</span>
+              <span class="oo-cwm__cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+            </div>
+          </div>
+          <div class="oo-cwm__cfg-item">
+            <span class="oo-cwm__clbl">Threshold</span>
+            <input class="oo-cwm__num" type="text" value="0.00" style="width:100%">
+          </div>
+          <div class="oo-cwm__cfg-item">
+            <span class="oo-cwm__clbl">Color</span>
+            <div class="oo-cwm__sel" role="button" tabindex="0">
+              <span class="oo-cwm__v is-ph">Select</span>
+              <span class="oo-cwm__cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIMELINE pane -->
+      <div class="oo-cwm__pane" role="tabpanel" data-pane="timeline">
+        <div class="oo-cwm__cfg-item">
+          <span class="oo-cwm__clbl">Use Custom Sticky Timeline</span>
+          <button class="oo-cwm__toggle" type="button" role="switch" aria-checked="false" aria-label="Use custom sticky timeline">
+            <span class="oo-cwm__tk"></span><span class="oo-cwm__tt">OFF</span>
+          </button>
+        </div>
+        <p class="oo-cwm__hint">When enabled, this widget keeps its own time range independent of the dashboard's global timeline.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- data-source builder -->
+  <div class="oo-cwm__ds">
+    <div class="oo-cwm__ds-sec">
+      <div class="oo-cwm__ds-tab oo-cwm__ds-tab--metric">Metric</div>
+      <div class="oo-cwm__ds-body">
+        <div class="oo-cwm__ds-row">
+          <div class="oo-cwm__ds-fld">
+            <span class="oo-cwm__ds-label">Counter <span class="oo-cwm__req">*</span></span>
+            <div class="oo-cwm__ds-ctrl" role="button" tabindex="0">
+              <span class="oo-cwm__v">system.cpu.percent</span>
+              <span class="oo-cwm__cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+            </div>
+          </div>
+          <div class="oo-cwm__ds-fld">
+            <span class="oo-cwm__ds-label">Aggregation <span class="oo-cwm__req">*</span></span>
+            <div class="oo-cwm__ds-ctrl" role="button" tabindex="0">
+              <span class="oo-cwm__v">Avg</span>
+              <span class="oo-cwm__cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+            </div>
+          </div>
+          <div class="oo-cwm__ds-fld">
+            <span class="oo-cwm__ds-label">Source Filter</span>
+            <div class="oo-cwm__ds-ctrl" role="button" tabindex="0">
+              <span class="oo-cwm__v">Everywhere</span>
+              <span class="oo-cwm__cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+            </div>
+          </div>
+          <div class="oo-cwm__ds-fld">
+            <span class="oo-cwm__ds-label">Source</span>
+            <div class="oo-cwm__ds-ctrl" role="button" tabindex="0">
+              <span class="oo-cwm__v is-ph">Select source</span>
+              <span class="oo-cwm__cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+            </div>
+          </div>
+          <div class="oo-cwm__ds-fld">
+            <span class="oo-cwm__ds-label">Result By</span>
+            <div class="oo-cwm__ds-ctrl" role="button" tabindex="0">
+              <span class="oo-cwm__v is-ph">Select</span>
+              <span class="oo-cwm__cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span>
+            </div>
+          </div>
+          <button class="oo-cwm__ds-sigma" type="button" title="Math expression" aria-label="Math expression">&#931;</button>
+          <button class="oo-cwm__ds-plus" type="button" title="Add counter" aria-label="Add counter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+        <div class="oo-cwm__ds-filters" role="button" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 3H2l8 9.5V19l4 2v-8.5z"/></svg>
+          <span>Filters</span>
+        </div>
+      </div>
+    </div>
+    <div class="oo-cwm__ds-cats">
+      <button class="oo-cwm__ds-cat is-on" type="button" aria-pressed="true">Metric</button>
+      <button class="oo-cwm__ds-cat" type="button" aria-pressed="false">RUM</button>
+      <button class="oo-cwm__ds-cat" type="button" aria-pressed="false">Log</button>
+      <button class="oo-cwm__ds-cat" type="button" aria-pressed="false">APM</button>
+      <button class="oo-cwm__ds-cat" type="button" aria-pressed="false">Flow</button>
+      <button class="oo-cwm__ds-cat" type="button" aria-pressed="false">Alert</button>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer class="oo-cwm__foot">
+    <button class="oo-cwm__btn oo-cwm__btn--ghost" type="button">Reset</button>
+    <button class="oo-cwm__btn oo-cwm__btn--outline" type="button">Create Widget</button>
+    <button class="oo-cwm__btn oo-cwm__btn--solid" type="button">Create &amp; Add Widget</button>
+  </footer>
+</section>
+
+<!-- variant: footer-actions (button styles + disabled state) -->
+<footer class="oo-cwm__foot" style="border-top:0">
+  <button class="oo-cwm__btn oo-cwm__btn--ghost" type="button">Reset</button>
+  <button class="oo-cwm__btn oo-cwm__btn--outline" type="button">Create Widget</button>
+  <button class="oo-cwm__btn oo-cwm__btn--solid" type="button">Create &amp; Add Widget</button>
+  <!-- state: disabled -->
+  <button class="oo-cwm__btn oo-cwm__btn--solid" type="button" disabled>Create &amp; Add Widget</button>
+</footer>

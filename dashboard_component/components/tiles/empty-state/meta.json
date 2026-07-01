@@ -1,0 +1,13 @@
+{
+  "name": "empty-state",
+  "category": "tiles",
+  "title": "Empty State",
+  "description": "Centered empty / placeholder state for the AI insights drawer and empty panels: a large faint icon over an \"All clear\"-style heading and a muted hint line, with an optional inline CTA button. Positive-tone and compact-size modifiers included.",
+  "rootClass": "oo-empty-state",
+  "variants": ["default", "positive", "with-action", "compact"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["ai-insights-drawer", "user-defined-widgets-gallery", "add-widget-panel", "empty-panel"],
+  "tags": ["empty-state", "placeholder", "tile", "all-clear", "no-data", "hint"],
+  "demoHeight": 260
+}

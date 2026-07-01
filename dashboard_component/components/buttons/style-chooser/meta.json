@@ -1,0 +1,13 @@
+{
+  "name": "style-chooser",
+  "category": "buttons",
+  "title": "Chart Style Chooser",
+  "description": "42×34 chart-style preview buttons (Area / Line / Bar / Horizontal bar) rendered as a single-select group; the chosen style gets a teal edge and tint and reflects aria-pressed.",
+  "rootClass": "oo-style-chooser",
+  "variants": ["area", "line", "bar", "hbar"],
+  "states": ["default", "selected", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal", "dashboard-module"],
+  "tags": ["button", "toggle", "group", "single-select", "chart", "style", "icon"],
+  "demoHeight": 96
+}

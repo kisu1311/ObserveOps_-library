@@ -1,0 +1,193 @@
+/* topbar · planes · variants: default, badged-icon, ai-icon · states: default, hover, focus, disabled · deps: tokens.css · used-in: global-chrome, dashboard-shell, ai-copilot-launcher, alerts-tray */
+
+/* Global application topbar (48px): brand logo · flexible spacer ·
+   right-aligned icon-button cluster (search / acknowledge / monitors /
+   alerts / AI Copilot) · build pill · account avatar.
+   Self-contained — composes the logo + icon-button patterns inline so no
+   sibling partial is required. All colors/geometry come from tokens. */
+.oo-topbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--space-4);
+  background: var(--nav);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-sans);
+}
+
+/* ── brand logo ───────────────────────────────────────── */
+.oo-topbar__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.oo-topbar__logo:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-topbar__mark {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: conic-gradient(from 210deg, var(--teal), var(--teal) 55%, var(--bg) 55%);
+}
+
+.oo-topbar__mark::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--nav);
+}
+
+.oo-topbar__word {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -.6px;
+  color: var(--on-accent);
+}
+
+.oo-topbar__word b {
+  font-weight: 800;
+  color: var(--teal);
+}
+
+/* ── flexible spacer ──────────────────────────────────── */
+.oo-topbar__spacer {
+  flex: 1;
+}
+
+/* ── right-aligned action cluster ─────────────────────── */
+.oo-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* ── icon button (ghost) ──────────────────────────────── */
+.oo-topbar__ico {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.oo-topbar__ico svg {
+  width: 17px;
+  height: 17px;
+}
+
+.oo-topbar__ico:hover {
+  background: var(--card);
+  color: var(--text);
+}
+
+.oo-topbar__ico:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.oo-topbar__ico:disabled,
+.oo-topbar__ico.is-disabled {
+  color: var(--dim);
+  background: transparent;
+  border-color: transparent;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* notification badge */
+.oo-topbar__badge {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  min-width: 16px;
+  height: 14px;
+  padding: 0 3px;
+  border: 1.5px solid var(--nav);
+  border-radius: var(--radius);
+  background: var(--red);
+  color: var(--on-accent);
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+}
+
+/* AI Copilot sparkle variant */
+.oo-topbar__ico--ai {
+  color: var(--purple2);
+  background: linear-gradient(135deg, var(--teal2), var(--purple-bg));
+  border-color: var(--border2);
+}
+
+.oo-topbar__ico--ai:hover {
+  color: var(--text);
+  border-color: var(--purple);
+}
+
+/* ── build pill ───────────────────────────────────────── */
+.oo-topbar__build {
+  margin: 0 6px;
+  padding: 4px 9px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+
+/* ── account avatar ───────────────────────────────────── */
+.oo-topbar__avatar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-left: var(--space-1);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple2), var(--purple));
+  color: var(--on-accent);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  cursor: pointer;
+  transition: box-shadow var(--transition);
+}
+
+.oo-topbar__avatar:hover {
+  box-shadow: 0 0 0 2px var(--border2);
+}
+
+.oo-topbar__avatar:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}

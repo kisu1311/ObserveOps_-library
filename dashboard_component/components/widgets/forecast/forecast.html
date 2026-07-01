@@ -1,0 +1,19 @@
+<!-- variant: capacity forecast (teal, the default — observed line + dashed projection + confidence cone) -->
+<div class="oo-forecast" data-widget="forecast" data-seed="61"
+     role="img" aria-label="Capacity forecast — observed history with a 12-step projection and confidence cone"
+     style="width:340px;height:190px"></div>
+
+<!-- variant: blue (longer horizon — more forecast steps widen the cone) -->
+<div class="oo-forecast" data-widget="forecast" data-seed="11" data-color="blue" data-fc="18"
+     role="img" aria-label="core-router-01 CPU forecast over the next 24 hours"
+     style="width:340px;height:190px"></div>
+
+<!-- variant: warn (orange — projected to breach a threshold) -->
+<div class="oo-forecast" data-widget="forecast" data-seed="17" data-color="orange"
+     role="img" aria-label="sql-primary session forecast — projected to breach 350 in about 3 hours"
+     style="width:340px;height:190px"></div>
+
+<!-- state: disabled (stale — monitor paused, nothing to project from) -->
+<div class="oo-forecast is-disabled" data-widget="forecast" data-seed="61" aria-disabled="true"
+     role="img" aria-label="Capacity forecast, no recent data"
+     style="width:340px;height:190px"></div>

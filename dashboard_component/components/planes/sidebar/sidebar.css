@@ -1,0 +1,55 @@
+/* sidebar · planes · variants: full-rail, state-showcase, compact-disabled · states: default, active(selected), hover, focus, disabled · deps: tokens.css, base.css, buttons/sidebar-icon · used-in: dashboard-shell, app-nav-rail, global-navigation */
+
+/* Left icon nav-rail — the shell's primary navigation plane. A fixed-width
+   vertical column that hosts sidebar-icon buttons, a flexible spacer, and a
+   trailing control (Settings) pinned to the bottom; exactly one item active.
+   Refined from .ibar / .ib-sp into a namespaced plane that *composes* the
+   sidebar-icon button component (buttons/sidebar-icon) instead of redefining
+   its glyph styles. The 46px width centres a 32px button, leaving a 7px gutter
+   that the active item's left accent bar bleeds into. All colour/spacing from
+   tokens; whole-rail disabled + section divider added as refinements. */
+
+/* ── the rail ─────────────────────────────────────────────── */
+.oo-sidebar {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;                       /* tight rail rhythm (geometry, not palette) */
+  width: 46px;
+  padding: var(--space-2) 0;      /* 7px top/bottom · 0 sides keeps gutter math */
+  background: var(--nav);
+  border-right: 1px solid var(--border);
+  font-family: var(--font-sans);
+}
+
+/* flexible spacer — pushes trailing items (Settings) to the rail bottom.
+   min-height guarantees a visible gap even in a short gallery stage. */
+.oo-sidebar__sp {
+  flex: 1 1 auto;
+  min-height: var(--space-3);
+}
+
+/* ── section divider (refinement) ──────────────────────────── */
+/* optional hairline to group nav clusters within the rail */
+.oo-sidebar__div {
+  flex-shrink: 0;
+  width: 22px;
+  height: 1px;
+  margin: var(--space-1) 0;
+  background: var(--border);
+  border: 0;
+}
+
+/* ── whole-rail disabled (refinement) ──────────────────────── */
+/* dims and inerts every control at once — e.g. nav locked during a modal */
+.oo-sidebar.is-disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+
+/* a soft cue for which rail currently holds keyboard focus; the contained
+   sidebar-icon buttons own their actual focus ring (base.css / sidebar-icon) */
+.oo-sidebar:focus-within {
+  border-right-color: var(--border2);
+}

@@ -1,0 +1,29 @@
+<!-- variant: two-up (Dashboard selected) — the canonical panel-header control -->
+<div class="oo-dashboard-tab" role="tablist" aria-label="Dashboard view">
+  <button type="button" class="oo-dashboard-tab__opt is-active" role="tab" data-tab="dashboard" aria-selected="true" tabindex="0">Dashboard</button>
+  <button type="button" class="oo-dashboard-tab__opt" role="tab" data-tab="noc" aria-selected="false" tabindex="-1">NOC View</button>
+</div>
+
+<!-- state: noc-active (NOC View selected) -->
+<div class="oo-dashboard-tab" role="tablist" aria-label="Dashboard view">
+  <button type="button" class="oo-dashboard-tab__opt" role="tab" data-tab="dashboard" aria-selected="false" tabindex="-1">Dashboard</button>
+  <button type="button" class="oo-dashboard-tab__opt is-active" role="tab" data-tab="noc" aria-selected="true" tabindex="0">NOC View</button>
+</div>
+
+<!-- variant: with-icons -->
+<div class="oo-dashboard-tab" role="tablist" aria-label="Dashboard view">
+  <button type="button" class="oo-dashboard-tab__opt is-active" role="tab" data-tab="dashboard" aria-selected="true" tabindex="0">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+    Dashboard
+  </button>
+  <button type="button" class="oo-dashboard-tab__opt" role="tab" data-tab="noc" aria-selected="false" tabindex="-1">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    NOC View
+  </button>
+</div>
+
+<!-- state: with-disabled-option (NOC View not yet available) -->
+<div class="oo-dashboard-tab" role="tablist" aria-label="Dashboard view">
+  <button type="button" class="oo-dashboard-tab__opt is-active" role="tab" data-tab="dashboard" aria-selected="true" tabindex="0">Dashboard</button>
+  <button type="button" class="oo-dashboard-tab__opt" role="tab" data-tab="noc" aria-selected="false" tabindex="-1" disabled>NOC View</button>
+</div>

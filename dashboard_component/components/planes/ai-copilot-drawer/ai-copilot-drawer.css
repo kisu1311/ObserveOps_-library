@@ -1,0 +1,259 @@
+/* ai-copilot-drawer · planes · variants: insights, ask, drawer · states: default, open, hover, focus, disabled · deps: tokens.css, base.css, insight-card.css, chat-message.css, chat-input.css, suggestion-chip.css · used-in: dashboard-module, ai-copilot-flow, ai-insights-panel */
+
+/* Right-edge "AI Copilot" drawer for the Dashboard module. It frames two tab
+   panels under a gradient-mark header: an "Insights" panel (a live-analysis note
+   + a scrollable column of composed .oo-insight-card tiles) and an "Ask AI"
+   panel (a scrollable .oo-chat-message thread over a footer of .oo-suggestion-chip
+   prompts and a .oo-chat-input composer). This partial owns only the drawer
+   chrome + the slots/regions; the insight tiles, chat bubbles, chips and composer
+   keep their own components (listed in deps). Refined from the monolith
+   .aix / .aix-head / .aix-tabs / .aix-body / .aix-chat / .aix-foot into a
+   namespaced block: every colour, gap and radius is a token, the close button
+   and tabs are real <button>s with hover / focus-visible / disabled states, tab
+   switching is driven by aria-selected + [hidden] tabpanels, and the slide-in
+   chrome is opt-in via the `--drawer` modifier so the panel also renders as a
+   self-contained docked card in the gallery. */
+
+/* ── drawer shell ──────────────────────────────────────────── */
+.oo-ai-copilot-drawer {
+  display: flex;
+  flex-direction: column;
+  width: 460px;
+  max-width: 100%;
+  height: 100%;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  font-family: var(--font-sans);
+  color: var(--text);
+  overflow: hidden;
+}
+
+/* drawer modifier — fixed full-height slide-in from the right edge. Toggle
+   `.is-open` (mirrors the legacy `.open`) to animate it into view. */
+.oo-ai-copilot-drawer--drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 94vw;
+  z-index: 60;
+  box-shadow: var(--shadow-pop);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(.4, 0, .2, 1);
+}
+.oo-ai-copilot-drawer--drawer.is-open,
+.oo-ai-copilot-drawer--drawer.open {
+  transform: translateX(0);
+}
+
+/* ── header ────────────────────────────────────────────────── */
+.oo-ai-copilot-drawer__head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 15px 18px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.oo-ai-copilot-drawer__mark {
+  flex-shrink: 0;
+  width: 31px;
+  height: 31px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--teal), var(--purple));
+  color: var(--on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oo-ai-copilot-drawer__mark svg {
+  width: 18px;
+  height: 18px;
+}
+.oo-ai-copilot-drawer__titles {
+  min-width: 0;
+}
+.oo-ai-copilot-drawer__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.oo-ai-copilot-drawer__sub {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* dismiss control */
+.oo-ai-copilot-drawer__x {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--transition), background var(--transition);
+}
+.oo-ai-copilot-drawer__x svg {
+  width: 14px;
+  height: 14px;
+}
+.oo-ai-copilot-drawer__x:hover {
+  background: var(--card);
+  color: var(--text);
+}
+.oo-ai-copilot-drawer__x:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.oo-ai-copilot-drawer__x:disabled,
+.oo-ai-copilot-drawer__x.is-disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  background: transparent;
+  color: var(--muted);
+}
+
+/* ── tab strip ─────────────────────────────────────────────── */
+.oo-ai-copilot-drawer__tabs {
+  flex-shrink: 0;
+  display: flex;
+  gap: 20px;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--border);
+}
+.oo-ai-copilot-drawer__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.oo-ai-copilot-drawer__tab:hover {
+  color: var(--text);
+}
+.oo-ai-copilot-drawer__tab:focus-visible {
+  outline: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--ring);
+}
+.oo-ai-copilot-drawer__tab[aria-selected="true"] {
+  color: var(--text);
+  border-bottom-color: var(--purple);
+}
+.oo-ai-copilot-drawer__tab:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  color: var(--muted);
+}
+.oo-ai-copilot-drawer__count {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--purple2);
+  background: var(--purple-bg);
+  border-radius: 9px;
+  padding: 1px 6px;
+}
+
+/* ── Insights tabpanel ─────────────────────────────────────── */
+.oo-ai-copilot-drawer__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-4) 16px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.oo-ai-copilot-drawer__body > * {
+  flex-shrink: 0;
+}
+
+/* live-analysis status line with a pulsing green dot */
+.oo-ai-copilot-drawer__note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 2px 2px 4px;
+  font-size: 10.5px;
+  color: var(--muted);
+}
+.oo-ai-copilot-drawer__note::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  color: var(--green);
+  background: currentColor;
+  box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 55%, transparent);
+  animation: oo-aix-pulse 1.8s infinite;
+}
+@keyframes oo-aix-pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 55%, transparent); }
+  70%  { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* ── Ask AI tabpanel ───────────────────────────────────────── */
+.oo-ai-copilot-drawer__ask {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+/* scrollable chat thread — holds composed .oo-chat-message bubbles */
+.oo-ai-copilot-drawer__chat {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.oo-ai-copilot-drawer__chat > * {
+  flex-shrink: 0;
+}
+/* pinned composer footer — suggestion chips + the chat-input */
+.oo-ai-copilot-drawer__foot {
+  flex-shrink: 0;
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--border);
+}
+/* quick-ask chip row (wraps composed .oo-suggestion-chip buttons) */
+.oo-ai-copilot-drawer__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: 10px;
+}
+
+/* ── tabpanel visibility ───────────────────────────────────── */
+.oo-ai-copilot-drawer__body[hidden],
+.oo-ai-copilot-drawer__ask[hidden] {
+  display: none;
+}
+
+/* ── whole-drawer disabled treatment ───────────────────────── */
+.oo-ai-copilot-drawer.is-disabled {
+  opacity: .55;
+  pointer-events: none;
+}

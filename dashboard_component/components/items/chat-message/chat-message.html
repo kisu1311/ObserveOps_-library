@@ -1,0 +1,42 @@
+<!-- Chat bubbles for the AI Copilot conversation. Drop these inside a flex
+     column (display:flex; flex-direction:column; gap) acting as role="log".
+     The avatar SVG is the ObserveOps "spark" mark, marked decorative. -->
+
+<!-- variant: user -->
+<div class="oo-chat-message oo-chat-message--user" tabindex="0" aria-label="You said">
+  Why did checkout latency spike at 14:20?
+</div>
+
+<!-- variant: ai -->
+<div class="oo-chat-message oo-chat-message--ai" tabindex="0" aria-label="Copilot said">
+  <div class="oo-chat-message__avatar" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="currentColor" focusable="false">
+      <path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z"/>
+      <path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z"/>
+    </svg>
+  </div>
+  <div class="oo-chat-message__bubble">
+    <p>The spike traces to <b>cart-service</b> — p95 jumped to <b>1.8s</b> after a deploy at 14:18.</p>
+    <p>Root cause: a slow query against <b>orders_db</b>. <a href="#">Open the trace</a>.</p>
+  </div>
+</div>
+
+<!-- variant: ai · state: typing -->
+<div class="oo-chat-message oo-chat-message--ai" aria-label="Copilot is typing" aria-live="polite">
+  <div class="oo-chat-message__avatar" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="currentColor" focusable="false">
+      <path d="M12 2l1.7 5.5L19 9l-5.3 1.5L12 16l-1.7-5.5L5 9l5.3-1.5z"/>
+      <path d="M18.5 13l.85 2.6 2.65.9-2.65.9-.85 2.6-.85-2.6-2.65-.9 2.65-.9z"/>
+    </svg>
+  </div>
+  <div class="oo-chat-message__bubble">
+    <div class="oo-chat-message__typing" role="status" aria-label="Copilot is thinking">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</div>
+
+<!-- variant: user · state: sending -->
+<div class="oo-chat-message oo-chat-message--user oo-chat-message--sending" aria-label="You said, sending">
+  Forecast next hour error budget.
+</div>

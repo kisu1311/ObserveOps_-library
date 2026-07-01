@@ -1,0 +1,13 @@
+{
+  "name": "chart",
+  "category": "widgets",
+  "title": "Chart Widget",
+  "description": "The dashboard's core time-series chart renderer. A declarative mount (data-widget=\"chart\") is filled by the OOW.chart renderer with a single token-themed SVG: a 4-row gridline backdrop, right-aligned y-axis labels, and one or more seeded series drawn as smooth cubic-bezier line/area paths or rectangular bars. Seven styles — area, line, bar, sbar (semi bars), hbar (horizontal top-N), sarea, sline — plus a multi option for overlaid series. Output is deterministic from opts.seed, so charts render identically every load. Depends on the shared series / smoothPath / SVAR utils; grid and labels are decoupled from the series colour and themed from design tokens. Presentational by default, with a focus ring when the mount is focusable and a stale/paused disabled treatment.",
+  "rootClass": "oo-chart",
+  "variants": ["area", "line", "bar", "sbar", "hbar", "sarea", "sline", "multi"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/series.js", "utils/smooth-path.js", "utils/colors.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-grid", "create-widget-modal", "widget-fullscreen", "ai-insights-answer"],
+  "tags": ["chart", "widget", "renderer", "timeseries", "line", "area", "bar", "svg", "viz"],
+  "demoHeight": 200
+}

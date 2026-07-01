@@ -1,0 +1,13 @@
+{
+  "name": "suggestion-chip",
+  "category": "items",
+  "title": "AI Suggestion Chip",
+  "description": "Clickable AI suggestion pill (11px) that takes a purple border and purple text on hover; tapping it fires a prompt. Lay a few side by side with the row wrapper as quick-ask prompts in the AI Copilot.",
+  "rootClass": "oo-suggestion-chip",
+  "variants": ["default", "with-icon", "active", "row"],
+  "states": ["default", "hover", "focus", "active", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["ai-copilot-drawer", "ask-ai-panel"],
+  "tags": ["chip", "pill", "suggestion", "ai", "copilot", "prompt"],
+  "demoHeight": 96
+}

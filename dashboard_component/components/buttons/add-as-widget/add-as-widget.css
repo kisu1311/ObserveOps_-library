@@ -1,0 +1,58 @@
+/* add-as-widget · buttons · variants: default, with-target-label · states: default, hover, active, focus, disabled · deps: tokens.css, base.css · used-in: ai-copilot-chat, ai-explorer-drawer */
+
+/* Small purple "Add as widget" chip rendered beneath an AI Copilot chat answer.
+   It pins the suggested visualization to the dashboard. Resting state is a
+   tinted purple fill with a purple border and light-purple text; on hover it
+   fills solid purple with on-accent white text.
+   Refined from .ai-addw: tokenised radius/gap/transition, keyboard focus ring
+   and a disabled treatment. The actual add action is wired by the host page. */
+.oo-add-as-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 5px var(--space-3);
+  border: 1px solid var(--purple);
+  border-radius: var(--radius-sm);
+  background: var(--purple-bg);
+  color: var(--purple2);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+    border-color var(--transition), filter var(--transition);
+}
+
+/* hover: fill solid purple, swap to on-accent white text */
+.oo-add-as-widget:hover {
+  background: var(--purple);
+  color: var(--on-accent);                 /* on-accent text; white is not a palette token */
+}
+
+.oo-add-as-widget:active {
+  filter: brightness(.92);
+}
+
+/* keyboard focus ring (base.css also supplies this for any .oo- control) */
+.oo-add-as-widget:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* leading plus icon inherits currentColor */
+.oo-add-as-widget svg {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+}
+
+/* disabled — e.g. the suggestion has already been added to the dashboard */
+.oo-add-as-widget:disabled,
+.oo-add-as-widget.is-disabled {
+  opacity: .5;
+  filter: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}

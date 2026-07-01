@@ -1,0 +1,13 @@
+{
+  "name": "type-tab",
+  "category": "buttons",
+  "title": "Widget Type Tab",
+  "description": "Horizontally scrollable, single-select tab row for choosing a widget type (Chart, Grid, Gauge, Heat Map, Sankey...). The active tab raises to a card chip with an inset border; the row scrolls when the tabs overflow.",
+  "rootClass": "oo-type-tab",
+  "variants": ["scroll-row", "disabled-option"],
+  "states": ["default", "hover", "focus", "active", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal"],
+  "tags": ["tab", "selector", "pill", "scroll", "widget-type", "toggle", "segmented"],
+  "demoHeight": 120
+}

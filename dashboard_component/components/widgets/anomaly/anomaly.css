@@ -1,0 +1,102 @@
+/* anomaly · widgets · variants: blue, purple, teal, wide-band · states: default, hover, focus, disabled · deps: tokens.css, base.css, utils/series.js, utils/smooth-path.js, utils/rng.js, utils/colors.js, widgets/auto-mount.js · used-in: dashboard-grid, create-widget-modal, widget-fullscreen, ai-insights-answer, ai-generate-widget */
+
+/* The AI/ML anomaly-detection renderer. A declarative mount
+   (<div class="oo-anomaly" data-widget="anomaly" data-seed="51" …>) is filled by
+   the OOW.anomaly renderer with a single SVG that scales to the mount: a seeded
+   time-series drawn as a smooth cubic-bezier line, wrapped in a shaded confidence
+   band (the learned baseline ± a tolerance), with a faint dashed mean baseline and
+   any samples that breach the band marked as a red dot inside a soft pulsing ring.
+   The series colour is data-driven (injected as generated SVG data from data-color),
+   while the semantic parts — band opacity, baseline, and the always-red anomaly
+   markers — are themed here from design tokens so they stay decoupled from the
+   series colour. Presentational by default; when the mount is made focusable it
+   gains a keyboard ring, and a stale/paused state desaturates the whole viz. */
+
+.oo-anomaly {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+  transition: box-shadow var(--transition), opacity var(--transition);
+}
+
+.oo-anomaly svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* confidence band — fill colour arrives inline as generated SVG data (series
+   colour); only the tint opacity is themed here so it tracks design intent */
+.oo-anomaly__band {
+  fill-opacity: .12;
+  transition: fill-opacity var(--transition);
+}
+
+/* the series line — stroke colour + width arrive as generated SVG data */
+.oo-anomaly__line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* learned baseline (mean) — muted dashed midline, independent of series colour */
+.oo-anomaly__baseline {
+  stroke: var(--muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: .4;
+}
+
+/* anomaly markers — always semantic red, themed from tokens (no inline colour) */
+.oo-anomaly__dot {
+  fill: var(--red);
+}
+
+.oo-anomaly__ring {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 1;
+  opacity: .55;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: oo-anomaly-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes oo-anomaly-pulse {
+  0%, 100% { opacity: .55; transform: scale(1); }
+  50%      { opacity: .15; transform: scale(1.35); }
+}
+
+/* hover: brighten the band so the active widget reads as foregrounded */
+.oo-anomaly:hover .oo-anomaly__band {
+  fill-opacity: .2;
+}
+
+/* keyboard focus — only when the mount is itself focusable (tabindex / role=img) */
+.oo-anomaly:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* stale / paused — monitor disabled or no recent data */
+.oo-anomaly.is-disabled,
+.oo-anomaly[aria-disabled="true"] {
+  opacity: .45;
+  filter: grayscale(.5) saturate(.4);
+  pointer-events: none;
+}
+
+.oo-anomaly.is-disabled .oo-anomaly__ring,
+.oo-anomaly[aria-disabled="true"] .oo-anomaly__ring {
+  animation: none;
+}
+
+/* respect reduced-motion — hold the ring static */
+@media (prefers-reduced-motion: reduce) {
+  .oo-anomaly__ring { animation: none; }
+}

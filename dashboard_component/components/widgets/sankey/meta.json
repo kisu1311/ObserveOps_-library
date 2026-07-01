@@ -1,0 +1,14 @@
+{
+  "name": "sankey",
+  "category": "widgets",
+  "title": "Sankey Flow",
+  "description": "Dependency Sankey widget — three left source tiers fan out to four right destinations through translucent bezier flow ribbons, each coloured by its source node. Rendered deterministically by OOW.sankey from a seed (no real data); hovering a ribbon peels focus by dimming the rest of the field. Category colours are emitted as var() token fills.",
+  "rootClass": "oo-sankey",
+  "variants": ["dependency-flow", "alt-seed"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "widgets/auto-mount.js"],
+  "usedIn": ["create-widget-modal", "add-widget-panel", "dashboard-canvas"],
+  "tags": ["widget", "sankey", "flow", "dependency", "diagram", "viz", "renderer"],
+  "demoHeight": 250,
+  "hasJs": true
+}

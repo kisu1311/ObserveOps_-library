@@ -1,0 +1,13 @@
+{
+  "name": "add-widget-btn",
+  "category": "buttons",
+  "title": "Add Widget Button",
+  "description": "Circular + chip in the dashboard list-panel header. A quiet card-colored trigger that fills teal and spins the glyph 90° on hover; opens the Add Widget flow.",
+  "rootClass": "oo-add-widget-btn",
+  "variants": ["default"],
+  "states": ["default", "hover", "focus", "active", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-panel-head", "add-widget-flow"],
+  "tags": ["button", "icon", "add", "circular", "trigger"],
+  "demoHeight": 80
+}

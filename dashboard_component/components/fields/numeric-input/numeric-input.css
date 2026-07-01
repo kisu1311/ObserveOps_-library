@@ -1,0 +1,51 @@
+/* numeric-input · fields · variants: default, narrow, block · states: default, hover, focus, disabled · deps: tokens.css, base.css · used-in: create-widget-modal (config + threshold panes) */
+
+/* Small numeric field with a single bottom-border (underline) treatment.
+   Used inline for line-width, point counts, granularity values and thresholds.
+   Root .oo-num-inp keeps the source class name; it sits transparently on cards. */
+.oo-num-inp {
+  width: 80px;
+  padding: var(--space-2);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border2);
+  border-radius: 0;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12.5px;
+  line-height: 1.2;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+/* width modifiers seen in the source (granularity 60px, full-width threshold/label) */
+.oo-num-inp--narrow { width: 60px; }
+.oo-num-inp--block  { width: 100%; }
+
+.oo-num-inp::placeholder { color: var(--muted); }
+
+/* trim the native number spinners so the underline stays clean */
+.oo-num-inp::-webkit-outer-spin-button,
+.oo-num-inp::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.oo-num-inp[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+/* hover hints editability */
+.oo-num-inp:hover:not(:disabled) { border-bottom-color: var(--muted); }
+
+/* focus: thicken the underline to teal (overrides base.css full-rect ring,
+   which suits a bordered box more than an underline field) */
+.oo-num-inp:focus,
+.oo-num-inp:focus-visible {
+  outline: none;
+  border-bottom-color: var(--teal);
+  box-shadow: inset 0 -1px 0 0 var(--teal);
+}
+
+/* disabled — faint underline, dimmed value, not editable */
+.oo-num-inp:disabled,
+.oo-num-inp.is-disabled {
+  border-bottom-color: var(--border);
+  color: var(--dim);
+  cursor: not-allowed;
+}
+.oo-num-inp:disabled::placeholder,
+.oo-num-inp.is-disabled::placeholder { color: var(--dim); }

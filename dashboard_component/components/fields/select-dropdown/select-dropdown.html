@@ -1,0 +1,54 @@
+<!-- variant: default (closed, value selected) -->
+<div class="oo-select">
+  <button type="button" class="oo-select__trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Rollup interval">
+    <span class="oo-select__value">Minute</span>
+    <span class="oo-select__chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+  </button>
+  <ul class="oo-select__menu" role="listbox" aria-label="Rollup interval">
+    <li class="oo-select__option" role="option" aria-selected="false">Second</li>
+    <li class="oo-select__option" role="option" aria-selected="true">Minute</li>
+    <li class="oo-select__option" role="option" aria-selected="false">Hour</li>
+    <li class="oo-select__option" role="option" aria-selected="false">Day</li>
+  </ul>
+</div>
+
+<!-- variant: placeholder (closed, nothing chosen) -->
+<div class="oo-select">
+  <button type="button" class="oo-select__trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Series type">
+    <span class="oo-select__value is-placeholder">Select</span>
+    <span class="oo-select__chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+  </button>
+  <ul class="oo-select__menu" role="listbox" aria-label="Series type">
+    <li class="oo-select__option" role="option" aria-selected="false">Line</li>
+    <li class="oo-select__option" role="option" aria-selected="false">Band</li>
+    <li class="oo-select__option" role="option" aria-selected="false">Point</li>
+  </ul>
+</div>
+
+<!-- variant: open (menu expanded, one option selected) -->
+<div class="oo-select oo-select--block is-open">
+  <button type="button" class="oo-select__trigger" aria-haspopup="listbox" aria-expanded="true" aria-label="Aggregation">
+    <span class="oo-select__value">Avg</span>
+    <span class="oo-select__chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+  </button>
+  <ul class="oo-select__menu" role="listbox" aria-label="Aggregation">
+    <li class="oo-select__option" role="option" aria-selected="true">Avg</li>
+    <li class="oo-select__option" role="option" aria-selected="false">Min</li>
+    <li class="oo-select__option" role="option" aria-selected="false">Max</li>
+    <li class="oo-select__option" role="option" aria-selected="false">Sum</li>
+    <li class="oo-select__option" role="option" aria-selected="false">Count</li>
+  </ul>
+</div>
+
+<!-- state: disabled -->
+<div class="oo-select is-disabled">
+  <button type="button" class="oo-select__trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Line type" disabled>
+    <span class="oo-select__value is-placeholder">Select</span>
+    <span class="oo-select__chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+  </button>
+  <ul class="oo-select__menu" role="listbox" aria-label="Line type">
+    <li class="oo-select__option" role="option" aria-selected="false">Solid</li>
+    <li class="oo-select__option" role="option" aria-selected="false">Dashed</li>
+    <li class="oo-select__option" role="option" aria-selected="false">Dotted</li>
+  </ul>
+</div>

@@ -1,0 +1,96 @@
+/* noc-kpi · tiles · variants: neutral, critical, warning, up, down, row, selectable · states: default, hover, focus, selected, disabled · deps: tokens.css, base.css · used-in: noc-wallboard, noc-view-header */
+
+/* NOC wallboard header counter: a big status-colored value stacked over a
+   quiet uppercase label (Monitors / Critical / Warning / Up / Down). Tiles
+   ship as a horizontal row. Tone modifiers recolor only the value; the tile
+   chrome (card fill + hairline border) stays neutral so the strip reads as
+   one unit. A tile can be promoted to a <button> to act as a single-select
+   status filter — hover lifts the border, aria-pressed paints the teal
+   selected state, and disabled dims the whole tile. */
+
+/* ── row container ───────────────────────────────────────
+   Horizontal strip; on the live NOC header it is pushed right with an
+   ancestor's margin-left:auto — left to the consumer, not baked in here. */
+.oo-noc-kpi-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--space-3);
+}
+
+/* ── single KPI counter ──────────────────────────────────── */
+.oo-noc-kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 82px;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-sans);
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition), background var(--transition),
+              box-shadow var(--transition);
+}
+
+/* the big number */
+.oo-noc-kpi__v {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+/* the caption */
+.oo-noc-kpi__l {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── tone modifiers — recolor the value only ─────────────── */
+.oo-noc-kpi--neutral  .oo-noc-kpi__v { color: var(--text); }
+.oo-noc-kpi--critical .oo-noc-kpi__v { color: var(--red); }
+.oo-noc-kpi--warning  .oo-noc-kpi__v { color: var(--orange); }
+.oo-noc-kpi--up       .oo-noc-kpi__v { color: var(--green); }
+.oo-noc-kpi--down     .oo-noc-kpi__v { color: var(--red); }
+
+/* ── interactive (selectable status filter) ──────────────── */
+button.oo-noc-kpi {
+  cursor: pointer;
+}
+
+button.oo-noc-kpi:hover {
+  border-color: var(--border2);
+  background: var(--card2);
+}
+
+/* selected = active filter: teal outline + faint glow */
+button.oo-noc-kpi[aria-pressed="true"] {
+  border-color: var(--teal);
+  background: var(--teal2);
+  box-shadow: inset 0 0 0 1px var(--teal);
+}
+
+/* keyboard focus ring is provided by base.css :focus-visible on any oo- control */
+
+/* ── disabled ────────────────────────────────────────────── */
+.oo-noc-kpi:disabled,
+.oo-noc-kpi.is-disabled {
+  cursor: not-allowed;
+  opacity: .45;
+  background: var(--card);
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+.oo-noc-kpi:disabled .oo-noc-kpi__v,
+.oo-noc-kpi.is-disabled .oo-noc-kpi__v {
+  color: var(--dim);
+}

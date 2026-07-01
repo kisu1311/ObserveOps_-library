@@ -1,0 +1,54 @@
+<!-- variant: default — tick row + draggable range brush near the right edge -->
+<div class="oo-ruler" role="group" aria-label="Timeline ruler">
+  <div class="oo-ruler__ticks" aria-hidden="true">
+    <span class="oo-ruler__tick">13:27</span>
+    <span class="oo-ruler__tick">18:07</span>
+    <span class="oo-ruler__tick">22:47</span>
+    <span class="oo-ruler__tick">03:27</span>
+    <span class="oo-ruler__tick">08:07</span>
+    <span class="oo-ruler__tick">12:47</span>
+    <span class="oo-ruler__tick">17:27</span>
+    <span class="oo-ruler__tick">22:07</span>
+    <span class="oo-ruler__tick">02:48</span>
+    <span class="oo-ruler__tick">07:28</span>
+    <span class="oo-ruler__tick">11:40</span>
+  </div>
+  <div class="oo-ruler__slider" role="slider" tabindex="0"
+       aria-label="Visible time range" aria-valuemin="0" aria-valuemax="100" aria-valuenow="78">
+    <span class="oo-ruler__handle" aria-hidden="true"></span>
+  </div>
+</div>
+
+<!-- variant: now-marked — the live "now" tick is highlighted in teal -->
+<div class="oo-ruler" role="group" aria-label="Timeline ruler">
+  <div class="oo-ruler__ticks" aria-hidden="true">
+    <span class="oo-ruler__tick">00:00</span>
+    <span class="oo-ruler__tick">04:00</span>
+    <span class="oo-ruler__tick">08:00</span>
+    <span class="oo-ruler__tick">12:00</span>
+    <span class="oo-ruler__tick">16:00</span>
+    <span class="oo-ruler__tick">20:00</span>
+    <span class="oo-ruler__tick is-now">now</span>
+  </div>
+  <div class="oo-ruler__slider" role="slider" tabindex="0" style="left:30%;width:30%"
+       aria-label="Visible time range" aria-valuemin="0" aria-valuemax="100" aria-valuenow="42">
+    <span class="oo-ruler__handle" aria-hidden="true"></span>
+  </div>
+</div>
+
+<!-- state: disabled — ruler is read-only, brush cannot be dragged -->
+<div class="oo-ruler is-disabled" role="group" aria-label="Timeline ruler (locked)">
+  <div class="oo-ruler__ticks" aria-hidden="true">
+    <span class="oo-ruler__tick">13:27</span>
+    <span class="oo-ruler__tick">18:07</span>
+    <span class="oo-ruler__tick">22:47</span>
+    <span class="oo-ruler__tick">03:27</span>
+    <span class="oo-ruler__tick">08:07</span>
+    <span class="oo-ruler__tick">12:47</span>
+    <span class="oo-ruler__tick">17:27</span>
+  </div>
+  <div class="oo-ruler__slider is-disabled" role="slider" tabindex="-1" aria-disabled="true"
+       aria-label="Visible time range" aria-valuemin="0" aria-valuemax="100" aria-valuenow="78">
+    <span class="oo-ruler__handle" aria-hidden="true"></span>
+  </div>
+</div>

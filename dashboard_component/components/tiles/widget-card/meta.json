@@ -1,0 +1,13 @@
+{
+  "name": "widget-card",
+  "category": "tiles",
+  "title": "Widget Card",
+  "description": "Dashboard widget container shell: header with drag grip, title and tag plus a refresh / AI / more / remove toolbar, over a flexible body slot, with a reveal-on-hover bottom-right resize handle. Body shown here as a labelled placeholder.",
+  "rootClass": "oo-widget-card",
+  "variants": ["default", "ai-tool", "wide"],
+  "states": ["default", "hover", "focus", "disabled", "dragging", "drop-target"],
+  "deps": ["tokens.css"],
+  "usedIn": ["dashboard-canvas", "widget-grid", "fullscreen-widget"],
+  "tags": ["widget", "card", "container", "toolbar", "dashboard", "resize", "drag"],
+  "demoHeight": 280
+}

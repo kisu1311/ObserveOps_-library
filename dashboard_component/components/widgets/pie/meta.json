@@ -1,0 +1,13 @@
+{
+  "name": "pie",
+  "category": "widgets",
+  "title": "Pie / Donut Chart",
+  "description": "Distribution widget rendering five proportional slices as a pie or, by default, a donut with a center total. A token-colored value legend sits beside the chart; hovering the chart spotlights one wedge and dims the rest. Deterministic from a seed via the OOW.pie renderer mounted by auto-mount.js.",
+  "rootClass": "oo-pie",
+  "variants": ["donut", "pie", "no-legend"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "utils/rng.js", "utils/series.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-canvas", "add-widget-panel", "create-widget-modal"],
+  "tags": ["pie", "donut", "chart", "widget", "distribution", "proportion", "dataviz", "legend"],
+  "demoHeight": 220
+}

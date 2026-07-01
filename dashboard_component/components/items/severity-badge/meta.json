@@ -1,0 +1,13 @@
+{
+  "name": "severity-badge",
+  "category": "items",
+  "title": "Severity Badge",
+  "description": "Inline uppercase severity label with four colour variants (crit/warn/info/ok) on tinted backgrounds. Used in Alerts and Events data-grid rows to flag row severity; supports an optional leading status dot and an interactive filter form.",
+  "rootClass": "oo-sev",
+  "variants": ["crit", "warn", "info", "ok", "dot"],
+  "states": ["default", "hover", "focus", "pressed", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["alerts-widget", "events-widget", "dashboard-grid-table"],
+  "tags": ["badge", "label", "severity", "status", "pill", "tag"],
+  "demoHeight": 80
+}

@@ -1,0 +1,20 @@
+<!-- grid · tabular status table widget. Declarative mounts only —
+     OOW.grid (grid.js) renders each one from its data-* attributes;
+     auto-mount.js wires them up. No inline scripts. The mount is the
+     scroll container; the renderer writes a semantic <table> inside. -->
+
+<!-- variant: status-up (seed 41 — full 8-row Monitor/Traffic/Interface/Status, mostly Up) -->
+<div class="oo-grid" data-widget="grid" data-seed="41" aria-label="Monitor status"
+     style="width:360px;height:230px"></div>
+
+<!-- variant: status-down mix (different seed surfaces Down rows + red dots) -->
+<div class="oo-grid" data-widget="grid" data-seed="3" aria-label="Interface status"
+     style="width:360px;height:230px"></div>
+
+<!-- variant: scrollable (compact stage, 8 rows overflow → header stays sticky) -->
+<div class="oo-grid" data-widget="grid" data-seed="17" aria-label="Monitor traffic"
+     style="width:360px;height:140px"></div>
+
+<!-- state: disabled / no-data (dimmed, interaction frozen) -->
+<div class="oo-grid" data-widget="grid" data-seed="41" aria-disabled="true" aria-label="Monitor status (loading)"
+     style="width:360px;height:230px"></div>

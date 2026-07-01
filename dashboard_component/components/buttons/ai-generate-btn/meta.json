@@ -1,0 +1,13 @@
+{
+  "name": "ai-generate-btn",
+  "category": "buttons",
+  "title": "AI Generate Button",
+  "description": "Gradient teal-to-purple \"Generate\" action button with a sparkle (SPARK) glyph, used in the Create-with-AI prompt row to turn a plain-English description into a widget. Supports icon-only and full-width variants plus busy and disabled states.",
+  "rootClass": "oo-ai-gen-btn",
+  "variants": ["default", "icon-only", "block"],
+  "states": ["default", "hover", "focus", "busy", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal", "add-widget-panel", "create-with-ai"],
+  "tags": ["button", "ai", "generate", "gradient", "sparkle", "cta"],
+  "demoHeight": 90
+}

@@ -1,0 +1,13 @@
+{
+  "name": "grid",
+  "category": "widgets",
+  "title": "Status Grid Table",
+  "description": "Tabular status widget: a scrollable Monitor / Traffic / Interface / Status table with a sticky header, hairline row dividers and a hover wash. Each row leads with a coloured status dot and ends with an up/down state chip, all derived from a deterministic seed by the pure OOW.grid renderer; the mount itself is the scroll container so the table scrolls independently of the widget body. Rows are keyboard-focusable for drill-down (base focus ring); an aria-disabled grid dims the whole table for no-data / loading.",
+  "rootClass": "oo-grid",
+  "variants": ["status-up", "status-down", "scrollable"],
+  "states": ["default", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/esc.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-canvas", "create-widget-modal"],
+  "tags": ["widget", "grid", "table", "status", "monitor", "data-viz", "status-dot", "chip"],
+  "demoHeight": 230
+}

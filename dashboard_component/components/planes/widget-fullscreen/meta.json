@@ -1,0 +1,13 @@
+{
+  "name": "widget-fullscreen",
+  "category": "planes",
+  "title": "Widget Fullscreen Modal",
+  "description": "Fullscreen widget modal: a deep, blurred backdrop scrim centring one large card (header bar with widget title + teal type tag + ✕ close, over a big scrollable body). Used when a dashboard widget is expanded to fill the screen. Open/close is a single is-open class toggle (fade scrim + lift-in card, mirroring the live fullscreenWidget()/closeFullscreen() pair); the close control carries hover, focus-visible and disabled states; backdrop-click and Escape also dismiss. A --contained modifier confines the plane to the gallery stage, and the body is a neutral placeholder so the partial stays decoupled from any widget renderer.",
+  "rootClass": "oo-widget-fullscreen",
+  "variants": ["default", "contained"],
+  "states": ["hidden", "open", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-module", "canvas", "create-widget-modal"],
+  "tags": ["modal", "fullscreen", "overlay", "scrim", "dialog", "widget", "expand", "plane"],
+  "demoHeight": 440
+}

@@ -1,0 +1,13 @@
+{
+  "name": "query",
+  "category": "widgets",
+  "title": "Query Value",
+  "description": "Single-value KPI widget: one oversized numeric value, a muted metric caption, a signed percent delta (green up / red down) and a trend sparkline. Rendered by OOW.query from a declarative data-widget mount and deterministic from data-seed; accent modifiers recolour only the sparkline while the delta colour stays semantic. An optional interactive variant turns the tile into a focusable drill-down target.",
+  "rootClass": "oo-query",
+  "variants": ["teal", "blue", "purple", "orange", "green", "interactive"],
+  "states": ["up", "down", "hover", "focus", "disabled"],
+  "deps": ["tokens.css", "base.css", "utils/rng.js", "utils/series.js", "utils/smooth-path.js", "utils/esc.js", "widgets/auto-mount.js"],
+  "usedIn": ["dashboard-canvas", "create-widget-modal", "add-widget-panel"],
+  "tags": ["widget", "kpi", "metric", "single-value", "stat", "sparkline", "delta", "trend", "query"],
+  "demoHeight": 200
+}

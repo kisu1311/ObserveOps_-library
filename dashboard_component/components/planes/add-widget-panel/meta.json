@@ -1,0 +1,13 @@
+{
+  "name": "add-widget-panel",
+  "category": "planes",
+  "title": "Add-Widget Panel",
+  "description": "Slide-in right \"Add New Widget\" panel: a titled header with a dismiss control, the Create / Predefined / User Define underline tabs, a search field, and a scrollable card grid. Composes the add-widget-tab, search-input and template-card atoms; tabs swap the body, search filters the cards, and the close button dismisses. Renders docked by default or as a fixed slide-in drawer via the --drawer modifier.",
+  "rootClass": "oo-add-widget-panel",
+  "variants": ["docked", "drawer", "create", "predefined", "user-define-empty"],
+  "states": ["default", "open", "hover", "focus", "filtered", "disabled"],
+  "deps": ["tokens.css", "base.css", "add-widget-tab.css", "search-input.css", "template-card.css"],
+  "usedIn": ["dashboard-module", "add-widget-flow", "create-widget-modal"],
+  "tags": ["panel", "drawer", "slide-in", "add-widget", "plane", "tabs", "search", "grid", "compose"],
+  "demoHeight": 560
+}

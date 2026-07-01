@@ -1,0 +1,29 @@
+<!-- variant: default (required, empty placeholder) -->
+<div class="oo-text-input">
+  <label class="oo-text-input__label" for="oo-ti-name">
+    Widget Name<span class="oo-text-input__req" aria-hidden="true">*</span>
+  </label>
+  <input class="oo-text-input__field" id="oo-ti-name" type="text"
+         placeholder="Enter widget name" required aria-required="true" />
+</div>
+
+<!-- variant: with-value -->
+<div class="oo-text-input">
+  <label class="oo-text-input__label" for="oo-ti-desc">Widget Description</label>
+  <input class="oo-text-input__field" id="oo-ti-desc" type="text"
+         value="CPU utilisation by host" placeholder="Enter description" />
+</div>
+
+<!-- state: focused (static demo of the teal underline) -->
+<div class="oo-text-input">
+  <label class="oo-text-input__label" for="oo-ti-focused">Label</label>
+  <input class="oo-text-input__field is-focused" id="oo-ti-focused" type="text"
+         value="Typing…" placeholder="Enter value" />
+</div>
+
+<!-- state: disabled -->
+<div class="oo-text-input is-disabled">
+  <label class="oo-text-input__label" for="oo-ti-disabled">Source ID</label>
+  <input class="oo-text-input__field" id="oo-ti-disabled" type="text"
+         value="auto-generated" placeholder="Enter value" disabled aria-disabled="true" />
+</div>

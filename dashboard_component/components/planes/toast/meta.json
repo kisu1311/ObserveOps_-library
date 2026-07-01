@@ -1,0 +1,13 @@
+{
+  "name": "toast",
+  "category": "planes",
+  "title": "Toast Notification",
+  "description": "Bottom-center transient toast for action confirmations. Refined from the live single .toast pill (one node the global toast() function rewrote and flashed via a .show class) into a reusable, semantic notification: an icon chip, a message with an optional dismiss (✕), and one local --oo-toast-accent custom property so a tone modifier (success / info / error / warning) only flips the accent + tint. A separate .oo-toast-host fixes a stack of toasts to the viewport bottom-center, or with --contained confines them to a positioned ancestor (the gallery stage). Resting toasts stay fully visible so they read statically; spawned ones run the .is-show enter animation and fade out with .is-hiding, mirroring the live 2.4s auto-dismiss. Honours prefers-reduced-motion; close button carries hover / focus-visible / disabled states.",
+  "rootClass": "oo-toast",
+  "variants": ["success", "info", "error", "warning", "transient-host"],
+  "states": ["default", "show", "hiding", "close:hover", "close:focus", "close:disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["dashboard-canvas", "add-widget-panel", "create-widget-modal", "ai-insights-drawer"],
+  "tags": ["toast", "notification", "snackbar", "transient", "feedback", "plane", "status"],
+  "demoHeight": 320
+}

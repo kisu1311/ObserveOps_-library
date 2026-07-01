@@ -1,0 +1,13 @@
+{
+  "name": "chat-message",
+  "category": "items",
+  "title": "Chat Message",
+  "description": "AI Copilot chat bubbles. The user voice is a solid teal, right-aligned bubble with a flattened bottom-right tail; the ai voice pairs a sparkle gradient avatar with a left-aligned card bubble holding rich text and an optional 3-dot typing indicator while the answer streams.",
+  "rootClass": "oo-chat-message",
+  "variants": ["user", "ai", "typing"],
+  "states": ["default", "hover", "focus", "sending"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["ai-copilot-chat", "ai-explore-drawer"],
+  "tags": ["chat", "message", "bubble", "ai", "copilot", "conversation"],
+  "demoHeight": 240
+}

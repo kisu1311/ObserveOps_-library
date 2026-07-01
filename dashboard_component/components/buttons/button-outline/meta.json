@@ -1,0 +1,13 @@
+{
+  "name": "button-outline",
+  "category": "buttons",
+  "title": "Outline Button",
+  "description": "Tertiary teal-outline button with no fill, for secondary confirmations (e.g. Create Widget) that sit beside a solid primary action.",
+  "rootClass": "oo-btn-outline",
+  "variants": ["default", "with-icon", "block"],
+  "states": ["default", "hover", "focus", "active", "disabled"],
+  "deps": ["tokens.css", "base.css"],
+  "usedIn": ["create-widget-modal"],
+  "tags": ["button", "outline", "tertiary", "secondary", "action"],
+  "demoHeight": 80
+}

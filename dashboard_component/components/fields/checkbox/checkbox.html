@@ -1,0 +1,42 @@
+<!-- variant: box-only — unchecked, used inside a table row/select cell -->
+<label class="oo-checkbox">
+  <input type="checkbox" class="oo-checkbox__input" aria-label="Select row">
+  <span class="oo-checkbox__box">
+    <svg class="oo-checkbox__check" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path d="M2.5 6.2 5 8.7 9.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+</label>
+
+<!-- variant: with-label — checked -->
+<label class="oo-checkbox">
+  <input type="checkbox" class="oo-checkbox__input" checked>
+  <span class="oo-checkbox__box">
+    <svg class="oo-checkbox__check" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path d="M2.5 6.2 5 8.7 9.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+  <span class="oo-checkbox__label">Include resolved alerts</span>
+</label>
+
+<!-- variant: indeterminate — select-all partial state (visual via .is-indeterminate) -->
+<label class="oo-checkbox is-indeterminate">
+  <input type="checkbox" class="oo-checkbox__input" aria-label="Select all" aria-checked="mixed">
+  <span class="oo-checkbox__box">
+    <svg class="oo-checkbox__check" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path d="M2.5 6.2 5 8.7 9.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+  <span class="oo-checkbox__label">Select all monitors</span>
+</label>
+
+<!-- state: disabled — checked & non-interactive -->
+<label class="oo-checkbox">
+  <input type="checkbox" class="oo-checkbox__input" checked disabled>
+  <span class="oo-checkbox__box">
+    <svg class="oo-checkbox__check" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path d="M2.5 6.2 5 8.7 9.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+  <span class="oo-checkbox__label">Locked (required)</span>
+</label>
