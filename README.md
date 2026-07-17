@@ -1,6 +1,6 @@
 # ObserveOps Icon Library — by Module
 
-**790 unique SVG icons** harvested from Motadata ObserveOps (`172.16.9.243`, build 8.2.6), organised **by product module → sub-category**.
+**791 unique SVG icons** harvested from Motadata ObserveOps (`172.16.9.243`, build 8.2.6), organised **by product module → sub-category**.
 
 Open **`index.html`** for the library landing page, or **`icons.html`** for the searchable icon gallery (module sidebar, sub-category nav, copy/download). **`color-palette.html`** holds the color tokens.
 
@@ -10,7 +10,7 @@ Open **`index.html`** for the library landing page, or **`icons.html`** for the 
 | Module | Icons | Covers |
 |---|---|---|
 | **Dashboards** | 3 | dashboard & widget icons |
-| **Monitors** | 306 | monitored-technology icons (AWS/Azure/GCP, OS, DB, network, apps — 238 vendor logos) + monitor/inventory UI |
+| **Monitors** | 307 | monitored-technology icons (AWS/Azure/GCP, OS, DB, network, apps — 238 vendor logos) + monitor/inventory UI |
 | **Alerts** | 5 | alerts, alarms, severities |
 | **SLO** | 2 | service-level objectives |
 | **Reports** | 1 | reporting |
@@ -27,7 +27,7 @@ Open **`index.html`** for the library landing page, or **`icons.html`** for the 
 | **Settings** | 67 | admin/config — users, integrations, rules |
 | **Common / Global** | 305 | generic UI shared across ALL modules (nav, arrows, CRUD actions, status, files, shapes, text, time) |
 | **Brand** | 2 | favicons |
-| | **790** | |
+| | **791** | |
 
 ## Directory structure
 ```
@@ -44,7 +44,7 @@ Each module folder contains sub-category folders. Sub-categories are functional 
 ### Per-module sub-categories
 
 - **Dashboards** (3): navigation-layout (3)
-- **Monitors** (306): alerts-notifications (1), application-runtimes (9), applications-saas (19), aws (32), azure (14), charts-metrics (1), cloud-compute (21), communication-messaging (4), containers-orchestration (4), databases (15), directory-services (2), gcp (6), hardware-servers (5), infrastructure-hardware (4), media-device (1), messaging-streaming (5), middleware (7), monitoring-observability (7), network-connectivity (7), network-devices (22), network-services-protocols (21), observability-monitoring (4), operating-systems (9), oracle-cloud (6), other-cloud (1), security-access (1), security-identity (14), status-severity-health (3), storage-backup (14), storage-data (8), time-date (1), virtualization (15), web-app-servers (8), web-browsers (15)
+- **Monitors** (307): alerts-notifications (1), application-runtimes (9), applications-saas (19), aws (32), azure (14), charts-metrics (1), cloud-compute (21), communication-messaging (4), containers-orchestration (4), databases (15), directory-services (2), gcp (6), hardware-servers (5), infrastructure-hardware (4), media-device (1), messaging-streaming (5), middleware (7), monitoring-observability (7), network-connectivity (7), network-devices (23), network-services-protocols (21), observability-monitoring (4), operating-systems (9), oracle-cloud (6), other-cloud (1), security-access (1), security-identity (14), status-severity-health (3), storage-backup (14), storage-data (8), time-date (1), virtualization (15), web-app-servers (8), web-browsers (15)
 - **Alerts** (5): alerts-notifications (5)
 - **SLO** (2): observability-monitoring (2)
 - **Reports** (1): file-document (1)
