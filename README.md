@@ -1,6 +1,6 @@
 # ObserveOps Icon Library — by Module
 
-**766 unique SVG icons** harvested from Motadata ObserveOps (`172.16.9.243`, build 8.2.6), organised **by product module → sub-category**.
+**790 unique SVG icons** harvested from Motadata ObserveOps (`172.16.9.243`, build 8.2.6), organised **by product module → sub-category**.
 
 Open **`index.html`** for the library landing page, or **`icons.html`** for the searchable icon gallery (module sidebar, sub-category nav, copy/download). **`color-palette.html`** holds the color tokens.
 
@@ -10,11 +10,11 @@ Open **`index.html`** for the library landing page, or **`icons.html`** for the 
 | Module | Icons | Covers |
 |---|---|---|
 | **Dashboards** | 3 | dashboard & widget icons |
-| **Monitors** | 294 | monitored-technology icons (AWS/Azure/GCP, OS, DB, network, apps — 238 vendor logos) + monitor/inventory UI |
+| **Monitors** | 306 | monitored-technology icons (AWS/Azure/GCP, OS, DB, network, apps — 238 vendor logos) + monitor/inventory UI |
 | **Alerts** | 5 | alerts, alarms, severities |
 | **SLO** | 2 | service-level objectives |
 | **Reports** | 1 | reporting |
-| **Topology** | 12 | topology maps & nodes |
+| **Topology** | 24 | topology maps & nodes (incl. AWS service nodes) |
 | **NCCM** | 27 | config & change mgmt, compliance |
 | **NetRoute** | 3 | network route/path analysis |
 | **Metric Explorer** | 3 | metric querying & charts |
@@ -27,7 +27,7 @@ Open **`index.html`** for the library landing page, or **`icons.html`** for the 
 | **Settings** | 67 | admin/config — users, integrations, rules |
 | **Common / Global** | 305 | generic UI shared across ALL modules (nav, arrows, CRUD actions, status, files, shapes, text, time) |
 | **Brand** | 2 | favicons |
-| | **766** | |
+| | **790** | |
 
 ## Directory structure
 ```
@@ -44,11 +44,11 @@ Each module folder contains sub-category folders. Sub-categories are functional 
 ### Per-module sub-categories
 
 - **Dashboards** (3): navigation-layout (3)
-- **Monitors** (294): alerts-notifications (1), application-runtimes (9), applications-saas (19), aws (20), azure (14), charts-metrics (1), cloud-compute (21), communication-messaging (4), containers-orchestration (4), databases (15), directory-services (2), gcp (6), hardware-servers (5), infrastructure-hardware (4), media-device (1), messaging-streaming (5), middleware (7), monitoring-observability (7), network-connectivity (7), network-devices (22), network-services-protocols (21), observability-monitoring (4), operating-systems (9), oracle-cloud (6), other-cloud (1), security-access (1), security-identity (14), status-severity-health (3), storage-backup (14), storage-data (8), time-date (1), virtualization (15), web-app-servers (8), web-browsers (15)
+- **Monitors** (306): alerts-notifications (1), application-runtimes (9), applications-saas (19), aws (32), azure (14), charts-metrics (1), cloud-compute (21), communication-messaging (4), containers-orchestration (4), databases (15), directory-services (2), gcp (6), hardware-servers (5), infrastructure-hardware (4), media-device (1), messaging-streaming (5), middleware (7), monitoring-observability (7), network-connectivity (7), network-devices (22), network-services-protocols (21), observability-monitoring (4), operating-systems (9), oracle-cloud (6), other-cloud (1), security-access (1), security-identity (14), status-severity-health (3), storage-backup (14), storage-data (8), time-date (1), virtualization (15), web-app-servers (8), web-browsers (15)
 - **Alerts** (5): alerts-notifications (5)
 - **SLO** (2): observability-monitoring (2)
 - **Reports** (1): file-document (1)
-- **Topology** (12): actions-edit (1), arrows-direction (2), file-document (1), observability-monitoring (7), shapes-symbols (1)
+- **Topology** (24): actions-edit (1), arrows-direction (2), file-document (1), observability-monitoring (19), shapes-symbols (1)
 - **NCCM** (27): actions-edit (2), charts-metrics (2), cloud-compute (1), dev-programming (6), file-document (2), infrastructure-hardware (1), navigation-layout (2), network-connectivity (2), observability-monitoring (4), security-access (1), shapes-symbols (1), storage-data (3)
 - **NetRoute** (3): network-connectivity (3)
 - **Metric Explorer** (3): charts-metrics (3)
